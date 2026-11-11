@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ЭКО AI — цифрлық мүмкіндіктер арқылы экотәрбие</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --g1:#1f8a3b; --g2:#2fa84f; --g3:#8fd14f; --g4:#e9f7dc;
+  --b1:#1d63c9; --b2:#3d8bf0; --y1:#ffd23f; --o1:#ff8a3d; --r1:#e9473b;
+  --ink:#16351f; --muted:#4f6b57; --cream:#fbfdf5; --card:#ffffff;
+  --sh:0 10px 30px rgba(22,53,31,.12); --sh2:0 4px 12px rgba(22,53,31,.10);
+  --rad:26px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Nunito",system-ui,sans-serif;color:var(--ink);background:var(--cream);font-weight:700;line-height:1.45}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer}
+a{color:inherit}
+
+/* ---------- NAV ---------- */
+.nav{position:sticky;top:0;z-index:50;background:rgba(251,253,245,.86);backdrop-filter:blur(12px);border-bottom:1px solid rgba(31,138,59,.12)}
+.nav-in{max-width:1240px;margin:auto;display:flex;align-items:center;gap:14px;padding:10px 18px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:900;font-size:22px;letter-spacing:.5px}
+.brand img{width:44px;height:44px;border-radius:50%;box-shadow:var(--sh2)}
+.brand b{color:var(--g1)} .brand i{font-style:normal;color:var(--b1)}
+.links{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap;justify-content:flex-end}
+.links a{text-decoration:none;font-weight:800;font-size:15px;padding:8px 12px;border-radius:999px;color:var(--muted);transition:.2s}
+.links a:hover{background:var(--g4);color:var(--g1)}
+.burger{display:none;margin-left:auto;border:none;background:var(--g4);border-radius:12px;font-size:22px;padding:6px 12px}
+@media(max-width:980px){.burger{display:block}.links{display:none;position:absolute;top:64px;right:12px;left:12px;flex-direction:column;background:#fff;border-radius:20px;box-shadow:var(--sh);padding:10px}.links.open{display:flex}}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;overflow:hidden;background:
+  radial-gradient(circle at 80% 10%,rgba(255,210,63,.45),transparent 30%),
+  linear-gradient(180deg,#d9f0ff 0%,#eef9e6 55%,#dff3c9 100%)}
+.hero-in{max-width:1240px;margin:auto;display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center;padding:56px 22px 90px;position:relative;z-index:2}
+.hero h1{font-size:clamp(54px,8vw,104px);line-height:.95;margin:0 0 10px;font-weight:900;letter-spacing:1px}
+.hero h1 .e{color:var(--g1)} .hero h1 .a{color:var(--b1)}
+.hero .sub{font-size:clamp(20px,2.4vw,30px);font-weight:900;color:var(--g1);margin:0 0 14px}
+.hero p.lead{font-size:19px;color:var(--muted);max-width:560px;margin:0 0 26px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{border:none;border-radius:999px;padding:15px 26px;font-size:18px;font-weight:900;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:transform .15s, box-shadow .15s}
+.btn:active{transform:translateY(3px)}
+.btn.pri{background:var(--g2);color:#fff;box-shadow:0 6px 0 #1b7a35}
+.btn.sec{background:#fff;color:var(--b1);box-shadow:0 6px 0 #c9d8ee}
+.btn.y{background:var(--y1);color:#5a4300;box-shadow:0 6px 0 #d6a700}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.stat{background:#fff;border-radius:18px;padding:10px 16px;box-shadow:var(--sh2);font-weight:900}
+.stat b{font-size:24px;color:var(--g1);margin-right:4px}
+.logo-wrap{position:relative;justify-self:center;width:min(460px,80vw);aspect-ratio:1}
+.logo-wrap img{width:100%;height:100%;border-radius:50%;box-shadow:0 30px 60px rgba(31,138,59,.25);animation:float 6s ease-in-out infinite;background:#fff}
+.logo-wrap::before{content:"";position:absolute;inset:-18px;border-radius:50%;border:3px dashed rgba(31,138,59,.35);animation:spin 40s linear infinite}
+@keyframes float{50%{transform:translateY(-14px) rotate(1.5deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hills{position:absolute;left:0;right:0;bottom:-2px;z-index:1;width:100%;height:120px}
+
+.leaf{position:absolute;z-index:1;font-size:28px;opacity:.75;animation:drift linear infinite}
+@keyframes drift{0%{transform:translateY(-60px) rotate(0)}100%{transform:translateY(110vh) rotate(540deg)}}
+@media(max-width:860px){.hero-in{grid-template-columns:1fr;text-align:center;padding-top:30px}.hero p.lead{margin-inline:auto}.cta,.stats{justify-content:center}.logo-wrap{order:-1;width:min(330px,72vw)}}
+
+/* ---------- SECTIONS ---------- */
+section{padding:70px 22px}
+.wrap{max-width:1240px;margin:auto}
+.sh{text-align:center;margin-bottom:34px}
+.sh .tag{display:inline-block;background:var(--g4);color:var(--g1);border-radius:999px;padding:6px 16px;font-weight:900;font-size:14px;letter-spacing:.5px;text-transform:uppercase}
+.sh h2{font-size:clamp(32px,4.4vw,52px);margin:10px 0 8px;font-weight:900;line-height:1.05}
+.sh p{color:var(--muted);font-size:18px;max-width:720px;margin:0 auto}
+.alt{background:linear-gradient(180deg,#f1f9e8,#fbfdf5)}
+.blue{background:linear-gradient(180deg,#eef6ff,#fbfdf5)}
+
+/* games grid */
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px}
+.gcard{background:var(--card);border-radius:var(--rad);box-shadow:var(--sh);overflow:hidden;border:none;padding:0;text-align:left;display:flex;flex-direction:column;transition:transform .2s, box-shadow .2s;color:var(--ink)}
+.gcard:hover{transform:translateY(-6px) rotate(-.4deg);box-shadow:0 18px 40px rgba(22,53,31,.18)}
+.gcard .th{aspect-ratio:4/3;background:var(--g4);display:grid;place-items:center;overflow:hidden;position:relative}
+.gcard .th img{width:100%;height:100%;object-fit:cover}
+.gcard .th.contain img{object-fit:contain;padding:14px}
+.gcard .th .emo{font-size:84px}
+.gcard .num{position:absolute;top:12px;left:12px;background:#fff;border-radius:999px;padding:4px 12px;font-weight:900;font-size:14px;box-shadow:var(--sh2)}
+.gcard .bd{padding:16px 18px 20px}
+.gcard h3{margin:0 0 4px;font-size:22px;font-weight:900}
+.gcard p{margin:0;color:var(--muted);font-size:15px}
+.gcard .play{margin-top:12px;display:inline-flex;gap:6px;align-items:center;color:var(--g1);font-weight:900}
+
+/* galleries */
+.grid{columns:4 240px;column-gap:16px}
+.grid figure{break-inside:avoid;margin:0 0 16px;background:#fff;border-radius:20px;box-shadow:var(--sh2);overflow:hidden;cursor:zoom-in;transition:transform .2s}
+.grid figure:hover{transform:scale(1.02)}
+.grid figure img{width:100%;height:auto}
+.rowgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.rowgrid figure{margin:0;background:#fff;border-radius:22px;box-shadow:var(--sh2);overflow:hidden;cursor:zoom-in;transition:transform .2s;padding:10px}
+.rowgrid figure:hover{transform:translateY(-4px) rotate(1deg)}
+.rowgrid figure img{width:100%;aspect-ratio:3/2;object-fit:contain}
+.rowgrid figcaption{text-align:center;font-weight:900;padding-top:6px}
+
+/* rules leaves */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;align-items:center}
+.rules figure{margin:0;cursor:zoom-in;transition:transform .3s}.rules figure img{mix-blend-mode:multiply}
+.rules figure:nth-child(odd){transform:rotate(-3deg)} .rules figure:nth-child(even){transform:rotate(3deg)}
+.rules figure:hover{transform:scale(1.05) rotate(0)}
+
+/* rhymes */
+.rhymes{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px;margin-bottom:34px}
+.rh{background:#fff;border-radius:var(--rad);box-shadow:var(--sh2);padding:22px;position:relative;overflow:hidden}
+.rh h3{margin:0 0 10px;font-size:24px;font-weight:900;color:var(--r1)}
+.rh .t{white-space:pre-line;font-size:18px;color:var(--ink)}
+.rh .ic{position:absolute;right:14px;top:10px;font-size:44px;opacity:.9}
+.rh button{margin-top:12px;border:none;background:var(--g4);color:var(--g1);border-radius:999px;padding:8px 14px;font-weight:900}
+
+/* video */
+.videos{display:grid;grid-template-columns:1.5fr 1fr;gap:22px;align-items:start}
+.vid{background:#fff;border-radius:var(--rad);box-shadow:var(--sh);padding:12px}
+.vid video{width:100%;border-radius:18px;display:block;background:#000;max-height:70vh}
+.vid h3{margin:10px 6px 4px;font-size:20px}
+.photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:22px}
+.photos figure{margin:0;border-radius:22px;overflow:hidden;box-shadow:var(--sh2);cursor:zoom-in;aspect-ratio:4/3}
+.photos img{width:100%;height:100%;object-fit:cover}
+@media(max-width:820px){.videos{grid-template-columns:1fr}}
+
+footer{background:#163a22;color:#d8f1d0;padding:40px 22px;text-align:center}
+footer img{width:80px;height:80px;border-radius:50%;margin:0 auto 12px}
+footer b{color:#fff}
+
+/* ---------- LIGHTBOX ---------- */
+.lb{position:fixed;inset:0;z-index:300;background:rgba(10,30,15,.9);display:none;align-items:center;justify-content:center}
+.lb.show{display:flex}
+.lb img{max-width:92vw;max-height:88vh;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.4);background:#fff}
+.lb button{position:absolute;border:none;background:#fff;border-radius:50%;width:54px;height:54px;font-size:26px;font-weight:900;box-shadow:var(--sh)}
+.lb .x{top:16px;right:16px}.lb .p{left:16px;top:50%}.lb .n{right:16px;top:50%}
+
+/* ---------- GAME OVERLAY ---------- */
+.gm{position:fixed;inset:0;z-index:200;display:none;flex-direction:column;background:
+  radial-gradient(circle at 15% 0%,rgba(255,210,63,.35),transparent 30%),linear-gradient(180deg,#e2f3ff,#eaf8de 60%,#d5efbd)}
+.gm.show{display:flex}
+.gbar{display:flex;align-items:center;gap:12px;padding:10px 16px;background:rgba(255,255,255,.75);backdrop-filter:blur(8px);box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.gbar .back,.gbar .rst{border:none;border-radius:16px;padding:10px 16px;font-size:17px;font-weight:900}
+.gbar .back{background:var(--g2);color:#fff;box-shadow:0 4px 0 #1b7a35}
+.gbar .rst{background:var(--o1);color:#fff;box-shadow:0 4px 0 #c45a17}
+.gbar h2{margin:0;font-size:clamp(18px,2.4vw,28px);font-weight:900;flex:1;text-align:center}
+.gbar .score{background:#fff;border:3px solid var(--y1);border-radius:16px;padding:6px 14px;font-weight:900;font-size:20px}
+.gbody{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.msg{background:#fff;border-radius:18px;padding:10px 20px;font-size:clamp(17px,1.8vw,24px);font-weight:900;box-shadow:var(--sh2);text-align:center;transition:.2s;max-width:900px}
+.msg.ok{background:#e6ffe9;color:#12843a}.msg.bad{background:#ffecec;color:#c62828}
+.chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.chip{border:none;background:#fff;border-radius:999px;padding:8px 14px;font-weight:900;font-size:15px;box-shadow:var(--sh2);color:var(--muted)}
+.chip.on{background:var(--g2);color:#fff}
+.chip.done::after{content:" ✓"}
+
+/* place */
+.pl{display:flex;gap:16px;width:100%;max-width:1300px;align-items:flex-start;justify-content:center;flex-wrap:wrap}
+.stage{position:relative;width:min(760px,100%);border-radius:24px;overflow:hidden;box-shadow:var(--sh);background:#fff;flex:0 1 auto}
+.stage>img{width:100%;height:100%;display:block;user-select:none;pointer-events:none}
+.zone{position:absolute;border-radius:16px;transition:.15s}
+.zone.hot{outline:4px dashed var(--y1);background:rgba(255,246,0,.18)}
+.zone.hint{animation:hint 1s ease 2}
+@keyframes hint{50%{outline:5px solid #fff600;background:rgba(255,246,0,.35)}}
+.zone img.placed{width:100%;height:100%;object-fit:contain;animation:pop .5s ease;pointer-events:none}
+.tray{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-content:flex-start;width:min(300px,100%);background:rgba(255,255,255,.7);border-radius:24px;padding:14px;box-shadow:var(--sh2);min-height:120px}
+@media(max-width:1100px){.tray{width:min(760px,100%)}}
+.stk{width:118px;height:118px;display:grid;place-items:center;border-radius:20px;background:#fff;box-shadow:var(--sh2);touch-action:none;user-select:none;cursor:grab;transition:transform .15s}
+.stk img{max-width:92%;max-height:92%;pointer-events:none;filter:drop-shadow(0 5px 4px rgba(0,0,0,.2))}
+.stk.sel{transform:scale(1.1);box-shadow:0 0 0 5px #fff600,0 0 22px #fff600}
+.stk.ghosted{opacity:.3}
+.ghost{position:fixed;z-index:400;pointer-events:none;width:130px;height:130px;transform:translate(-50%,-50%) scale(1.1);filter:drop-shadow(0 12px 12px rgba(0,0,0,.3))}
+.ghost img{width:100%;height:100%;object-fit:contain}
+.shake{animation:shake .4s ease}
+@keyframes shake{25%{transform:translateX(-12px)}50%{transform:translateX(12px)}75%{transform:translateX(-7px)}}
+@keyframes pop{0%{transform:scale(.3);opacity:0}60%{transform:scale(1.15);opacity:1}100%{transform:scale(1)}}
+
+/* sort */
+.cur{width:min(250px,48vw);aspect-ratio:1;background:#fff;border-radius:30px;box-shadow:var(--sh);display:grid;place-items:center;touch-action:none;cursor:grab;user-select:none;position:relative}
+.cur img{width:76%;height:76%;object-fit:contain;pointer-events:none}
+.cur .emo{font-size:clamp(90px,14vw,150px);line-height:1}
+.cur .cap{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-weight:900;color:var(--muted);font-size:18px}
+.cur.in{animation:pop .45s ease}
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;width:min(1200px,100%)}
+@media(max-width:700px){.cats{grid-template-columns:repeat(2,1fr)}}
+.cat{background:#fff;border-radius:24px;box-shadow:var(--sh2);overflow:hidden;border:5px solid transparent;transition:.15s;display:flex;flex-direction:column;cursor:pointer}
+.cat.hot{border-color:var(--y1);transform:scale(1.04)}
+.cat .ci{aspect-ratio:16/10;overflow:hidden;display:grid;place-items:center}
+.cat .ci img{width:100%;height:100%;object-fit:cover}
+.cat .cl{font-weight:900;text-align:center;font-size:clamp(16px,1.8vw,22px);padding:6px}
+.cat .got{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;padding:0 6px 8px;min-height:30px}
+.cat .got img{width:30px;height:30px;object-fit:contain}
+.cat .got span{font-size:24px}
+.cat.ok{animation:pop .45s}
+.prog{width:min(600px,90%);height:16px;background:#fff;border-radius:999px;overflow:hidden;box-shadow:inset 0 1px 3px rgba(0,0,0,.1)}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--g3),var(--g2));border-radius:999px;transition:width .4s}
+
+/* pick */
+.prompt{background:#fff;border-radius:28px;box-shadow:var(--sh);padding:18px 26px;max-width:860px;text-align:center}
+.prompt .rt{white-space:pre-line;font-size:clamp(22px,2.8vw,34px);font-weight:900;line-height:1.3;color:#2a3a8f}
+.prompt img{height:min(30vh,260px);width:auto;max-width:100%;margin:auto;border-radius:18px;object-fit:contain}
+.prompt .q{font-size:clamp(20px,2.2vw,28px);font-weight:900;margin-top:8px}
+.opts{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;width:min(1300px,100%)}
+.opt{background:#fff;border:6px solid #fff;border-radius:26px;box-shadow:var(--sh2);padding:8px;width:clamp(120px,15vw,210px);transition:.15s}
+.opt:hover{transform:translateY(-4px)}
+.opt img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:18px}
+.opt.cont img{object-fit:contain}
+.opt .ol{font-weight:900;font-size:20px;text-align:center;min-height:28px;color:var(--g1)}
+.opt.right{border-color:var(--g2);animation:pop .5s}
+.opt.wrong{border-color:var(--r1);opacity:.55}
+
+/* memory */
+.mem{display:grid;gap:14px;width:min(980px,100%)}
+.mc{aspect-ratio:1;perspective:900px;border:none;background:none;padding:0}
+.mc .in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.mc.flip .in{transform:rotateY(180deg)}
+.mc .f,.mc .b{position:absolute;inset:0;border-radius:22px;backface-visibility:hidden;display:grid;place-items:center;box-shadow:var(--sh2)}
+.mc .f{background:linear-gradient(135deg,var(--g2),var(--g3));font-size:clamp(34px,5vw,60px)}
+.mc .f::after{content:"";position:absolute;inset:8px;border:3px dashed rgba(255,255,255,.6);border-radius:16px}
+.mc .b{background:#fff;transform:rotateY(180deg);padding:8px}
+.mc .b img{max-width:100%;max-height:100%;object-fit:contain}
+.mc.done .b{box-shadow:0 0 0 5px var(--g3)}
+
+/* sequence */
+.slots{display:grid;gap:10px;width:min(1250px,100%)}
+.slot{aspect-ratio:1.2;border:4px dashed #9fcf86;border-radius:20px;background:rgba(255,255,255,.6);display:grid;place-items:center;position:relative;font-size:30px;font-weight:900;color:#9fcf86;overflow:hidden}
+.slot img{width:100%;height:100%;object-fit:cover;animation:pop .4s}
+.slot .lab{position:absolute;bottom:0;left:0;right:0;background:rgba(255,255,255,.9);font-size:clamp(11px,1.1vw,15px);color:var(--ink);text-align:center;padding:2px}
+.slot.next{border-color:var(--y1);background:rgba(255,246,150,.4)}
+.tiles{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.tile{width:clamp(120px,13vw,170px);aspect-ratio:1.2;border:none;border-radius:20px;overflow:hidden;box-shadow:var(--sh2);padding:0;background:#fff}
+.tile img{width:100%;height:100%;object-fit:cover}
+
+/* eco quiz */
+.eco{background:#fff;border-radius:34px;box-shadow:var(--sh);padding:26px 30px;text-align:center;max-width:720px;width:100%}
+.eco .em{font-size:clamp(90px,14vw,150px);line-height:1.1}
+.eco .tx{font-size:clamp(22px,2.8vw,34px);font-weight:900;margin:10px 0 20px}
+.yn{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.yn button{border:none;border-radius:24px;padding:16px 30px;font-size:clamp(20px,2.4vw,28px);font-weight:900;color:#fff}
+.yn .y{background:var(--g2);box-shadow:0 6px 0 #1b7a35}.yn .n{background:var(--r1);box-shadow:0 6px 0 #a52a20}
+
+/* bins (waste) */
+.bin{display:flex;flex-direction:column;align-items:center}
+.bin svg{width:100%;height:auto;max-height:24vh}
+
+/* finish */
+.fin{position:fixed;inset:0;z-index:260;background:rgba(0,70,25,.5);display:none;align-items:center;justify-content:center}
+.fin.show{display:flex}
+.fin .card{background:#fff;border:6px solid var(--g3);border-radius:34px;padding:30px 36px;text-align:center;width:min(560px,92vw);animation:pop .5s}
+.fin .big{font-size:80px}
+.fin h3{font-size:clamp(40px,5vw,60px);margin:0;color:var(--g1);font-weight:900}
+.fin p{font-size:22px;margin:8px 0 18px}
+.fin .stars{font-size:44px;letter-spacing:4px}
+canvas#conf{position:fixed;inset:0;pointer-events:none;z-index:500}
+.hide{display:none!important}
+.small{font-size:14px;color:var(--muted)}
+
+/* ===== shared ===== */
+.subh{text-align:center;font-size:clamp(24px,3vw,34px);font-weight:900;margin:44px 0 22px}
+details.prints{margin-top:36px;background:#fff;border-radius:22px;box-shadow:var(--sh2);padding:6px 18px}
+details.prints summary{cursor:pointer;font-weight:900;font-size:18px;padding:12px 4px;color:var(--g1)}
+details.prints .grid{margin-top:10px}
+
+/* ===== 3D garden ===== */
+.lab3d{display:grid;grid-template-columns:1.35fr 1fr;gap:22px;align-items:stretch}
+@media(max-width:960px){.lab3d{grid-template-columns:1fr}}
+.g3wrap{position:relative;border-radius:30px;overflow:hidden;box-shadow:0 20px 50px rgba(31,90,40,.25);min-height:520px;background:linear-gradient(#bfe6ff,#e8f7d8);touch-action:none}
+.g3wrap canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab}
+.g3top{position:absolute;top:14px;left:14px;display:flex;gap:8px;z-index:3}
+.pt{border:none;border-radius:999px;padding:10px 16px;font-weight:900;font-size:17px;background:rgba(255,255,255,.85);color:var(--muted);box-shadow:var(--sh2)}
+.pt.on{background:var(--g2);color:#fff}
+.g3hint{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.8);border-radius:999px;padding:6px 12px;font-weight:900;font-size:14px;color:var(--muted);z-index:3}
+.g3h{position:absolute;left:50%;bottom:86px;transform:translateX(-50%) scale(.6);opacity:0;background:#fff;border:4px solid var(--y1);border-radius:18px;padding:8px 16px;font-size:26px;font-weight:900;z-index:3;transition:.35s;pointer-events:none}
+.g3h.show{opacity:1;transform:translateX(-50%) scale(1)}
+.g3act{position:absolute;left:0;right:0;bottom:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;z-index:3;padding:0 10px}
+.act{border:none;border-radius:20px;padding:12px 18px;font-size:clamp(15px,1.6vw,19px);font-weight:900;color:#fff;transition:transform .12s}
+.act:active{transform:translateY(3px) scale(.97)}
+.act.w{background:#2f8cf0;box-shadow:0 5px 0 #1b5fb0}.act.s{background:#f4b400;box-shadow:0 5px 0 #b98700}.act.m{background:#9b59d0;box-shadow:0 5px 0 #6c3797}
+.act.done{filter:saturate(.4) brightness(1.08)}
+.act.done::after{content:" ✓"}
+.g3fallback{position:absolute;inset:0;display:grid;place-items:center;font-size:22px;font-weight:900;z-index:4}
+
+.diary{position:relative;background:#fffdf3;border-radius:26px;box-shadow:var(--sh);padding:22px 22px 22px 54px;
+  background-image:repeating-linear-gradient(transparent 0 33px,#d9ecf7 33px 35px);background-position:0 92px}
+.diary::before{content:"";position:absolute;left:18px;top:18px;bottom:18px;width:18px;background:radial-gradient(circle at 9px 9px,#c9c9c9 0 6px,#fff 7px 8px,transparent 9px) 0 0/18px 34px repeat-y}
+.diary::after{content:"";position:absolute;left:44px;top:0;bottom:0;width:2px;background:#f4a9a9}
+.dh{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.dh h3{margin:0;font-size:clamp(22px,2.4vw,28px);font-weight:900;color:var(--r1)}
+.weeks{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 14px}
+.wk{width:40px;height:40px;border-radius:50%;border:3px solid #cfe5c3;background:#fff;font-weight:900;font-size:16px;color:#9bbf8a;display:grid;place-items:center;padding:0}
+.wk.past{background:var(--g3);border-color:var(--g2);color:#fff}
+.wk.cur{background:var(--y1);border-color:#e0a800;color:#5a4300;transform:scale(1.15)}
+.dcard{background:#fff;border-radius:20px;box-shadow:var(--sh2);padding:14px 16px;margin-bottom:12px;display:flex;gap:14px;align-items:center}
+.dcard img{width:96px;height:80px;object-fit:cover;border-radius:14px;flex:none}
+.dcard .stg{font-size:22px;font-weight:900;color:var(--g1);line-height:1.15}
+.dcard .hgt{display:inline-block;margin-top:6px;background:#f3e8ff;color:#7a3db0;border-radius:999px;padding:3px 12px;font-weight:900}
+.obs{font-size:18px;line-height:35px;margin:0 0 10px}
+.checks{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.ck{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800}
+.ck i{width:28px;height:28px;border-radius:8px;border:3px solid #b9d7a8;background:#fff;display:grid;place-items:center;font-style:normal;font-size:18px}
+.ck.on i{background:var(--g2);border-color:var(--g2);color:#fff}
+.mood{display:flex;gap:8px;align-items:center;margin-bottom:14px;font-size:17px}
+.mood button{border:none;background:#fff;border-radius:50%;width:46px;height:46px;font-size:26px;box-shadow:var(--sh2);transition:.15s}
+.mood button.on{transform:scale(1.2);box-shadow:0 0 0 4px var(--y1)}
+.dnav{display:flex;gap:10px;flex-wrap:wrap}
+.dnav .btn{padding:12px 20px;font-size:17px}
+.btn.glow{animation:glow 1.2s ease-in-out infinite}
+@keyframes glow{50%{box-shadow:0 6px 0 #1b7a35,0 0 0 8px rgba(255,214,0,.55)}}
+
+/* ===== Earth ===== */
+.earthRow{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center}
+@media(max-width:900px){.earthRow{grid-template-columns:1fr}}
+.earthBox{position:relative;aspect-ratio:1;max-width:560px;width:100%;justify-self:center;touch-action:none}
+.earthBox::before{content:"";position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle,rgba(120,200,255,.35),transparent 70%);filter:blur(10px)}
+.earthBox canvas{position:relative;width:100%;height:100%;display:block;cursor:grab}
+.earthMsg{position:absolute;left:50%;bottom:2%;transform:translateX(-50%);background:#fff;border-radius:18px;padding:10px 18px;font-weight:900;font-size:clamp(15px,1.6vw,19px);box-shadow:var(--sh2);white-space:nowrap;max-width:96%;overflow:hidden;text-overflow:ellipsis}
+.pledges{background:#fff;border-radius:30px;box-shadow:var(--sh);padding:24px}
+.pledges h3{margin:0 0 4px;font-size:clamp(24px,2.8vw,32px);font-weight:900;color:#1d63c9}
+.pl1{display:flex;align-items:center;gap:14px;width:100%;border:none;text-align:left;background:#f4faef;border-radius:20px;padding:12px 16px;margin-bottom:10px;font-size:clamp(17px,1.8vw,21px);font-weight:900;color:var(--ink);transition:transform .15s,background .2s;box-shadow:0 4px 0 #d6e9cb}
+.pl1:hover{transform:translateX(4px)}
+.pl1 .pe{font-size:34px;width:48px;text-align:center}
+.pl1 .pc{margin-left:auto;width:36px;height:36px;border-radius:50%;border:3px solid #b9d7a8;display:grid;place-items:center;font-size:20px;color:#fff;flex:none}
+.pl1.on{background:linear-gradient(90deg,#d8f5c8,#f4faef);box-shadow:0 4px 0 #9fd27f}
+.pl1.on .pc{background:var(--g2);border-color:var(--g2)}
+.pbar{height:16px;border-radius:999px;background:#eef3ea;overflow:hidden;margin-top:6px}
+.pbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#8fd14f,#2fa84f);transition:width .5s}
+
+.rules3d{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:26px}
+.rc{perspective:1100px;border:none;background:none;padding:0;aspect-ratio:3/3.6;cursor:pointer}
+.rc-in{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.2,.8,.2,1);transform:rotateX(var(--rx,0deg)) rotateY(calc(var(--ry,0deg) + var(--flip,0deg)))}
+.rc.flip .rc-in{--flip:180deg}
+.rc-f,.rc-b{position:absolute;inset:0;border-radius:30px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;box-shadow:0 18px 34px rgba(22,53,31,.22)}
+.rc-f{background:radial-gradient(circle at 30% 20%,#ffffff,#e4f7d6 60%,#c7ebb0)}
+.rc-f::after{content:"";position:absolute;inset:0;border-radius:30px;border:4px solid rgba(255,255,255,.8);pointer-events:none}
+.rc-f img{width:100%;flex:1;min-height:0;object-fit:contain;mix-blend-mode:multiply;filter:drop-shadow(0 10px 8px rgba(31,90,40,.25))}
+.rc-f .rt{background:#fff;border-radius:999px;padding:8px 16px;font-weight:900;font-size:18px;color:var(--g1);box-shadow:var(--sh2);margin-top:8px}
+.rc-b{transform:rotateY(180deg);background:linear-gradient(160deg,var(--c1),var(--c2));color:#fff;justify-content:flex-start;text-align:left;align-items:stretch}
+.rc-b h4{margin:6px 0 14px;font-size:24px;font-weight:900;text-align:center}
+.rc-b .tip{background:rgba(255,255,255,.2);border-radius:16px;padding:10px 12px;margin-bottom:10px;font-size:17px;font-weight:800;display:flex;gap:10px;align-items:center}
+.rc-b .tip span{font-size:28px}
+.rc-b .back{margin-top:auto;text-align:center;font-size:14px;opacity:.85}
+
+/* ===== Riddle cards ===== */
+.rid3d{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:24px}
+.rq{perspective:1000px;border:none;background:none;padding:0;aspect-ratio:3/4;cursor:pointer;animation:dealIn .6s both}
+@keyframes dealIn{from{opacity:0;transform:translateY(40px) rotate(-6deg)}}
+.rq-in{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.3,1.4,.4,1);transform:rotateX(var(--rx,0deg)) rotateY(calc(var(--ry,0deg) + var(--flip,0deg)))}
+.rq.flip .rq-in{--flip:180deg}
+.rq-f,.rq-b{position:absolute;inset:0;border-radius:28px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;box-shadow:0 16px 30px rgba(20,40,90,.25)}
+.rq-f{background:linear-gradient(150deg,var(--c1),var(--c2));color:#fff;display:flex;flex-direction:column;padding:18px;text-align:center}
+.rq-f::before{content:"?";position:absolute;right:-14px;bottom:-40px;font-size:200px;font-weight:900;opacity:.15;line-height:1}
+.rq-f .no{width:52px;height:52px;border-radius:50%;background:#fff;color:var(--c2);font-weight:900;font-size:26px;display:grid;place-items:center;margin:0 auto 10px;box-shadow:0 5px 0 rgba(0,0,0,.15);transform:translateZ(30px)}
+.rq-f .tx{white-space:pre-line;font-size:clamp(16px,1.5vw,19px);font-weight:900;line-height:1.35;flex:1;display:flex;align-items:center;justify-content:center;text-shadow:0 2px 0 rgba(0,0,0,.12)}
+.rq-f .tap{background:rgba(255,255,255,.25);border-radius:999px;padding:6px 12px;font-weight:900;font-size:14px;align-self:center}
+.rq-b{transform:rotateY(180deg);background:#fff;display:flex;flex-direction:column}
+.rq-b img{width:100%;flex:1;object-fit:cover;min-height:0}
+.rq-b .ans{padding:12px;text-align:center;font-weight:900;font-size:26px;color:var(--c2);border-top:5px dashed var(--c1)}
+
+/* ===== Book ===== */
+.bookWrap{display:flex;align-items:center;justify-content:center;gap:14px}
+.bk{flex:none;width:60px;height:60px;border-radius:50%;border:none;background:#fff;font-size:34px;font-weight:900;color:var(--b1);box-shadow:var(--sh2)}
+.bookStage{width:min(920px,82vw,112vh)}
+.book{position:relative;width:100%;aspect-ratio:2/1.32;transition:transform .6s}
+.book.closed{transform:translateX(-25%)}.book.closedEnd{transform:translateX(25%)}
+.book::before{content:"";position:absolute;left:-1.2%;right:-1.2%;top:-2%;bottom:-3%;background:linear-gradient(90deg,#8b4c22,#b8693a 49%,#6e3a18 50%,#b8693a 51%,#8b4c22);border-radius:16px;box-shadow:0 40px 60px rgba(30,40,80,.35);transition:.6s}
+.book.closed::before{left:48.8%}.book.closedEnd::before{right:48.8%}
+.pg{position:absolute;top:0;width:50%;height:100%;background:#fffaf0;overflow:hidden;display:flex;flex-direction:column;cursor:pointer}
+.pg.blank{visibility:hidden}
+.pL{left:0;border-radius:12px 0 0 12px;box-shadow:inset -18px 0 24px -16px rgba(0,0,0,.35)}
+.pR{left:50%;border-radius:0 12px 12px 0;box-shadow:inset 18px 0 24px -16px rgba(0,0,0,.35)}
+.flipper{display:none;position:absolute;left:50%;top:0;width:50%;height:100%;transform-origin:left center;z-index:5;transform-style:preserve-3d}
+.flipper .pg{left:0;width:100%}
+.flipper .ff{border-radius:0 12px 12px 0;box-shadow:inset 18px 0 24px -16px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.25)}
+.flipper .fb{transform:scaleX(-1);border-radius:12px 0 0 12px;box-shadow:inset -18px 0 24px -16px rgba(0,0,0,.35);visibility:hidden}
+.flipper.sb .fb{visibility:visible}.flipper.sb .ff{visibility:hidden}
+.pg img.full{width:100%;height:100%;object-fit:cover}
+.pg img.poster{width:100%;height:100%;object-fit:contain;background:#fff;padding:4%}
+.pg .ptxt{flex:1;padding:6% 7%;display:flex;flex-direction:column;justify-content:center;background:radial-gradient(circle at 90% 10%,#fff3c4,transparent 40%),#fffaf0}
+.pg .ptxt .pic{font-size:clamp(34px,5vw,60px);line-height:1}
+.pg .ptxt h4{margin:6px 0 10px;font-size:clamp(22px,3vw,40px);font-weight:900;color:var(--r1)}
+.pg .ptxt .lines{white-space:pre-line;font-size:clamp(13px,1.7vw,22px);font-weight:800;line-height:1.5;color:#2a3a8f}
+.pg .pno{position:absolute;bottom:8px;width:100%;text-align:center;font-size:13px;color:#b59b6a}
+.pg.cover{background:linear-gradient(150deg,#2fa84f,#1d63c9);color:#fff;align-items:center;justify-content:center;text-align:center}
+.pg.cover h4{font-size:clamp(28px,4vw,52px);margin:10px 0}
+@media(max-width:700px){.bk{width:44px;height:44px;font-size:26px}.bookStage{width:86vw}}
+
+/* ===== Studio ===== */
+.studioCards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.scard{border:none;border-radius:30px;padding:26px 22px;color:#fff;text-align:left;display:flex;flex-direction:column;gap:6px;transition:transform .2s;position:relative;overflow:hidden;box-shadow:var(--sh)}
+.scard:hover{transform:translateY(-6px) rotate(-1deg)}
+.scard .sic{font-size:64px;line-height:1;filter:drop-shadow(0 6px 4px rgba(0,0,0,.2))}
+.scard b{font-size:26px;font-weight:900}
+.scard small{font-size:16px;font-weight:700;opacity:.92}
+.scard.c1{background:linear-gradient(140deg,#ff8a3d,#e9473b)}.scard.c2{background:linear-gradient(140deg,#3d8bf0,#7b4fe0)}.scard.c3{background:linear-gradient(140deg,#2fa84f,#0f8a76)}
+.picRow{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px}
+.pic1{border:none;background:#fff;border-radius:20px;padding:8px;box-shadow:var(--sh2);transition:transform .15s}
+.pic1:hover{transform:translateY(-4px)}
+.pic1 img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px}
+.pic1 span{display:block;font-weight:900;margin-top:4px}
+.pic1 em{font-style:normal;font-size:13px;color:var(--muted)}
+
+.stu{display:flex;gap:14px;width:100%;max-width:1400px;align-items:flex-start;justify-content:center;flex-wrap:wrap}
+.stuPics{display:flex;flex-direction:column;gap:8px;max-height:calc(100vh - 150px);overflow:auto;padding:4px}
+.stuPics button{border:4px solid transparent;border-radius:16px;padding:0;background:#fff;width:84px;height:84px;overflow:hidden;box-shadow:var(--sh2);flex:none}
+.stuPics button.on{border-color:var(--y1)}
+.stuPics img{width:100%;height:100%;object-fit:cover}
+.stuCanvas{background:#fff;border-radius:22px;box-shadow:var(--sh);padding:8px;touch-action:none;line-height:0}
+.stuCanvas canvas{max-width:100%;max-height:calc(100vh - 150px);border-radius:16px;cursor:crosshair;touch-action:none}
+.stuTools{display:flex;flex-direction:column;gap:10px;width:230px;background:rgba(255,255,255,.85);border-radius:22px;padding:14px;box-shadow:var(--sh2)}
+.stuTools .row{display:flex;gap:8px;flex-wrap:wrap}
+.tb{border:none;border-radius:14px;padding:10px 12px;font-weight:900;font-size:16px;background:#fff;box-shadow:var(--sh2);flex:1}
+.tb.on{background:var(--g2);color:#fff}
+.sw{width:42px;height:42px;border-radius:50%;border:4px solid #fff;box-shadow:var(--sh2);padding:0;transition:transform .12s}
+.sw.on{transform:scale(1.2);box-shadow:0 0 0 3px #333}
+.sz{width:48px;height:48px;border-radius:14px;border:none;background:#fff;box-shadow:var(--sh2);display:grid;place-items:center}
+.sz i{display:block;border-radius:50%;background:#333}
+.sz.on{box-shadow:0 0 0 3px var(--g2)}
+@media(max-width:1000px){.stuPics{flex-direction:row;max-height:none;width:100%;overflow-x:auto}.stuTools{width:100%;flex-direction:row;flex-wrap:wrap;justify-content:center}.stuCanvas canvas{max-height:calc(100vh - 330px)}}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav"><div class="nav-in">
+  <a class="brand" href="#home"><img src="img/logo_s.webp" alt=""><span><b>ЭКО</b> <i>AI</i></span></a>
+  <button class="burger" onclick="document.querySelector('.links').classList.toggle('open')" aria-label="Мәзір">☰</button>
+  <nav class="links" onclick="if(event.target.tagName==='A')this.classList.remove('open')">
+    <a href="#games">🎮 Ойындар</a>
+    <a href="#research">🔬 Зерттеу</a>
+    <a href="#eco">🌍 Экоережелер</a>
+    <a href="#rhymes">📖 Жұмбақ, тақпақ</a>
+    <a href="#masks">🎭 Маскалар</a>
+    <a href="#sheets">✂️ Парақтар</a>
+    <a href="#about">🏡 Біз туралы</a>
+  </nav>
+</div></header>
+
+<!-- HERO -->
+<section class="hero" id="home" style="padding:0">
+  <div id="leaves"></div>
+  <div class="hero-in">
+    <div>
+      <h1><span class="e">ЭКО</span> <span class="a">AI</span></h1>
+      <p class="sub">Цифрлық мүмкіндіктер арқылы экотәрбие</p>
+      <p class="lead">Табиғатты сүюді, оны аялауды және қоршаған ортаны қорғауды бүлдіршіндерге интерактивті ойын, жұмбақ, тақпақ пен зерттеу арқылы үйретеміз.</p>
+      <div class="cta">
+        <a class="btn pri" href="#games">🎮 Ойнауды бастау</a>
+        <a class="btn sec" href="#research">📚 Материалдар</a>
+      </div>
+      <div class="stats" id="stats"></div>
+    </div>
+    <div class="logo-wrap"><img src="img/logo.webp" alt="ЭКО AI логотипі"></div>
+  </div>
+  <svg class="hills" viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,70 C240,10 420,110 720,60 C1000,15 1200,100 1440,50 L1440,120 L0,120Z" fill="#bfe79a"/><path d="M0,95 C300,55 520,120 820,88 C1100,60 1260,110 1440,85 L1440,120 L0,120Z" fill="#fbfdf5"/></svg>
+</section>
+
+<!-- GAMES -->
+<section id="games">
+  <div class="wrap">
+    <div class="sh"><span class="tag">Интерактивті ойындар</span><h2>Ойнап үйренейік! 🎈</h2>
+      <p>Интерактивті тақтада, планшетте немесе компьютерде ойнауға болады: суретті <b>сүйреп апар</b> немесе алдымен суретті, сосын орнын <b>басып таңда</b>.</p></div>
+    <div class="games" id="gameGrid"></div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research" class="alt">
+  <div class="wrap">
+    <div class="sh"><span class="tag">Кішкентай зерттеушілер</span><h2>3D бақша: зерттеу күнделігі 🌱</h2>
+      <p>Өсімдікті өзің өсіріп көр! Су құй, күн сәулесін бер, бойын өлше — сосын келесі аптаға өт. Бақшаны саусақпен айналдыруға болады.</p></div>
+    <div class="lab3d">
+      <div class="g3wrap" id="g3wrap">
+        <canvas id="g3"></canvas>
+        <div class="g3top"><button class="pt on" data-p="tomato">🍅 Қызанақ</button><button class="pt" data-p="sun">🌻 Күнбағыс</button></div>
+        <div class="g3hint">👆 Айналдыр</div>
+        <div class="g3h" id="g3h"></div>
+        <div class="g3act">
+          <button id="aWater" class="act w">💧 Су құю</button>
+          <button id="aSun" class="act s">☀️ Күн сәулесі</button>
+          <button id="aMeasure" class="act m">📏 Өлшеу</button>
+        </div>
+        <div class="g3fallback hide" id="g3fb">3D бақша бұл құрылғыда ашылмады 😔</div>
+      </div>
+      <div class="diary" id="diary"></div>
+    </div>
+    <details class="prints"><summary>📄 Басып шығаруға арналған күнделік парақтары мен дидактикалық ойындар</summary><div class="grid" data-gal="research"></div></details>
+  </div>
+</section>
+
+<!-- ECO RULES -->
+<section id="eco">
+  <div class="wrap">
+    <div class="sh"><span class="tag">Табиғатты қорғайық</span><h2>Жер-Ананы қуантайық! 🌍</h2>
+      <p>Жер-Ана мұңайып тұр. «Мен Қазақстан үшін...» уәделерін беріп, оған ағаш отырғыз — Жер жасарып, күле бастайды!</p></div>
+    <div class="earthRow">
+      <div class="earthBox"><canvas id="earth"></canvas><div class="earthMsg" id="earthMsg">Жер-Ана мұңайып тұр... Уәде беріп, оны қуант! 🥺</div></div>
+      <div class="pledges">
+        <h3>«Мен Қазақстан үшін...»</h3>
+        <p class="small" style="font-size:16px;margin:0 0 12px">Бір жақсы істі бастайық! Уәдеңді басып белгіле:</p>
+        <div id="pledgeList"></div>
+        <div class="pbar"><i id="pbar"></i></div>
+      </div>
+    </div>
+    <h3 class="subh">🍃 Экологиялық ережелер — жапырақты басып аудар</h3>
+    <div class="rules3d" id="rules3d"></div>
+  </div>
+</section>
+
+<!-- RHYMES -->
+<section id="rhymes" class="blue">
+  <div class="wrap">
+    <div class="sh"><span class="tag">Ойлан да, тап! Оқы да, жатта!</span><h2>Жұмбақтар мен тақпақтар 📖</h2>
+      <p>Жұмбақ сандығынан карточка таңдап, оны аударып жауабын көр. Тақпақтар кітабын парақтап, бірге жатта!</p></div>
+    <h3 class="subh">🎁 Жұмбақ сандығы</h3>
+    <div class="rid3d" id="rid3d"></div>
+    <div class="cta" style="justify-content:center;margin:26px 0 50px">
+      <button class="btn sec" id="ridMore">🔀 Басқа жұмбақтар</button>
+      <button class="btn y" onclick="openGame('riddle')">🎮 Жұмбақ ойыны</button>
+    </div>
+    <h3 class="subh">📚 Тақпақтар кітабы</h3>
+    <div class="bookWrap">
+      <button class="bk" id="bkPrev" aria-label="Артқа">‹</button>
+      <div class="bookStage"><div class="book" id="book"></div></div>
+      <button class="bk" id="bkNext" aria-label="Алға">›</button>
+    </div>
+    <p class="small" style="text-align:center;margin-top:26px">Бетті басып немесе көрсеткілермен парақта</p>
+  </div>
+</section>
+
+<!-- MASKS -->
+<section id="masks">
+  <div class="wrap">
+    <div class="sh"><span class="tag">Қойылымдар мен ойындарға</span><h2>Кейіпкер маскалары 🎭</h2>
+      <p>Ертегі қойылымдарына арналған маскалар: қошқар, құмырсқа, шөп, қасқыр, бұлт, мұз, тышқан және Жер-Ана.</p></div>
+    <div class="rowgrid" id="maskGrid"></div>
+    <div style="text-align:center;margin-top:24px"><button class="btn y" onclick="openGame('memory')">🃏 «Жұбын тап» ойынын ойнау</button></div>
+  </div>
+</section>
+
+<!-- SHEETS -->
+<section id="sheets" class="alt">
+  <div class="wrap">
+    <div class="sh"><span class="tag">Қолөнер және ұсақ моторика</span><h2>Шеберхана: боя, жүргіз, жапсыр 🎨✂️</h2>
+      <p>Парақты басып шығармай-ақ, бәрін экранда орында: суретті бояу шелегімен боя, қылқаламмен сызық бойымен жүргіз, суреттерді қиып орнына жапсыр!</p></div>
+    <div class="studioCards">
+      <button class="scard c1" onclick="openStudio('fill')"><span class="sic">🎨</span><b>Бояу</b><small>Бояу шелегін таңдап, ақ жерді бас — түске толады</small></button>
+      <button class="scard c2" onclick="openStudio('brush')"><span class="sic">✏️</span><b>Сызық бойымен жүргіз</b><small>Үзік сызықтардың бойымен саусақпен сыз</small></button>
+      <button class="scard c3" onclick="openGame('place')"><span class="sic">✂️</span><b>Қиып жапсыр</b><small>10 парақ: суретті өз орнына апарып жапсыр</small></button>
+    </div>
+    <h3 class="subh">Суретті таңда 👇</h3>
+    <div class="picRow" id="picRow"></div>
+    <details class="prints"><summary>🖨️ Басып шығаруға арналған түпнұсқа парақтар</summary><div class="grid" data-gal="sheets"></div></details>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sh"><span class="tag">«Салтанат» бөбекжайы</span><h2>Біздің экоәлеміміз 🏡</h2>
+      <p>Балалар бақшада гүл егіп, көкөніс өсіріп, табиғатпен етене араласады.</p></div>
+    <div class="videos">
+      <div class="vid"><video controls playsinline preload="metadata" poster="img/v1.jpg" src="media/v1.mp4"></video><h3>🌻 Күнбағыс досымыз</h3></div>
+      <div class="vid"><video controls playsinline preload="metadata" poster="img/v2.jpg" src="media/v2.mp4"></video><h3>🌱 Біз гүл егеміз</h3></div>
+    </div>
+    <div class="photos" id="photos"></div>
+  </div>
+</section>
+
+<footer>
+  <img src="img/logo_s.webp" alt="">
+  <div><b>ЭКО AI</b> — цифрлық мүмкіндіктер арқылы экотәрбие</div>
+  <div class="small" style="color:#a9d6a0;margin-top:6px">«Салтанат» бөбекжайы · 2026 · Табиғатқа қамқор болайық! 💚</div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb"><img id="lbImg" alt=""><button class="x" onclick="lbClose()">✕</button><button class="p" onclick="lbStep(-1)">‹</button><button class="n" onclick="lbStep(1)">›</button></div>
+
+<!-- GAME OVERLAY -->
+<div class="gm" id="gm">
+  <div class="gbar">
+    <button class="back" onclick="closeGame()">← Ойындар</button>
+    <h2 id="gTitle"></h2>
+    <div class="score">⭐ <span id="gScore">0</span></div>
+    <button class="rst" onclick="restartGame()">🔄</button>
+  </div>
+  <div class="gbody" id="gBody"></div>
+</div>
+<div class="fin" id="fin"><div class="card">
+  <div class="big">🌍♻️🌿</div><h3>Жарайсың!</h3><p id="finText">Барлығын дұрыс орындадың!</p>
+  <div class="stars">⭐⭐⭐</div>
+  <div class="cta" style="justify-content:center;margin-top:16px">
+    <button class="btn pri" id="finNext">▶ Келесі</button>
+    <button class="btn sec" onclick="closeFin();restartGame()">🔄 Қайта ойнау</button>
+    <button class="btn y" onclick="closeFin();closeGame()">🎮 Ойындар</button>
+  </div>
+</div></div>
+<canvas id="conf"></canvas>
+
+<script src="js/three.min.js"></script>
+<script>
+const D = {"place": [{"key": "veg", "title": "Көкөністердің көлеңкесі", "scene": "img/veg_scene.webp", "ratio": 1.0337, "items": [{"id": "carrot", "label": "Сәбіз", "img": "img/veg_carrot.webp", "zone": [0.2446, 0.1053, 0.2106, 0.2739]}, {"id": "broccoli", "label": "Брокколи", "img": "img/veg_broccoli.webp", "zone": [0.5272, 0.1194, 0.2582, 0.2626]}, {"id": "corn", "label": "Жүгері", "img": "img/veg_corn.webp", "zone": [0.7065, 0.3722, 0.2106, 0.302]}, {"id": "eggplant", "label": "Баклажан", "img": "img/veg_eggplant.webp", "zone": [0.534, 0.6671, 0.1793, 0.2669]}, {"id": "pepper", "label": "Бұрыш", "img": "img/veg_pepper.webp", "zone": [0.2418, 0.6573, 0.1957, 0.2584]}, {"id": "tomato", "label": "Қызанақ", "img": "img/veg_tomato.webp", "zone": [0.0707, 0.4213, 0.2255, 0.2177]}]}, {"key": "ins", "title": "Бақшадағы жәндіктер", "scene": "img/ins_scene.webp", "ratio": 1.1769, "items": [{"id": "butterfly", "label": "Көбелек", "img": "img/ins_butterfly.webp", "zone": [0.3051, 0.0928, 0.2932, 0.2977]}, {"id": "bee", "label": "Ара", "img": "img/ins_bee.webp", "zone": [0.5312, 0.4081, 0.2679, 0.2802]}, {"id": "ladybug", "label": "Қанқызы", "img": "img/ins_ladybug.webp", "zone": [0.1964, 0.5919, 0.253, 0.3187]}]}, {"key": "forest", "title": "Орман аңдары", "scene": "img/forest_scene.webp", "ratio": 1.1958, "items": [{"id": "deer", "label": "Бұғы", "img": "img/forest_deer.webp", "zone": [0.1058, 0.1681, 0.2899, 0.5806]}, {"id": "hedgehog", "label": "Кірпі", "img": "img/forest_hedgehog.webp", "zone": [0.371, 0.6274, 0.2565, 0.2392]}, {"id": "rabbit", "label": "Қоян", "img": "img/forest_rabbit.webp", "zone": [0.6754, 0.4367, 0.1986, 0.4333]}]}, {"key": "sea", "title": "Теңіз тіршілігі", "scene": "img/sea_scene.webp", "ratio": 1.1041, "items": [{"id": "shark", "label": "Акула", "img": "img/sea_shark.webp", "zone": [0.3009, 0.1157, 0.5195, 0.3058]}, {"id": "octopus", "label": "Сегізаяқ", "img": "img/sea_octopus.webp", "zone": [0.1422, 0.4347, 0.3338, 0.3835]}, {"id": "eel", "label": "Жыланбалық", "img": "img/sea_eel.webp", "zone": [0.5105, 0.6198, 0.3398, 0.2033]}]}, {"key": "turtle", "title": "Тасбақаның пішіндері", "scene": "img/turtle_scene.webp", "ratio": 1.1683, "items": [{"id": "star", "label": "Жұлдыз", "img": "img/turtle_star.webp", "zone": [0.3533, 0.3095, 0.1793, 0.2063]}, {"id": "triangle", "label": "Үшбұрыш", "img": "img/turtle_triangle.webp", "zone": [0.6386, 0.3095, 0.1834, 0.1857]}, {"id": "circle", "label": "Шеңбер", "img": "img/turtle_circle.webp", "zone": [0.3016, 0.5476, 0.1671, 0.1905]}, {"id": "square", "label": "Шаршы", "img": "img/turtle_square.webp", "zone": [0.5109, 0.5635, 0.1603, 0.1857]}, {"id": "heart", "label": "Жүрек", "img": "img/turtle_heart.webp", "zone": [0.7092, 0.5476, 0.1766, 0.1905]}]}, {"key": "birds", "title": "Құстар үйшігі (түсін тап)", "scene": "img/birds_scene.webp", "ratio": 1.0366, "items": [{"id": "red", "label": "Қызыл", "img": "img/birds_red.webp", "zone": [0.0611, 0.3521, 0.1291, 0.1338]}, {"id": "yellow", "label": "Сары", "img": "img/birds_yellow.webp", "zone": [0.2541, 0.3521, 0.1223, 0.1338]}, {"id": "blue", "label": "Көк", "img": "img/birds_blue.webp", "zone": [0.4375, 0.3521, 0.1223, 0.1338]}, {"id": "green", "label": "Жасыл", "img": "img/birds_green.webp", "zone": [0.6223, 0.3521, 0.125, 0.1338]}, {"id": "purple", "label": "Күлгін", "img": "img/birds_purple.webp", "zone": [0.8111, 0.3521, 0.1264, 0.1338]}]}, {"key": "slice", "title": "Көкөністің ішінде не бар?", "scene": "img/slice_scene.webp", "ratio": 1.1328, "items": [{"id": "carrot", "label": "Сәбіз", "img": "img/slice_carrot.webp", "zone": [0.1102, 0.2848, 0.1582, 0.1872]}, {"id": "tomato", "label": "Қызанақ", "img": "img/slice_tomato.webp", "zone": [0.4096, 0.2848, 0.1737, 0.1872]}, {"id": "cucumber", "label": "Қияр", "img": "img/slice_cucumber.webp", "zone": [0.7274, 0.2848, 0.1653, 0.1872]}, {"id": "pepper", "label": "Бұрыш", "img": "img/slice_pepper.webp", "zone": [0.1102, 0.776, 0.1582, 0.192]}, {"id": "onion", "label": "Пияз", "img": "img/slice_onion.webp", "zone": [0.4124, 0.776, 0.1667, 0.192]}, {"id": "eggplant", "label": "Баклажан", "img": "img/slice_eggplant.webp", "zone": [0.7034, 0.752, 0.1864, 0.2208]}]}, {"key": "basket", "title": "Жемістер себетке", "scene": "img/basket_scene.webp", "ratio": 1.2741, "items": [{"id": "pineapple", "label": "Ананас", "img": "img/basket_pineapple.webp", "zone": [0.1848, 0.1544, 0.1758, 0.3861]}, {"id": "banana", "label": "Банан", "img": "img/basket_banana.webp", "zone": [0.3818, 0.1892, 0.2242, 0.3166]}, {"id": "orange", "label": "Апельсин", "img": "img/basket_orange.webp", "zone": [0.6242, 0.2317, 0.2061, 0.305]}, {"id": "strawberry", "label": "Құлпынай", "img": "img/basket_strawberry.webp", "zone": [0.147, 0.5637, 0.2091, 0.3436]}, {"id": "watermelon", "label": "Қарбыз", "img": "img/basket_watermelon.webp", "zone": [0.3818, 0.5367, 0.2364, 0.3668]}, {"id": "grapes", "label": "Жүзім", "img": "img/basket_grapes.webp", "zone": [0.6485, 0.5521, 0.2182, 0.3629]}]}, {"key": "zoo", "title": "Хайуанаттардың басы", "scene": "img/zoo_scene.webp", "ratio": 1.3376, "items": [{"id": "tiger", "label": "Жолбарыс", "img": "img/zoo_tiger.webp", "zone": [0.1931, 0.0148, 0.2621, 0.2989]}, {"id": "elephant", "label": "Піл", "img": "img/zoo_elephant.webp", "zone": [0.469, 0.0332, 0.3352, 0.2804]}, {"id": "monkey", "label": "Маймыл", "img": "img/zoo_monkey.webp", "zone": [0.1379, 0.5166, 0.2938, 0.2952]}, {"id": "zebra", "label": "Зебр", "img": "img/zoo_zebra.webp", "zone": [0.5379, 0.5351, 0.2276, 0.2768]}]}, {"key": "jungle", "title": "Тропикалық орман", "scene": "img/jungle_scene.webp", "ratio": 1.2245, "items": [{"id": "banana", "label": "Банан", "img": "img/jungle_banana.webp", "zone": [0.3417, 0.1796, 0.225, 0.2939]}, {"id": "parrot", "label": "Тотықұс", "img": "img/jungle_parrot.webp", "zone": [0.6083, 0.1122, 0.2083, 0.4082]}, {"id": "leaf", "label": "Жапырақ", "img": "img/jungle_leaf.webp", "zone": [0.125, 0.5469, 0.2333, 0.3347]}, {"id": "pineapple", "label": "Ананас", "img": "img/jungle_pineapple.webp", "zone": [0.3867, 0.5061, 0.1717, 0.3878]}, {"id": "hibiscus", "label": "Гүл", "img": "img/jungle_hibiscus.webp", "zone": [0.6083, 0.6122, 0.25, 0.2857]}]}], "homes": [{"a": "img/home_rabbit.webp", "al": "Қоян", "h": "img/home_den.webp", "hl": "Ін"}, {"a": "img/home_fish.webp", "al": "Балық", "h": "img/home_aqua.webp", "hl": "Аквариум"}, {"a": "img/home_bird.webp", "al": "Құс", "h": "img/home_nest.webp", "hl": "Ұя"}, {"a": "img/home_bee.webp", "al": "Ара", "h": "img/home_hive.webp", "hl": "Омарта"}, {"a": "img/home_mole.webp", "al": "Көртышқан", "h": "img/home_tunnel.webp", "hl": "Жер асты"}], "babies": [{"k": "cow", "m": "Сиыр", "b": "бұзау", "mi": "img/mom_cow.webp", "bi": "img/baby_cow.webp"}, {"k": "horse", "m": "Жылқы", "b": "құлын", "mi": "img/mom_horse.webp", "bi": "img/baby_horse.webp"}, {"k": "sheep", "m": "Қой", "b": "қозы", "mi": "img/mom_sheep.webp", "bi": "img/baby_sheep.webp"}, {"k": "goat", "m": "Ешкі", "b": "лақ", "mi": "img/mom_goat.webp", "bi": "img/baby_goat.webp"}], "growth": [{"i": 1, "label": "Тұқым отырғызу", "img": "img/grow_1.webp"}, {"i": 2, "label": "Өскін пайда болды", "img": "img/grow_2.webp"}, {"i": 3, "label": "Алғашқы жапырақтар", "img": "img/grow_3.webp"}, {"i": 4, "label": "Өсімдік бой көтереді", "img": "img/grow_4.webp"}, {"i": 5, "label": "Бұтақтанады", "img": "img/grow_5.webp"}, {"i": 6, "label": "Гүлдейді", "img": "img/grow_6.webp"}, {"i": 7, "label": "Жасыл қызанақтар", "img": "img/grow_7.webp"}, {"i": 8, "label": "Қызанақ пісады", "img": "img/grow_8.webp"}], "riddles": [{"t": "Алға қарай, артқа қарай жүреді,\nЕңбек сүйгіш, оны бәрі біледі.", "a": "Құмырсқа", "img": "img/rid_ant.webp"}, {"t": "Ұшады, қонады,\nГүлдердің қонағы.\nТүр-түсі сары-ала,\nНе нәрсе?", "a": "Бал ара", "img": "img/rid_bee.webp"}, {"t": "Сырты жасыл, қап-қатты,\nІші қып-қызыл, тәп-тәтті.", "a": "Қарбыз", "img": "img/rid_melon.webp"}, {"t": "Адамға серік,\nКүзетке берік.", "a": "Ит", "img": "img/rid_dog.webp"}, {"t": "Мүйізінен таралған,\nЖанға шипа дәрі алған.", "a": "Марал", "img": "img/rid_maral.webp"}, {"t": "Түрі жылқы бейнесі,\nЖолақ-жолақ жейдесі.", "a": "Зебр", "img": "img/rid_zebra.webp"}, {"t": "Тоқыған ауы —\nшыбынның жауы.", "a": "Өрмекші", "img": "img/rid_spider.webp"}, {"t": "Аспай піскен,\nҚайнамай түскен.", "a": "Жеміс", "img": "img/rid_fruit.webp"}, {"t": "Бұл не деген көп киім,\nЖетпіс қабат көк киім.\nЖаңбыр одан өтпейді,\nТүймелеуге жетпейді.", "a": "Капуста", "img": "img/rid_cabbage.webp"}, {"t": "Тәтті.\nТәттінің іші қатты,\nҚаттының іші тәтті.", "a": "Өрік", "img": "img/rid_apricot.webp"}, {"t": "Үп-үшкір таяғы,\nЖыланның көзін ояды.", "a": "Дәуіт", "img": "img/rid_mantis.webp"}, {"t": "Өзі ала, сұр,\nТілінің ұшында уы бар.\nОл не?", "a": "Жылан", "img": "img/rid_snake.webp"}, {"t": "Қалдырмай баласын бір елі,\nҚалтаға салып-ақ жүреді.", "a": "Кенгуру", "img": "img/rid_kangaroo.webp"}, {"t": "Ызыңдап ән салады,\nЖұп-жұқа қанаты.\nТәттіге тамсанып,\nҚоқысқа қонады.", "a": "Шыбын", "img": "img/rid_fly.webp"}, {"t": "Ат басты,\nБөрі кеуделі,\nБөкен санды.", "a": "Шегіртке", "img": "img/rid_grasshopper.webp"}, {"t": "Ұшқанда өлең айтады,\nҚонғанда жер қазады.", "a": "Қоңыз", "img": "img/rid_beetle.webp"}, {"t": "Сап-сары болған түрі бар,\nШақылдаған үні бар.\nЖер астында тынығар.", "a": "Саршұнақ", "img": "img/rid_gopher.webp"}, {"t": "Аяғы жоқ, қолы жоқ,\nСудан басқа жолы жоқ,\nДенеге тисе жабысып,\nҚанын сорып тауысар.", "a": "Сүлік", "img": "img/rid_leech.webp"}, {"t": "Бақшамызда жалғыз аяқты,\nСарыбас өсіп тұр,\nКүн қай жаққа бұрылса,\nСарыбас сол жаққа бұрылады.", "a": "Күнбағыс", "img": "img/rid_sunflower.webp"}, {"t": "Алыстан көрсем ақ тас,\nЖақыннан көрсем — дәмді ас.", "a": "Күріш", "img": "img/rid_rice.webp"}, {"t": "Үй ішінен табасың,\nТамаққа да саласың.", "a": "Бұрыш", "img": "img/rid_pepper.webp"}, {"t": "Жайлы, жұмсақ төсегім,\nДомаланып өсемін.\nҚабат-қабат тоным бар,\nҚалай оны шешемін.", "a": "Қырыққабат", "img": "img/rid_kapusta.webp"}, {"t": "Бойы бір қарыс,\nСақалы екі қарыс.", "a": "Жүгері", "img": "img/rid_corn.webp"}, {"t": "Ұзын мұртты сарылар,\nҚойнында наны бар.", "a": "Бидай", "img": "img/rid_wheat.webp"}, {"t": "Өзі ақ, өзі тас,\nДәмін татсаң ащы-ақ.", "a": "Тұз", "img": "img/rid_salt.webp"}], "masks": [{"id": "sheep", "l": "Қошқар", "img": "img/mask_sheep.webp"}, {"id": "ant", "l": "Құмырсқа", "img": "img/mask_ant.webp"}, {"id": "grass", "l": "Шөп", "img": "img/mask_grass.webp"}, {"id": "wolf", "l": "Қасқыр", "img": "img/mask_wolf.webp"}, {"id": "cloud", "l": "Бұлт", "img": "img/mask_cloud.webp"}, {"id": "ice", "l": "Мұз", "img": "img/mask_ice.webp"}, {"id": "mouse", "l": "Тышқан", "img": "img/mask_mouse.webp"}, {"id": "earth", "l": "Жер", "img": "img/mask_earth.webp"}], "gallery": {"research": [{"n": "00", "w": 512, "h": 279}, {"n": "01", "w": 1149, "h": 1369}, {"n": "10", "w": 1024, "h": 1536}, {"n": "15", "w": 1536, "h": 1024}, {"n": "11", "w": 1280, "h": 853}, {"n": "06", "w": 1536, "h": 1024}, {"n": "08", "w": 1280, "h": 853}, {"n": "07", "w": 1536, "h": 1024}, {"n": "03", "w": 718, "h": 957}, {"n": "04", "w": 1408, "h": 768}, {"n": "05", "w": 736, "h": 1104}, {"n": "09", "w": 736, "h": 1071}], "eco": [{"n": "17", "w": 1491, "h": 1055}, {"n": "18", "w": 1491, "h": 1055}, {"n": "20", "w": 1490, "h": 1055}, {"n": "23", "w": 1491, "h": 1055}, {"n": "29", "w": 735, "h": 552}, {"n": "14", "w": 1536, "h": 1024}], "rhymes": [{"n": "60", "w": 1536, "h": 1024}, {"n": "55", "w": 736, "h": 736}, {"n": "62", "w": 736, "h": 736}, {"n": "50", "w": 736, "h": 736}, {"n": "57", "w": 736, "h": 736}, {"n": "53", "w": 735, "h": 919}, {"n": "54", "w": 735, "h": 919}, {"n": "56", "w": 736, "h": 736}, {"n": "58", "w": 736, "h": 736}, {"n": "59", "w": 736, "h": 736}, {"n": "51", "w": 736, "h": 1308}], "masks": [{"n": "21", "w": 1536, "h": 1024}, {"n": "22", "w": 1536, "h": 1024}, {"n": "24", "w": 1536, "h": 1024}, {"n": "25", "w": 1536, "h": 1024}, {"n": "26", "w": 1536, "h": 1024}, {"n": "27", "w": 1536, "h": 1024}, {"n": "28", "w": 1536, "h": 1024}, {"n": "33", "w": 1536, "h": 1024}], "sheets": [{"n": "30", "w": 736, "h": 968}, {"n": "31", "w": 735, "h": 866}, {"n": "32", "w": 736, "h": 1104}, {"n": "34", "w": 735, "h": 1041}, {"n": "35", "w": 735, "h": 1041}, {"n": "36", "w": 736, "h": 920}, {"n": "39", "w": 600, "h": 848}, {"n": "65", "w": 735, "h": 1041}, {"n": "66", "w": 736, "h": 1040}, {"n": "67", "w": 736, "h": 1308}, {"n": "68", "w": 735, "h": 1041}, {"n": "69", "w": 736, "h": 1040}, {"n": "70", "w": 736, "h": 960}, {"n": "73", "w": 736, "h": 1040}, {"n": "74", "w": 735, "h": 1041}, {"n": "75", "w": 736, "h": 981}, {"n": "77", "w": 736, "h": 951}, {"n": "78", "w": 735, "h": 1040}, {"n": "80", "w": 736, "h": 1040}, {"n": "81", "w": 708, "h": 1000}, {"n": "82", "w": 736, "h": 736}, {"n": "83", "w": 736, "h": 1104}, {"n": "84", "w": 736, "h": 1040}, {"n": "85", "w": 736, "h": 981}], "photos": [{"n": "16", "w": 1086, "h": 1448}, {"n": "12", "w": 1600, "h": 1200}, {"n": "13", "w": 1600, "h": 1200}]}, "seasons": {"cats": [{"k": "w", "l": "Қыс", "img": "img/season_w.webp"}, {"k": "sp", "l": "Көктем", "img": "img/season_sp.webp"}, {"k": "su", "l": "Жаз", "img": "img/season_su.webp"}, {"k": "au", "l": "Күз", "img": "img/season_au.webp"}], "items": [{"img": "img/sea_snowflake.webp", "c": "w"}, {"img": "img/sea_snowman.webp", "c": "w"}, {"img": "img/sea_skier.webp", "c": "w"}, {"img": "img/sea_icefloe.webp", "c": "w"}, {"img": "img/sea_snowdrop.webp", "c": "sp"}, {"img": "img/sea_thaw.webp", "c": "sp"}, {"img": "img/sea_buds.webp", "c": "sp"}, {"img": "img/sea_sun.webp", "c": "su"}, {"img": "img/sea_butterfly.webp", "c": "su"}, {"img": "img/sea_leaf.webp", "c": "au"}, {"img": "img/sea_rain.webp", "c": "au"}, {"img": "img/sea_skates.webp", "c": "w"}, {"img": "img/sea_fir.webp", "c": "w"}, {"img": "img/sea_sled.webp", "c": "w"}, {"img": "img/sea_bullfinch.webp", "c": "w"}, {"img": "img/sea_grass.webp", "c": "sp"}, {"img": "img/sea_rainbow.webp", "c": "su"}, {"img": "img/sea_ball.webp", "c": "su"}, {"img": "img/sea_sunflower.webp", "c": "su"}, {"img": "img/sea_apple.webp", "c": "au"}, {"img": "img/sea_umbrella.webp", "c": "au"}, {"img": "img/sea_mushroom.webp", "c": "au"}]}, "habitats": {"cats": [{"k": "farm", "l": "Ферма", "img": "img/hab_c_farm.webp"}, {"k": "forest", "l": "Орман", "img": "img/hab_c_forest.webp"}, {"k": "sea", "l": "Теңіз", "img": "img/hab_c_sea.webp"}, {"k": "arctic", "l": "Солтүстік мұзды өлке", "img": "img/hab_c_arctic.webp"}], "items": [{"img": "img/hab_cow.webp", "c": "farm"}, {"img": "img/hab_pig.webp", "c": "farm"}, {"img": "img/hab_chicken.webp", "c": "farm"}, {"img": "img/hab_horse.webp", "c": "farm"}, {"img": "img/hab_fox.webp", "c": "forest"}, {"img": "img/hab_owl.webp", "c": "forest"}, {"img": "img/hab_deer.webp", "c": "forest"}, {"img": "img/hab_squirrel.webp", "c": "forest"}, {"img": "img/hab_dolphin.webp", "c": "sea"}, {"img": "img/hab_octopus.webp", "c": "sea"}, {"img": "img/hab_turtle.webp", "c": "sea"}, {"img": "img/hab_starfish.webp", "c": "sea"}, {"img": "img/hab_polarbear.webp", "c": "arctic"}, {"img": "img/hab_penguin.webp", "c": "arctic"}, {"img": "img/hab_seal.webp", "c": "arctic"}, {"img": "img/hab_arcticfox.webp", "c": "arctic"}]}, "paint": [{"k": "turtle", "l": "Тасбақа", "tool": "fill", "img": "img/paint_turtle.png", "th": "img/paint_turtle_t.webp"}, {"k": "fish", "l": "Балық", "tool": "fill", "img": "img/paint_fish.png", "th": "img/paint_fish_t.webp"}, {"k": "sunflower", "l": "Күнбағыс", "tool": "fill", "img": "img/paint_sunflower.png", "th": "img/paint_sunflower_t.webp"}, {"k": "sun", "l": "Күн", "tool": "brush", "img": "img/paint_sun.png", "th": "img/paint_sun_t.webp"}, {"k": "jelly", "l": "Медуза", "tool": "brush", "img": "img/paint_jelly.png", "th": "img/paint_jelly_t.webp"}, {"k": "peacock", "l": "Тауыс", "tool": "brush", "img": "img/paint_peacock.png", "th": "img/paint_peacock_t.webp"}, {"k": "fruits", "l": "Жемістер", "tool": "fill", "img": "img/paint_fruits.png", "th": "img/paint_fruits_t.webp"}, {"k": "pets", "l": "Жануарлар", "tool": "brush", "img": "img/paint_pets.png", "th": "img/paint_pets_t.webp"}, {"k": "girl", "l": "Шашын сал", "tool": "brush", "img": "img/paint_girl.png", "th": "img/paint_girl_t.webp"}]};
+const $ = s => document.querySelector(s);
+const el = (t, a = {}, ...k) => { const e = document.createElement(t); for (const [x, v] of Object.entries(a)) { if (x === 'class') e.className = v; else if (x === 'html') e.innerHTML = v; else if (x.startsWith('on')) e.addEventListener(x.slice(2), v); else e.setAttribute(x, v); } k.flat().forEach(c => c != null && e.append(c.nodeType ? c : document.createTextNode(c))); return e; };
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const img = (src, alt = '') => el('img', { src, alt, draggable: 'false' });
+
+/* ---------- SOUND (WebAudio) ---------- */
+let AC;
+function tone(f, t0, d, type = 'sine', v = .2) { const o = AC.createOscillator(), g = AC.createGain(); o.type = type; o.frequency.value = f; g.gain.setValueAtTime(0, AC.currentTime + t0); g.gain.linearRampToValueAtTime(v, AC.currentTime + t0 + .02); g.gain.exponentialRampToValueAtTime(.001, AC.currentTime + t0 + d); o.connect(g).connect(AC.destination); o.start(AC.currentTime + t0); o.stop(AC.currentTime + t0 + d + .05); }
+function snd(k) { try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); if (AC.state === 'suspended') AC.resume();
+  if (k === 'ok') { tone(660, 0, .15, 'triangle'); tone(880, .1, .15, 'triangle'); tone(1320, .2, .3, 'triangle'); }
+  else if (k === 'bad') { tone(220, 0, .18, 'square', .08); tone(180, .15, .25, 'square', .08); }
+  else if (k === 'win') { [523, 659, 784, 1046, 784, 1046].forEach((f, i) => tone(f, i * .13, .3, 'triangle', .18)); }
+  else if (k === 'flip') tone(500, 0, .08, 'sine', .1);
+} catch (e) {} }
+
+/* ---------- CONFETTI ---------- */
+function confetti() { const c = $('#conf'), x = c.getContext('2d'); c.width = innerWidth; c.height = innerHeight;
+  const cols = ['#2fa84f', '#8fd14f', '#ffd23f', '#3d8bf0', '#ff8a3d', '#e9473b'];
+  const P = Array.from({ length: 160 }, () => ({ x: Math.random() * c.width, y: -20 - Math.random() * c.height * .5, vx: (Math.random() - .5) * 4, vy: 2 + Math.random() * 4, r: 5 + Math.random() * 7, c: cols[Math.random() * 6 | 0], a: Math.random() * 6, s: Math.random() > .5 }));
+  let t = 0; (function f() { x.clearRect(0, 0, c.width, c.height); P.forEach(p => { p.x += p.vx; p.y += p.vy; p.a += .1; x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c; if (p.s) x.fillRect(-p.r / 2, -p.r / 4, p.r, p.r / 2); else { x.beginPath(); x.ellipse(0, 0, p.r / 2, p.r / 3, 0, 0, 7); x.fill(); } x.restore(); }); if (++t < 220) requestAnimationFrame(f); else x.clearRect(0, 0, c.width, c.height); })(); }
+
+/* ---------- LEAVES ---------- */
+(() => { const L = $('#leaves'); ['🍃', '🌿', '🍀', '🌱', '🌼'].forEach((e, i) => { for (let k = 0; k < 2; k++) { const s = el('span', { class: 'leaf' }, e); s.style.left = (Math.random() * 100) + '%'; s.style.animationDuration = (14 + Math.random() * 14) + 's'; s.style.animationDelay = (-Math.random() * 20) + 's'; L.append(s); } }); })();
+
+/* ---------- GALLERIES & LIGHTBOX ---------- */
+let LB = [], LBi = 0;
+function lbOpen(list, i) { LB = list; LBi = i; $('#lbImg').src = LB[i]; $('#lb').classList.add('show'); }
+function lbClose() { $('#lb').classList.remove('show'); }
+function lbStep(d) { LBi = (LBi + d + LB.length) % LB.length; $('#lbImg').src = LB[LBi]; }
+$('#lb').addEventListener('click', e => { if (e.target.id === 'lb') lbClose(); });
+addEventListener('keydown', e => { if (!$('#lb').classList.contains('show')) return; if (e.key === 'Escape') lbClose(); if (e.key === 'ArrowLeft') lbStep(-1); if (e.key === 'ArrowRight') lbStep(1); });
+function gallery(container, nums) { const big = nums.map(n => `img/g/${n}.webp`); nums.forEach((n, i) => container.append(el('figure', { onclick: () => lbOpen(big, i) }, el('img', { src: `img/g/${n}_t.webp`, loading: 'lazy', alt: '' })))); }
+const G = D.gallery;
+gallery($('[data-gal=research]'), G.research.map(x => x.n));
+gallery($('[data-gal=sheets]'), G.sheets.map(x => x.n));
+(() => { const r = $('#photos'), nums = G.photos.map(x => x.n), big = nums.map(n => `img/g/${n}.webp`); nums.forEach((n, i) => r.append(el('figure', { onclick: () => lbOpen(big, i) }, el('img', { src: `img/g/${n}_t.webp`, alt: '' })))); })();
+(() => { const r = $('#maskGrid'), big = D.masks.map(m => m.img); D.masks.forEach((m, i) => r.append(el('figure', { onclick: () => lbOpen(big, i) }, img(m.img, m.l), el('figcaption', {}, m.l)))); })();
+
+/* rhymes */
+const RH = [
+  { h: 'Ата', ic: '👴', t: 'Ата, бізге келіңіз,\nДайын тұр ғой төріміз.\nАқ дастархан басында\nБатаңызды беріңіз.' },
+  { h: 'Жаңбыр', ic: '🌧️', t: 'Жаңбыр, жаңбыр жауа бер,\nТамшы, тамшы, тама бер.\nӨзіңменен біздерге\nБар жақсыны ала кел.' },
+  { h: 'Бұғы мен қоян', ic: '🦌', t: 'Бұғының үлкен үйі бар,\nТерезеден қарайды.\nҚоян қашып келеді,\nБұғының үйін көреді.\nТұк-тұк досым, есік аш,\nАнау орман, аңшы қаш.\nҚоян, қоян, келе ғой,\nҚолыңды маған бере қой.' },
+  { h: 'Төлдер', ic: '🐑', t: 'Менің төлім мынау,\nАйыра біл, ұлым (қызым):\nСиыр төлі — бұзау,\nЖылқы төлі — құлын,\nҚойдың төлі — қозы,\nЕшкі төлі — лақ.\nҚорада тұр бәрі,\nТағы шөп сұрап.' },
+];
+
+
+/* stats */
+[['11', 'ойын'], [D.riddles.length, 'жұмбақ'], [D.masks.length, 'маска'], [G.sheets.length + G.research.length, 'парақ']].forEach(([n, l]) => $('#stats').append(el('div', { class: 'stat' }, el('b', {}, n), l)));
+
+/* ---------- GAME FRAMEWORK ---------- */
+let score = 0, curGame = null;
+function setScore(v) { score = v; $('#gScore').textContent = score; }
+function addScore() { setScore(score + 1); }
+function msg(t, k = '') { const m = $('#gBody .msg'); if (!m) return; m.textContent = t; m.className = 'msg ' + k; }
+function body() { const b = $('#gBody'); b.innerHTML = ''; return b; }
+function shake(e) { e.classList.remove('shake'); void e.offsetWidth; e.classList.add('shake'); }
+function win(text, next) { snd('win'); confetti(); setTimeout(() => { $('#finText').textContent = text || 'Барлығын дұрыс орындадың!'; const n = $('#finNext'); n.classList.toggle('hide', !next); n.onclick = () => { closeFin(); next && next(); }; $('#fin').classList.add('show'); }, 700); }
+function closeFin() { $('#fin').classList.remove('show'); }
+const PRAISE = ['✅ Дұрыс, жарайсың!', '🌟 Керемет!', '👏 Тамаша!', '💚 Өте жақсы!', '🎉 Дәл таптың!'];
+const TRY = ['🤔 Тағы да ойланып көр!', '🙂 Басқасын байқап көр!', '🔎 Мұқият қарашы!'];
+const praise = () => PRAISE[Math.random() * PRAISE.length | 0], tryA = () => TRY[Math.random() * TRY.length | 0];
+
+/* Universal drag-or-tap:  items with makeDrag(elem, payload) ; targets with [data-drop] */
+let selected = null, onDropFn = null;
+function makeDrag(e, payload, ghostSrc, ghostEmoji) {
+  e.addEventListener('pointerdown', ev => {
+    ev.preventDefault(); const sx = ev.clientX, sy = ev.clientY; let g = null, dragging = false, hot = null;
+    e.setPointerCapture(ev.pointerId);
+    const mv = m => {
+      if (!dragging && Math.hypot(m.clientX - sx, m.clientY - sy) > 8) { dragging = true; g = el('div', { class: 'ghost' }, ghostSrc ? img(ghostSrc) : el('div', { style: 'font-size:100px;line-height:130px;text-align:center' }, ghostEmoji)); document.body.append(g); e.classList.add('ghosted'); }
+      if (dragging) { g.style.left = m.clientX + 'px'; g.style.top = m.clientY + 'px'; const t = dropAt(m.clientX, m.clientY); if (t !== hot) { hot && hot.classList.remove('hot'); hot = t; hot && hot.classList.add('hot'); } }
+    };
+    const up = u => {
+      e.removeEventListener('pointermove', mv); e.removeEventListener('pointerup', up); e.removeEventListener('pointercancel', up);
+      if (dragging) { g.remove(); e.classList.remove('ghosted'); hot && hot.classList.remove('hot'); const t = dropAt(u.clientX, u.clientY); if (t) onDropFn(payload, t, e); }
+      else { document.querySelectorAll('.sel').forEach(s => s.classList.remove('sel')); selected = { payload, e }; e.classList.add('sel'); snd('flip'); onSelect && onSelect(payload); }
+    };
+    e.addEventListener('pointermove', mv); e.addEventListener('pointerup', up); e.addEventListener('pointercancel', up);
+  });
+}
+let onSelect = null;
+function dropAt(x, y) { const els = document.elementsFromPoint(x, y); for (const q of els) { const d = q.closest && q.closest('[data-drop]'); if (d) return d; }
+  let best = null, bd = 70; document.querySelectorAll('#gBody [data-drop]').forEach(z => { const r = z.getBoundingClientRect(); const dx = Math.max(r.left - x, 0, x - r.right), dy = Math.max(r.top - y, 0, y - r.bottom); const d = Math.hypot(dx, dy); if (d < bd) { bd = d; best = z; } }); return best; }
+function makeTarget(t) { t.addEventListener('click', () => { if (selected) { const s = selected; onDropFn(s.payload, t, s.e); } }); }
+
+/* ---------- GAME 1: PLACE (shadows etc.) ---------- */
+let placeLevel = 0; const placeDone = new Set();
+function gPlace(li = placeLevel) {
+  placeLevel = li; const L = D.place[li], b = body(); selected = null; onSelect = null;
+  const chips = el('div', { class: 'chips' }); D.place.forEach((p, i) => chips.append(el('button', { class: 'chip' + (i === li ? ' on' : '') + (placeDone.has(i) ? ' done' : ''), onclick: () => gPlace(i) }, p.title)));
+  b.append(chips, el('div', { class: 'msg' }, ({ turtle: 'Пішіндерді тасбақаның қабығына орналастыр 🐢', birds: 'Әр балапанды өз түсті үйшігіне апар 🐦', slice: 'Көкөністің ішін тап: тілімді дұрыс орынға қой 🔪', basket: 'Жемістерді себеттегі орнына сал 🧺', zoo: 'Әр жануардың басын тауып, орнына жапсыр 🐯', jungle: 'Суретті өз орнына жапсыр 🌴' })[L.key] || 'Суретті өз көлеңкесіне апар 👆'));
+  const stage = el('div', { class: 'stage' }, img(L.scene)); stage.style.aspectRatio = L.ratio; stage.style.width = `min(760px, 100%, calc((100vh - 230px) * ${L.ratio}))`;
+  const tray = el('div', { class: 'tray' }); let left = L.items.length;
+  L.items.forEach(it => { const [x, y, w, h] = it.zone; const z = el('div', { class: 'zone', 'data-drop': it.id }); Object.assign(z.style, { left: x * 100 + '%', top: y * 100 + '%', width: w * 100 + '%', height: h * 100 + '%' }); makeTarget(z); stage.append(z); });
+  shuffle(L.items).forEach(it => { const s = el('div', { class: 'stk', title: it.label }, img(it.img, it.label)); makeDrag(s, it, it.img); tray.append(s); });
+  onDropFn = (it, z, s) => {
+    if (z.dataset.drop === it.id && !z.querySelector('img')) {
+      z.append(el('img', { class: 'placed', src: it.img })); s.remove(); selected = null; snd('ok'); addScore(); msg(praise() + ' Бұл — ' + it.label, 'ok'); left--;
+      if (!left) { placeDone.add(li); const nx = li + 1 < D.place.length ? () => gPlace(li + 1) : null; win('«' + L.title + '» — орындалды!', nx); }
+    } else { snd('bad'); shake(s); msg(tryA(), 'bad'); const right = stage.querySelector(`[data-drop="${it.id}"]`); }
+  };
+  b.append(el('div', { class: 'pl' }, stage, tray));
+}
+
+/* ---------- SORT engine ---------- */
+function gSort(cfg) {
+  const b = body(); selected = null; onSelect = null; let items = shuffle(cfg.items), i = 0;
+  b.append(el('div', { class: 'msg' }, cfg.intro));
+  const prog = el('div', { class: 'prog' }, el('i')); const cur = el('div', { class: 'cur' }); const cats = el('div', { class: 'cats' });
+  cfg.cats.forEach(c => { const t = el('div', { class: 'cat', 'data-drop': c.k }, el('div', { class: 'ci' }, c.svg ? el('div', { html: c.svg, style: 'width:100%;padding:8px 18px 0' }) : img(c.img, c.l)), el('div', { class: 'cl' }, c.l), el('div', { class: 'got' })); if (c.svg) t.querySelector('.ci').style.aspectRatio = 'auto'; makeTarget(t); cats.append(t); });
+  b.append(prog, cur, cats);
+  let curEl = cur;
+  function show() {
+    prog.firstChild.style.width = (i / items.length * 100) + '%';
+    if (i >= items.length) { win(cfg.done); return; }
+    const it = items[i]; const n = el('div', { class: 'cur in' });
+    n.append(it.img ? img(it.img) : el('div', { class: 'emo' }, it.e)); if (it.l) n.append(el('div', { class: 'cap' }, it.l));
+    curEl.replaceWith(n); curEl = n; makeDrag(n, it, it.img, it.e);
+  }
+  onDropFn = (it, t, s) => {
+    if (t.dataset.drop === it.c) { snd('ok'); addScore(); msg(praise(), 'ok'); t.classList.remove('ok'); void t.offsetWidth; t.classList.add('ok'); t.querySelector('.got').append(it.img ? img(it.img) : el('span', {}, it.e)); i++; selected = null; show(); }
+    else { snd('bad'); shake(curEl); shake(t); msg(tryA(), 'bad'); }
+  };
+  show();
+}
+const BIN = (col, dark, icon) => `<svg viewBox="0 0 120 130"><rect x="14" y="30" width="92" height="96" rx="12" fill="${col}"/><rect x="8" y="16" width="104" height="18" rx="7" fill="${dark}"/><rect x="46" y="6" width="28" height="12" rx="5" fill="${dark}"/><g fill="rgba(255,255,255,.35)"><rect x="30" y="44" width="8" height="70" rx="4"/><rect x="82" y="44" width="8" height="70" rx="4"/></g><text x="60" y="94" font-size="40" text-anchor="middle">${icon}</text></svg>`;
+const WASTE = {
+  intro: 'Қалдықты ұстап, дұрыс жәшікке апар ♻️', done: 'Барлық қалдықты дұрыс сұрыптадың!',
+  cats: [{ k: 'paper', l: 'Қағаз', svg: BIN('#3d8bf0', '#1d63c9', '📄') }, { k: 'plastic', l: 'Пластик', svg: BIN('#ffd23f', '#e0a800', '🧴') }, { k: 'glass', l: 'Шыны', svg: BIN('#2fa84f', '#1f8a3b', '🍾') }, { k: 'other', l: 'Басқа қалдықтар', svg: BIN('#8a8f98', '#5d636b', '🗑️') }],
+  items: [{ e: '📰', l: 'Газет', c: 'paper' }, { e: '📦', l: 'Картон қорап', c: 'paper' }, { e: '✉️', l: 'Конверт', c: 'paper' }, { e: '🧴', l: 'Пластик бөтелке', c: 'plastic' }, { e: '🛍️', l: 'Пакет', c: 'plastic' }, { e: '🥤', l: 'Пластик стақан', c: 'plastic' }, { e: '🍾', l: 'Шыны бөтелке', c: 'glass' }, { e: '🫙', l: 'Шыны банка', c: 'glass' }, { e: '🥛', l: 'Шыны стақан', c: 'glass' }, { e: '🍌', l: 'Банан қабығы', c: 'other' }, { e: '🍎', l: 'Алма қалдығы', c: 'other' }, { e: '🧻', l: 'Майлық', c: 'other' }]
+};
+
+/* ---------- PICK engine ---------- */
+function gPick(rounds, title) {
+  const b = body(); let r = 0; const order = shuffle(rounds);
+  const prog = el('div', { class: 'prog' }, el('i')); const pr = el('div', { class: 'prompt' }), opts = el('div', { class: 'opts' });
+  b.append(el('div', { class: 'msg' }, ''), prog, pr, opts);
+  function show() {
+    prog.firstChild.style.width = (r / order.length * 100) + '%';
+    if (r >= order.length) { win(title); return; }
+    const R = order[r]; pr.innerHTML = ''; opts.innerHTML = ''; msg(R.hint || 'Дұрыс суретті таңда 👇');
+    if (R.text) pr.append(el('div', { class: 'rt' }, R.text)); if (R.img) pr.append(img(R.img)); if (R.q) pr.append(el('div', { class: 'q' }, R.q));
+    let solved = false;
+    shuffle(R.opts).forEach(o => { const c = el('button', { class: 'opt' + (R.contain ? ' cont' : '') }, img(o.img), el('div', { class: 'ol' }, R.showLabels ? o.l : ''));
+      c.onclick = () => { if (solved) return; if (o.ok) { solved = true; c.classList.add('right'); c.querySelector('.ol').textContent = o.l; snd('ok'); addScore(); msg(R.after || (praise() + ' ' + o.l), 'ok'); setTimeout(() => { r++; show(); }, 1700); } else { c.classList.add('wrong'); snd('bad'); shake(c); msg(tryA(), 'bad'); } };
+      opts.append(c); });
+  }
+  show();
+}
+function riddleRounds() { const all = shuffle(D.riddles).slice(0, 8); return all.map(R => { const others = shuffle(D.riddles.filter(x => x !== R)).slice(0, 2); return { text: R.t, hint: 'Жұмбақты тыңда да, жауабын тап 🤔', opts: [{ img: R.img, l: R.a, ok: true }, ...others.map(o => ({ img: o.img, l: o.a }))], after: '🎉 Жауабы: ' + R.a + '!' }; }); }
+function homeRounds() { return D.homes.map(H => ({ img: H.a, q: H.al + ' қайда тұрады?', contain: false, opts: D.homes.map(o => ({ img: o.h, l: o.hl, ok: o === H })), after: '🏠 ' + H.al + ' — ' + H.hl.toLowerCase() + 'да тұрады! Жарайсың!' })); }
+const homeAfter = { 'Қоян': '🐰 Қоян інде тұрады!', 'Балық': '🐟 Балық суда (аквариумда) тұрады!', 'Құс': '🐦 Құс ұяда тұрады!', 'Ара': '🐝 Ара омартада (ұяда) тұрады!', 'Көртышқан': '🐾 Көртышқан жер астында тұрады!' };
+function babyRounds() { return D.babies.map(B => ({ img: B.mi, q: B.m + ' төлі қайсы?', opts: D.babies.map(o => ({ img: o.bi, l: o.b, ok: o === B })), showLabels: false, after: '💚 ' + B.m + ' төлі — ' + B.b + '!' })); }
+
+/* ---------- MEMORY ---------- */
+let memN = 6;
+function gMemory() {
+  const b = body(); onSelect = null;
+  const chips = el('div', { class: 'chips' }); [[4, 'Жеңіл (4 жұп)'], [6, 'Орташа (6 жұп)'], [8, 'Қиын (8 жұп)']].forEach(([n, l]) => chips.append(el('button', { class: 'chip' + (n === memN ? ' on' : ''), onclick: () => { memN = n; gMemory(); } }, l)));
+  b.append(chips, el('div', { class: 'msg' }, 'Карточканы аш та, бірдей маскаларды тап 🎭'));
+  const set = shuffle(D.masks).slice(0, memN), cards = shuffle([...set, ...set]); const g = el('div', { class: 'mem' });
+  const cols = innerWidth < 700 ? 4 : memN; g.style.gridTemplateColumns = `repeat(${cols},1fr)`; g.style.width = `min(${memN * 150}px,100%,calc((100vh - 230px) * ${cols / (memN * 2 / cols)}))`;
+  let open = [], lock = false, found = 0;
+  cards.forEach(m => { const c = el('button', { class: 'mc' }, el('div', { class: 'in' }, el('div', { class: 'f' }, '🍃'), el('div', { class: 'b' }, img(m.img, m.l)))); c.dataset.id = m.id;
+    c.onclick = () => { if (lock || c.classList.contains('flip')) return; c.classList.add('flip'); snd('flip'); open.push(c);
+      if (open.length === 2) { lock = true; const [a, d] = open; if (a.dataset.id === d.dataset.id) { setTimeout(() => { a.classList.add('done'); d.classList.add('done'); snd('ok'); addScore(); msg(praise() + ' Бұл — ' + m.l, 'ok'); open = []; lock = false; if (++found === memN) win('Барлық жұпты таптың!'); }, 450); }
+        else { setTimeout(() => { snd('bad'); a.classList.remove('flip'); d.classList.remove('flip'); open = []; lock = false; msg('Есте сақта да, қайта көр 🙂'); }, 1000); } } };
+    g.append(c); });
+  b.append(g);
+}
+
+/* ---------- SEQUENCE (growth) ---------- */
+let seqN = 6;
+function gSeq() {
+  const b = body(); const chips = el('div', { class: 'chips' }); [[4, '4 кезең'], [6, '6 кезең'], [8, '8 кезең']].forEach(([n, l]) => chips.append(el('button', { class: 'chip' + (n === seqN ? ' on' : ''), onclick: () => { seqN = n; gSeq(); } }, l)));
+  b.append(chips, el('div', { class: 'msg' }, 'Қызанақ қалай өседі? Суреттерді ретімен таңда: тұқымнан — жеміске дейін 🍅'));
+  const pickIdx = { 4: [1, 2, 6, 8], 6: [1, 2, 3, 5, 6, 8], 8: [1, 2, 3, 4, 5, 6, 7, 8] }[seqN]; const steps = pickIdx.map(i => D.growth[i - 1]);
+  const slots = el('div', { class: 'slots' }); slots.style.gridTemplateColumns = `repeat(${seqN},1fr)`; const S = steps.map((s, i) => { const d = el('div', { class: 'slot' + (i === 0 ? ' next' : '') }, String(i + 1)); slots.append(d); return d; });
+  const tiles = el('div', { class: 'tiles' }); let k = 0;
+  shuffle(steps).forEach(s => { const t = el('button', { class: 'tile' }, img(s.img, s.label)); t.onclick = () => {
+    if (s === steps[k]) { S[k].innerHTML = ''; S[k].classList.remove('next'); S[k].append(img(s.img), el('div', { class: 'lab' }, s.label)); t.remove(); snd('ok'); addScore(); msg(praise() + ' ' + s.label, 'ok'); k++; if (k < steps.length) S[k].classList.add('next'); else win('Қызанақ пісті! 🍅 Өсу кезеңдерін дұрыс реттедің!'); }
+    else { snd('bad'); shake(t); msg(tryA() + ' Алдымен не болады?', 'bad'); } }; tiles.append(t); });
+  b.append(slots, tiles);
+}
+
+/* ---------- ECO QUIZ ---------- */
+const ECOQ = [
+  { e: '🌳💧', t: 'Ағашқа су құямын', ok: true }, { e: '🚰✋', t: 'Су ағып тұрса, шүмекті жабамын', ok: true },
+  { e: '🍬🌿', t: 'Кәмпит қағазын шөпке тастаймын', ok: false }, { e: '🌸✂️', t: 'Гүлзардағы гүлді жұлып аламын', ok: false },
+  { e: '🐦🏠', t: 'Құстарға жем салатын үйшік жасаймын', ok: true }, { e: '💡👋', t: 'Бөлмеден шыққанда жарықты сөндіремін', ok: true },
+  { e: '🔥🌲', t: 'Орманда отпен ойнаймын', ok: false }, { e: '♻️🗑️', t: 'Қалдықты түріне қарай сұрыптаймын', ok: true },
+  { e: '🦋🫙', t: 'Көбелекті ұстап, банкаға қамаймын', ok: false }, { e: '🌱🪴', t: 'Тұқым егіп, өсімдік өсіремін', ok: true },
+  { e: '🚿⏳', t: 'Қолымды жуғанда суды ұзақ ағызып қоямын', ok: false }, { e: '🐜👟', t: 'Құмырсқаның илеуін бұзамын', ok: false },
+];
+function gEco() {
+  const b = body(); const qs = shuffle(ECOQ).slice(0, 8); let i = 0;
+  const prog = el('div', { class: 'prog' }, el('i')); const card = el('div', { class: 'eco' });
+  b.append(el('div', { class: 'msg' }, 'Экобатыр бол! Бұл дұрыс па, әлде дұрыс емес пе? 🦸'), prog, card);
+  function show() { prog.firstChild.style.width = (i / qs.length * 100) + '%'; if (i >= qs.length) { win('Сен нағыз Экобатырсың! 🦸‍♀️🦸‍♂️'); return; }
+    const q = qs[i]; card.innerHTML = ''; card.className = 'eco in';
+    const y = el('button', { class: 'y' }, '👍 Дұрыс'), n = el('button', { class: 'n' }, '👎 Дұрыс емес'); let done = false;
+    const ans = v => { if (done) return; if (v === q.ok) { done = true; snd('ok'); addScore(); msg(q.ok ? '💚 Иә! Солай істеу керек!' : '💚 Дұрыс айттың! Олай істеуге болмайды!', 'ok'); setTimeout(() => { i++; show(); }, 1600); } else { snd('bad'); shake(card); msg(q.ok ? '🙂 Жоқ, бұл — жақсы іс!' : '🙁 Олай істеуге болмайды, табиғатқа зиян!', 'bad'); } };
+    y.onclick = () => ans(true); n.onclick = () => ans(false);
+    card.append(el('div', { class: 'em' }, q.e), el('div', { class: 'tx' }, q.t), el('div', { class: 'yn' }, y, n)); }
+  show();
+}
+
+
+/* =====================================================================
+   3D GARDEN — research diary
+===================================================================== */
+const DIARY = {
+  tomato: { name: 'Қызанақ', ic: '🍅', weeks: [
+    ['Тұқым отырғыздық', 0, 'Тұқымды топыраққа 1 см тереңдікке ектік. Үстінен жайлап су құйдық.'],
+    ['Өскін пайда болды', 2, 'Жерден екі кішкентай жапырақша шықты! Оларды тұқым жарнақ дейді.'],
+    ['Алғашқы жапырақтар', 5, 'Нағыз ойылған жапырақтар өсті. Түсі — жап-жасыл.'],
+    ['Бой көтерді', 12, 'Сабағы жуандап, жапырағы көбейді. Күнге қарай созылады.'],
+    ['Бұтақтанды', 20, 'Бұтақтары көбейді. Құлап қалмасын деп таяқ (тірек) қойдық.'],
+    ['Гүлдеді', 28, 'Сап-сары гүлдер ашылды! Аралар келіп, гүлдерді тозаңдандырады 🐝'],
+    ['Жасыл қызанақтар', 35, 'Гүлдің орнында кішкентай жасыл жемістер пайда болды.'],
+    ['Қызанақ пісті!', 40, 'Қызанақтар қызарып пісті! Өнім жинаймыз. Еңбегіміз жемісін берді 🍅'],
+  ]},
+  sun: { name: 'Күнбағыс', ic: '🌻', weeks: [
+    ['Тұқым ектік', 0, 'Күнбағыс дәнін топыраққа ектік. Ол жылуды және күнді жақсы көреді.'],
+    ['Өскін шықты', 3, 'Жерден жуан сабақты өскін шықты!'],
+    ['Жапырақтар өсті', 8, 'Үлкен, кедір-бұдыр жапырақтар пайда болды.'],
+    ['Бой созды', 25, 'Күнбағыс күн сайын биіктеп келеді.'],
+    ['Тез өсті', 50, 'Сабағы жуан, мықты. Енді ол бізден де биік болады!'],
+    ['Бүршік пайда болды', 80, 'Төбесінде жасыл бүршік пайда болды. Ол күнге қарай бұрылады.'],
+    ['Гүлдеді', 110, 'Сары күлтелері ашылды! Күнбағыс басын күнге бұрып тұрады ☀️'],
+    ['Дәні пісті', 130, 'Ортасындағы дәндер пісті. Құстарға да жем болады!'],
+  ]},
+};
+const G3 = { plant: 'tomato', st: { tomato: { w: 1, f: {} }, sun: { w: 1, f: {} } }, g: 1, gTarget: 1, ready: false, api: null };
+const lerpA = (arr, g) => { const i = Math.max(0, Math.min(arr.length - 1, g)); const a = Math.floor(i), b = Math.min(arr.length - 1, a + 1); return arr[a] + (arr[b] - arr[a]) * (i - a); };
+
+function renderDiary() {
+  const P = G3.plant, D0 = DIARY[P], S = G3.st[P], w = S.w, [stg, cm, obs] = D0.weeks[w - 1], f = S.f[w] || (S.f[w] = {});
+  const d = $('#diary'); d.innerHTML = '';
+  const weeks = el('div', { class: 'weeks' });
+  for (let i = 1; i <= 8; i++) weeks.append(el('button', { class: 'wk' + (i < w ? ' past' : i === w ? ' cur' : ''), title: i + '-апта', onclick: () => { if (i <= w) gotoWeek(i); } }, String(i)));
+  const thumb = P === 'tomato' ? img(`img/grow_${w}.webp`) : el('div', { style: 'width:96px;height:80px;border-radius:14px;background:#fff6cf;display:grid;place-items:center;font-size:44px;flex:none' }, ['🌰', '🌱', '🌿', '🪴', '🌾', '🟢', '🌻', '🌻'][w - 1]);
+  const ck = (k, t) => el('div', { class: 'ck' + (f[k] ? ' on' : '') }, el('i', {}, f[k] ? '✓' : ''), t);
+  const moods = el('div', { class: 'mood' }, 'Көңіл-күйім:'); ['😀', '🙂', '😐'].forEach(m => moods.append(el('button', { class: f.mood === m ? 'on' : '', onclick: () => { f.mood = m; snd('flip'); renderDiary(); } }, m)));
+  const allDone = f.water && f.sun && f.measure;
+  const next = el('button', { class: 'btn pri' + (allDone && w < 8 ? ' glow' : '') }, w < 8 ? 'Келесі апта ▶' : '🔄 Қайта егу');
+  next.onclick = () => {
+    if (w === 8) { S.w = 1; S.f = {}; gotoWeek(1, true); return; }
+    if (!allDone) { const miss = !f.water ? '💧 Алдымен су құй!' : !f.sun ? '☀️ Күн сәулесін бер!' : '📏 Бойын өлшеп көр!'; flashH(miss); snd('bad'); return; }
+    S.w = w + 1; gotoWeek(S.w, true);
+  };
+  d.append(
+    el('div', { class: 'dh' }, el('span', { style: 'font-size:40px' }, D0.ic), el('h3', {}, D0.name + ' күнделігі')),
+    weeks,
+    el('div', { class: 'dcard' }, thumb, el('div', {}, el('div', { class: 'small' }, w + '-апта'), el('div', { class: 'stg' }, stg), el('span', { class: 'hgt' }, '📏 Бойы: ' + cm + ' см'))),
+    el('p', { class: 'obs' }, '✏️ ' + obs),
+    el('div', { class: 'checks' }, ck('water', '💧 Су құйдық'), ck('sun', '☀️ Күн сәулесін алды'), ck('measure', '📏 Бойын өлшедік')),
+    moods,
+    el('div', { class: 'dnav' }, next)
+  );
+  ['water', 'sun', 'measure'].forEach(k => $('#a' + k[0].toUpperCase() + k.slice(1)).classList.toggle('done', !!f[k]));
+}
+function gotoWeek(w, anim) { G3.st[G3.plant].w = w; G3.gTarget = w; if (!anim) G3.g = w; renderDiary(); if (w === 8 && anim) { setTimeout(() => { snd('win'); confetti(); flashH(G3.plant === 'tomato' ? '🍅 Өнім жинадық!' : '🌻 Күнбағыс гүлдеді!'); }, 1300); } }
+let flashT; function flashH(t) { const h = $('#g3h'); h.textContent = t; h.classList.add('show'); clearTimeout(flashT); flashT = setTimeout(() => h.classList.remove('show'), 2600); }
+function diaryAct(k) { const S = G3.st[G3.plant], f = S.f[S.w] || (S.f[S.w] = {}); const first = !f[k]; f[k] = true; if (first) snd('ok'); renderDiary();
+  if (G3.api) G3.api[k](); if (k === 'measure') flashH('📏 ' + DIARY[G3.plant].weeks[S.w - 1][1] + ' см'); if (k === 'water') flashH('💧 Рақмет! Су іштім'); if (k === 'sun') flashH('☀️ Жылы әрі жарық!'); }
+
+function initGarden() {
+  document.querySelectorAll('.pt').forEach(b => b.onclick = () => { document.querySelectorAll('.pt').forEach(x => x.classList.toggle('on', x === b)); G3.plant = b.dataset.p; G3.g = G3.gTarget = G3.st[G3.plant].w; renderDiary(); });
+  $('#aWater').onclick = () => diaryAct('water'); $('#aSun').onclick = () => diaryAct('sun'); $('#aMeasure').onclick = () => diaryAct('measure');
+  renderDiary();
+  if (!window.THREE) { $('#g3fb').classList.remove('hide'); return; }
+  const T = THREE, cv = $('#g3'), wrap = $('#g3wrap');
+  let R; try { R = new T.WebGLRenderer({ canvas: cv, antialias: true }); } catch (e) { $('#g3fb').classList.remove('hide'); return; }
+  R.setPixelRatio(Math.min(devicePixelRatio, 2)); R.shadowMap.enabled = true; R.shadowMap.type = T.PCFSoftShadowMap;
+  const S = new T.Scene(); S.background = new T.Color(0xbfe6ff); S.fog = new T.Fog(0xcfeeff, 16, 34);
+  const cam = new T.PerspectiveCamera(38, 1, .1, 100);
+  S.add(new T.HemisphereLight(0xeaf6ff, 0x4f8a35, .8));
+  const sunL = new T.DirectionalLight(0xfff6e0, .9); sunL.position.set(-4, 7, 4); sunL.castShadow = true; sunL.shadow.mapSize.set(1024, 1024);
+  Object.assign(sunL.shadow.camera, { left: -4, right: 4, top: 5, bottom: -3, near: 1, far: 20 }); S.add(sunL);
+  const std = (c, o = {}) => new T.MeshStandardMaterial(Object.assign({ color: c, roughness: .75 }, o));
+  const GEO = { cyl: new T.CylinderGeometry(1, 1, 1, 12), sph: new T.SphereGeometry(1, 18, 14), cone: new T.ConeGeometry(1, 1, 10), box: new T.BoxGeometry(1, 1, 1) };
+  const mk = (geo, mat, sx, sy, sz, sh = true) => { const m = new T.Mesh(geo, mat); m.scale.set(sx, sy, sz); m.castShadow = sh; m.receiveShadow = true; return m; };
+  // ground
+  const ground = new T.Mesh(new T.CircleGeometry(14, 60), std(0x6dbb4c)); ground.rotation.x = -Math.PI / 2; ground.position.y = -.46; ground.receiveShadow = true; S.add(ground);
+  const grassM = std(0x6fbf4a);
+  for (let i = 0; i < 140; i++) { const a = Math.random() * 6.28, r = 2 + Math.random() * 9; const g = mk(GEO.cone, grassM, .05, .22 + Math.random() * .2, .05); g.position.set(Math.cos(a) * r, -.36, Math.sin(a) * r); S.add(g); }
+  // flowers around
+  const fc = [0xff6fa8, 0xffd23f, 0xffffff, 0x9b6bff, 0xff8a3d];
+  for (let i = 0; i < 26; i++) { const a = Math.random() * 6.28, r = 2.4 + Math.random() * 6; const x = Math.cos(a) * r, z = Math.sin(a) * r; const st = mk(GEO.cyl, grassM, .015, .3, .015); st.position.set(x, -.31, z); S.add(st); const h = mk(GEO.sph, std(fc[i % 5]), .07, .05, .07); h.position.set(x, -.15, z); S.add(h); const c = mk(GEO.sph, std(0xffc107), .03, .03, .03); c.position.set(x, -.12, z); S.add(c); }
+  // raised bed
+  const wood = std(0xa86f3e), woodD = std(0x8a5530);
+  const bed = new T.Group(); S.add(bed);
+  [[0, -.2, .75, 2.6, .5, .12], [0, -.2, -.75, 2.6, .5, .12], [1.25, -.2, 0, .12, .5, 1.62], [-1.25, -.2, 0, .12, .5, 1.62]].forEach(([x, y, z, a, b, c]) => { const m = mk(GEO.box, wood, a, b, c); m.position.set(x, y, z); bed.add(m); for (let k = 0; k < 2; k++) { const l = mk(GEO.box, woodD, a + .01, .015, c + .01, false); l.position.set(x, y - .1 + k * .2, z); bed.add(l); } });
+  const soilM = std(0x5b3a22, { roughness: 1 }); const soil = mk(GEO.box, soilM, 2.4, .1, 1.4); soil.position.y = -.02; bed.add(soil);
+  for (let i = 0; i < 40; i++) { const p = mk(GEO.sph, std(0x4a2e1a), .04 + Math.random() * .04, .02, .04 + Math.random() * .04); p.position.set((Math.random() - .5) * 2.2, .03, (Math.random() - .5) * 1.2); bed.add(p); }
+  // name sign
+  const sc = document.createElement('canvas'); sc.width = 256; sc.height = 128; const sx = sc.getContext('2d');
+  const signTex = new T.CanvasTexture(sc); const sign = new T.Mesh(new T.PlaneGeometry(.8, .4), new T.MeshStandardMaterial({ map: signTex }));
+  sign.position.set(.85, .32, .82); sign.rotation.x = -.15; S.add(sign); const sp = mk(GEO.cyl, woodD, .025, .45, .025); sp.position.set(.85, .02, .8); S.add(sp);
+  function drawSign() { sx.fillStyle = '#c98b52'; sx.fillRect(0, 0, 256, 128); sx.strokeStyle = '#7a4a24'; sx.lineWidth = 10; sx.strokeRect(5, 5, 246, 118); sx.fillStyle = '#fff'; sx.font = '900 40px Nunito, sans-serif'; sx.textAlign = 'center'; sx.fillText(DIARY[G3.plant].name, 128, 62); sx.font = '800 30px Nunito, sans-serif'; sx.fillText(G3.st[G3.plant].w + '-апта', 128, 102); signTex.needsUpdate = true; }
+  // fence
+  for (let i = -6; i <= 6; i++) { const p = mk(GEO.box, std(0xf3e2c3), .14, .9, .06); p.position.set(i * .55, 0, -3.2); S.add(p); const t = mk(GEO.cone, std(0xf3e2c3), .1, .16, .04); t.position.set(i * .55, .52, -3.2); S.add(t); }
+  [.15, -.2].forEach(y => { const r = mk(GEO.box, std(0xe6cfa6), 7, .08, .04); r.position.set(0, y, -3.23); S.add(r); });
+  // trees
+  [[-4.5, -2.5, 1.2], [4.8, -2.2, 1], [-6, 1.5, .9], [6, 2.2, 1.1]].forEach(([x, z, s]) => { const t = mk(GEO.cyl, std(0x8d5a34), .12 * s, 1.2 * s, .12 * s); t.position.set(x, -.46 + .6 * s, z); S.add(t); [[0, 1.5, 0, .75], [-.35, 1.2, .2, .55], [.35, 1.25, -.1, .6]].forEach(([a, b, c, r]) => { const l = mk(GEO.sph, std(0x5fb544), r * s, r * s * .9, r * s); l.position.set(x + a * s, -.46 + b * s, z + c * s); S.add(l); }); });
+  // sun sprite
+  const gc = document.createElement('canvas'); gc.width = gc.height = 128; const gx = gc.getContext('2d'); const gr = gx.createRadialGradient(64, 64, 8, 64, 64, 64); gr.addColorStop(0, 'rgba(255,240,150,1)'); gr.addColorStop(.35, 'rgba(255,214,0,.9)'); gr.addColorStop(1, 'rgba(255,214,0,0)'); gx.fillStyle = gr; gx.fillRect(0, 0, 128, 128);
+  const sunS = new T.Sprite(new T.SpriteMaterial({ map: new T.CanvasTexture(gc), depthWrite: false })); sunS.scale.set(2.6, 2.6, 1); S.add(sunS);
+  // clouds
+  const clouds = []; const cm = std(0xffffff, { roughness: 1 });
+  for (let i = 0; i < 4; i++) { const c = new T.Group(); [[0, 0, .5], [.45, .05, .38], [-.45, -.02, .35], [.15, .25, .35]].forEach(([x, y, r]) => { const s = mk(GEO.sph, cm, r, r * .8, r, false); s.position.set(x, y, 0); c.add(s); }); c.position.set(-8 + i * 5, 4.2 + Math.random(), -7 - Math.random() * 3); S.add(c); clouds.push(c); }
+  // ruler
+  const ruler = new T.Group(); ruler.visible = false; S.add(ruler);
+  const rm = mk(GEO.box, std(0xffe082), .08, 1, .02); ruler.add(rm);
+  const ticks = []; for (let i = 0; i < 30; i++) { const t = mk(GEO.box, std(0x5d4037), i % 5 ? .04 : .08, .008, .025, false); ruler.add(t); ticks.push(t); }
+  // butterfly
+  const bfly = new T.Group(); const wm = std(0xff7ab6, { side: T.DoubleSide }); const w1 = mk(GEO.sph, wm, .09, .005, .07), w2 = w1.clone(); w1.position.x = .08; w2.position.x = -.08; bfly.add(w1, w2, mk(GEO.cyl, std(0x333333), .012, .1, .012)); bfly.children[2].rotation.x = Math.PI / 2; S.add(bfly);
+  const bee = new T.Group(); const bb = mk(GEO.sph, std(0xffc400), .05, .04, .07); bee.add(bb); const bs = mk(GEO.sph, std(0x222222), .051, .041, .02); bee.add(bs); const bw = mk(GEO.sph, std(0xe0f4ff, { transparent: true, opacity: .7 }), .05, .005, .03); bw.position.y = .05; bee.add(bw); S.add(bee);
+
+  // ---- plant builder ----
+  const M = { stem: std(0x4caf50), leaf: std(0x3e9b45, { side: T.DoubleSide }), leaf2: std(0x5cbf55, { side: T.DoubleSide }), seed: std(0xead9a6), fl: std(0xffd600, { emissive: 0x332200 }), fruit: std(0x7cc242, { roughness: .35 }), cal: std(0x2e7d32), stake: std(0x9c6b43), disk: std(0x7a4a1c, { roughness: 1 }), petal: std(0xffc21a, { side: T.DoubleSide }), bud: std(0x6aa84f), sfSeed: std(0xf0e6c8) };
+  const plant = new T.Group(); S.add(plant); let headGroup = null, plantH = 0, flowerPts = [];
+  function clear() { while (plant.children.length) plant.remove(plant.children[0]); headGroup = null; flowerPts = []; }
+  function leafMesh(len, wid, mat) { const g = new T.Group(); const m = mk(GEO.sph, mat, wid, .012, len / 2); m.position.z = len / 2; g.add(m); return g; }
+  function seeds(g) { if (g >= 2) return; const s = 1 - Math.max(0, g - 1.4) / .6; [[-.15, .08], [.12, -.05], [.02, .14]].forEach(([x, z]) => { const m = mk(GEO.sph, M.seed, .05 * s, .03 * s, .035 * s); m.position.set(x, .045, z); plant.add(m); }); }
+  function buildTomato(g) {
+    seeds(g); const H = lerpA([0, .02, .22, .45, .8, 1.15, 1.45, 1.65, 1.78], g); plantH = H; if (g < 1.4) return;
+    const r = .014 + .022 * Math.min(1, (g - 1) / 6); const st = mk(GEO.cyl, M.stem, r, H, r); st.position.y = H / 2; plant.add(st);
+    const coty = Math.min(1, (g - 1.4) / .6); [0, Math.PI].forEach(a => { const l = leafMesh(.12 * coty, .035 * coty, M.leaf2); l.position.y = Math.min(H, .2); l.rotation.set(-.35, a, 0); plant.add(l); });
+    const n = Math.floor(lerpA([0, 0, 0, 2, 4, 6, 8, 9, 10], g)); const grow = Math.min(1, (g - 2) / 4);
+    for (let i = 0; i < n; i++) { const t = (i + 1) / (n + 1), y = .2 + t * (H - .2), a = i * 2.4, len = (.2 + .25 * (1 - t * .55)) * (.5 + .5 * grow);
+      const br = new T.Group(); br.position.y = y; br.rotation.y = a; plant.add(br);
+      const pet = mk(GEO.cyl, M.stem, .008, len, .008); pet.rotation.x = Math.PI / 2 - .5; pet.position.set(0, len * .22, len * .45); br.add(pet);
+      [[.35, 0, .16], [.7, .5, .12], [.7, -.5, .12], [1, 0, .13]].forEach(([p, s, lw]) => { const l = leafMesh(lw * len * 5.2, lw * len * 2.6, i % 2 ? M.leaf : M.leaf2); l.position.set(0, len * .45 * p, len * .9 * p); l.rotation.set(-.25 - .3 * p, s * 1.3, 0); br.add(l); });
+      if (g >= 5.5 && i >= n - 4 && i % 2 === 0) flowerPts.push([Math.sin(a) * .16, y - .03, Math.cos(a) * .16]);
+      if (g >= 6.5 && i >= 2 && i % 2 === 1 && i < n - 1) { const fr = .06 + .06 * Math.min(1, (g - 6.5) / 1.5), red = Math.max(0, Math.min(1, (g - 7.1) / .9));
+        const fm = M.fruit.clone(); fm.color.setRGB(.49 + (.9 - .49) * red, .76 - .62 * red, .26 - .1 * red);
+        const f = mk(GEO.sph, fm, fr, fr * .88, fr); f.position.set(Math.sin(a + .6) * .2, y - .1, Math.cos(a + .6) * .2); plant.add(f); const c = mk(GEO.cone, M.cal, fr * .5, .03, fr * .5); c.position.set(f.position.x, f.position.y + fr * .85, f.position.z); plant.add(c); } }
+    const top = Math.min(1, (g - 1.6) / 1); for (let k = 0; k < 3; k++) { const l = leafMesh(.09 * top, .035 * top, M.leaf2); l.position.y = H; l.rotation.set(-.9, k * 2.1, 0); plant.add(l); }
+    flowerPts.forEach(([x, y, z]) => { for (let k = 0; k < 3; k++) { const fl = new T.Group(); for (let p = 0; p < 5; p++) { const pe = mk(GEO.sph, M.fl, .018, .004, .035); pe.position.set(Math.cos(p * 1.26) * .03, 0, Math.sin(p * 1.26) * .03); pe.rotation.y = -p * 1.26 + Math.PI / 2; fl.add(pe); } fl.add(mk(GEO.sph, std(0xffa000), .012, .012, .012)); fl.position.set(x + (k - 1) * .05, y + k * .03, z); fl.rotation.x = .8; plant.add(fl); } });
+    if (g >= 4.5) { const sk = mk(GEO.cyl, M.stake, .015, H + .25, .015); sk.position.set(.1, (H + .25) / 2 - .05, -.06); plant.add(sk); }
+  }
+  function buildSun(g) {
+    seeds(g); const H = lerpA([0, .02, .3, .6, 1.05, 1.6, 2.1, 2.45, 2.6], g); plantH = H; if (g < 1.4) return;
+    const r = .02 + .045 * Math.min(1, (g - 1) / 5); const st = mk(GEO.cyl, M.stem, r, H, r); st.position.y = H / 2; plant.add(st);
+    const coty = Math.min(1, (g - 1.4) / .6); [0, Math.PI].forEach(a => { const l = leafMesh(.14 * coty, .06 * coty, M.leaf2); l.position.y = Math.min(H, .25); l.rotation.set(-.3, a + .8, 0); plant.add(l); });
+    const n = Math.floor(lerpA([0, 0, 0, 2, 4, 6, 8, 9, 10], g)), grow = Math.min(1, (g - 2) / 4);
+    for (let i = 0; i < n; i++) { const t = (i + 1) / (n + 1), y = .25 + t * (H - .45); const len = (.42 - .14 * t) * (.45 + .55 * grow);
+      const l = leafMesh(len * 1.25, len * .62, i % 2 ? M.leaf : M.leaf2); l.position.y = y; l.rotation.set(.35 - .3 * t, i * Math.PI + i * .5, 0); plant.add(l); const pt = mk(GEO.cyl, M.stem, .012, len * .3, .012); pt.position.y = y; pt.rotation.set(Math.PI / 2 + .35, i * Math.PI + i * .5, 0, 'YXZ'); plant.add(pt); }
+    if (g >= 4.4) { headGroup = new T.Group(); headGroup.position.y = H; plant.add(headGroup);
+      if (g < 5.6) { const b = .06 + .1 * Math.min(1, (g - 4.4) / 1.2); headGroup.add(mk(GEO.sph, M.bud, b, b * .8, b)); for (let k = 0; k < 8; k++) { const s = mk(GEO.cone, M.bud, b * .35, b * .9, b * .2); s.position.set(Math.cos(k * .785) * b * .8, 0, Math.sin(k * .785) * b * .8); s.rotation.z = -Math.cos(k * .785) * 1.2; s.rotation.x = Math.sin(k * .785) * 1.2; headGroup.add(s); } }
+      else { const open = Math.min(1, (g - 5.6) / 1), rd = .16 + .14 * open; const face = new T.Group(); face.rotation.x = Math.PI / 2 - .35; headGroup.add(face);
+        const dm = M.disk.clone(); if (g > 7.4) dm.color.set(0x4a2a10); const disk = mk(GEO.cyl, dm, rd, .07, rd); face.add(disk); { const bk = mk(GEO.cyl, M.bud, rd * 1.05, .04, rd * 1.05); bk.position.y = -.05; face.add(bk); }
+        if (g > 7.4) for (let k = 0; k < 40; k++) { const a = k * 2.4, rr = Math.sqrt(k / 40) * rd * .9; const s = mk(GEO.sph, M.sfSeed, .012, .01, .018); s.position.set(Math.cos(a) * rr, .04, Math.sin(a) * rr); face.add(s); }
+        const np = 22; for (let k = 0; k < np; k++) { const a = k / np * 6.283, pl = .14 * open + .02; const p = mk(GEO.sph, M.petal, .035 + .02 * open, .01, pl); p.position.set(Math.cos(a) * (rd + pl * .8), (k % 2) * .01, Math.sin(a) * (rd + pl * .8)); p.rotation.y = -a + Math.PI / 2; p.rotation.x = (g > 7.4 ? .35 : .08); face.add(p); }
+        flowerPts = [[0, H, .1]]; } }
+  }
+  function build(g) { clear(); (G3.plant === 'tomato' ? buildTomato : buildSun)(g); }
+  // ---- actions ----
+  const drops = []; const dm = std(0x4fc3f7, { transparent: true, opacity: .85 }); let wet = 0, sunBoost = 0, bounce = 0;
+  G3.api = {
+    water() { for (let i = 0; i < 60; i++) { const d = mk(GEO.sph, dm, .025, .045, .025, false); d.position.set((Math.random() - .5) * .9, plantH + 1 + Math.random() * 1.2, (Math.random() - .5) * .7); d.userData.v = -(.02 + Math.random() * .02); S.add(d); drops.push(d); } wet = 1; bounce = 1; },
+    sun() { sunBoost = 1; bounce = 1; },
+    measure() { ruler.visible = true; clearTimeout(ruler._t); ruler._t = setTimeout(() => ruler.visible = false, 6000); },
+  };
+  // ---- camera control ----
+  let th = .6, ph = .32, dist = 5.2, drag = null, idle = 0;
+  cv.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY, th, ph }; cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener('pointermove', e => { if (!drag) return; th = drag.th - (e.clientX - drag.x) * .008; ph = Math.max(.05, Math.min(1.1, drag.ph + (e.clientY - drag.y) * .005)); idle = 0; });
+  cv.addEventListener('pointerup', () => drag = null); cv.addEventListener('pointercancel', () => drag = null);
+  cv.addEventListener('wheel', e => { e.preventDefault(); dist = Math.max(3, Math.min(9, dist + e.deltaY * .004)); }, { passive: false });
+  function resize() { const w = wrap.clientWidth, h = wrap.clientHeight; R.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); }
+  new ResizeObserver(resize).observe(wrap); resize();
+  let visible = true; new IntersectionObserver(es => visible = es[0].isIntersecting).observe(wrap);
+  let lastG = -1, lastP = '', t0 = performance.now(), signKey = '';
+  function loop(now) {
+    requestAnimationFrame(loop); if (!visible) return; const dt = Math.min(.05, (now - t0) / 1000); t0 = now; const t = now / 1000;
+    if (Math.abs(G3.g - G3.gTarget) > .001) G3.g += (G3.gTarget - G3.g) * Math.min(1, dt * 2.2) + Math.sign(G3.gTarget - G3.g) * .002; else G3.g = G3.gTarget;
+    if (Math.abs(G3.g - lastG) > .004 || lastP !== G3.plant) { build(G3.g); lastG = G3.g; lastP = G3.plant; }
+    const sk = G3.plant + G3.st[G3.plant].w; if (sk !== signKey) { signKey = sk; drawSign(); }
+    // sun arc
+    const sa = .4 * Math.sin(t * .15); const sunPos = new T.Vector3(Math.sin(sa) * 7, 6.5, -5 + Math.cos(sa) * 0); sunS.position.copy(sunPos); sunS.scale.setScalar(2.6 + sunBoost * 1.8 + Math.sin(t * 2) * .1);
+    sunL.position.set(sunPos.x * .6, 7, 3); sunL.intensity = .95 + sunBoost * .9; sunBoost = Math.max(0, sunBoost - dt * .5);
+    if (headGroup) { headGroup.rotation.y = th + Math.sin(t * .4) * .25; headGroup.rotation.x = -.15; }
+    M.leaf.emissive.setRGB(0, sunBoost * .18, 0); M.leaf2.emissive.setRGB(0, sunBoost * .18, 0);
+    bounce = Math.max(0, bounce - dt * 1.4); plant.scale.set(1 + Math.sin(bounce * 12) * bounce * .04, 1 + Math.sin(bounce * 12) * bounce * .06, 1 + Math.sin(bounce * 12) * bounce * .04);
+    plant.rotation.z = Math.sin(t * 1.3) * .015;
+    soilM.color.setRGB(.357 - wet * .14, .227 - wet * .1, .133 - wet * .06); wet = Math.max(0, wet - dt * .08);
+    for (let i = drops.length - 1; i >= 0; i--) { const d = drops[i]; d.userData.v -= dt * .25; d.position.y += d.userData.v; if (d.position.y < .05) { S.remove(d); drops.splice(i, 1); } }
+    clouds.forEach((c, i) => { c.position.x += dt * (.15 + i * .04); if (c.position.x > 11) c.position.x = -11; });
+    // ruler
+    if (ruler.visible) { const H = Math.max(.3, plantH); rm.scale.y = H + .1; rm.position.set(0, (H + .1) / 2, 0); ticks.forEach((tk, i) => { const y = i / 29 * H; tk.position.set(.05, y, .01); tk.visible = y <= H; }); ruler.position.set(-.45, 0, .25); }
+    // insects at flowering
+    const fl = flowerPts.length && G3.g >= 5.6; bfly.visible = bee.visible = !!fl;
+    if (fl) { const [fx, fy, fz] = flowerPts[0]; bfly.position.set(fx + Math.cos(t * .9) * .6, fy + .2 + Math.sin(t * 1.7) * .15, fz + Math.sin(t * .9) * .6); bfly.rotation.y = -t * .9; w1.rotation.z = Math.sin(t * 18) * .8; w2.rotation.z = -Math.sin(t * 18) * .8;
+      bee.position.set(fx + Math.cos(-t * 1.6) * .35, fy + .1 + Math.sin(t * 3) * .08, fz + Math.sin(-t * 1.6) * .35); bee.rotation.y = t * 1.6; bw.scale.x = .05 * (1 + Math.sin(t * 40) * .5); }
+    // camera
+    if (!drag) { idle += dt; if (idle > 3) th += dt * .08; }
+    const tgtY = .25 + plantH * .45, dd = dist + plantH * .9; cam.position.set(Math.sin(th) * Math.cos(ph) * dd, tgtY + Math.sin(ph) * dd, Math.cos(th) * Math.cos(ph) * dd); cam.lookAt(0, tgtY, 0);
+    R.render(S, cam);
+  }
+  requestAnimationFrame(loop);
+}
+
+/* =====================================================================
+   EARTH — pledges
+===================================================================== */
+const PLEDGES = [['🌳', 'Ағаштарды қорғаймын'], ['💧', 'Суды үнемдеймін'], ['🗑️', 'Қоқыс тастамаймын'], ['🌿', 'Табиғатты аялаймын'], ['🇰🇿', 'Еліме қамқор боламын']];
+const EARTH = { on: new Set(), api: null };
+function renderPledges() {
+  const L = $('#pledgeList'); L.innerHTML = '';
+  PLEDGES.forEach(([e, t], i) => { const on = EARTH.on.has(i); L.append(el('button', { class: 'pl1' + (on ? ' on' : ''), onclick: () => togglePledge(i) }, el('span', { class: 'pe' }, e), el('span', {}, el('span', { class: 'small', style: 'display:block;font-size:13px' }, 'Мен Қазақстан үшін...'), '...' + t.toLowerCase()), el('span', { class: 'pc' }, on ? '✓' : ''))); });
+  const n = EARTH.on.size; $('#pbar').style.width = n / 5 * 100 + '%';
+  $('#earthMsg').textContent = n === 0 ? 'Жер-Ана мұңайып тұр... Уәде беріп, оны қуант! 🥺' : n < 5 ? `Жер-Ана жымия бастады! Тағы ${5 - n} уәде 🌱` : 'Рақмет! Жер-Ана бақытты! 💚🌍';
+}
+function togglePledge(i) { if (EARTH.on.has(i)) { EARTH.on.delete(i); snd('flip'); } else { EARTH.on.add(i); snd('ok'); if (EARTH.on.size === 5) setTimeout(() => { snd('win'); confetti(); }, 300); } renderPledges(); EARTH.api && EARTH.api.update(i); }
+function initEarth() {
+  renderPledges(); if (!window.THREE) return; const T = THREE, cv = $('#earth'), box = cv.parentElement;
+  let R; try { R = new T.WebGLRenderer({ canvas: cv, antialias: true, alpha: true }); } catch (e) { return; }
+  R.setPixelRatio(Math.min(devicePixelRatio, 2));
+  const S = new T.Scene(), cam = new T.PerspectiveCamera(35, 1, .1, 50); cam.position.set(0, 0, 6.2);
+  S.add(new T.AmbientLight(0xffffff, .55)); const dl = new T.DirectionalLight(0xffffff, .85); dl.position.set(-3, 3, 5); S.add(dl);
+  // texture
+  const tc = document.createElement('canvas'); tc.width = 1024; tc.height = 512; const x = tc.getContext('2d');
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const og = x.createLinearGradient(0, 0, 0, 512); og.addColorStop(0, '#2f7fe0'); og.addColorStop(.5, '#3fa3f0'); og.addColorStop(1, '#2f7fe0'); x.fillStyle = og; x.fillRect(0, 0, 1024, 512);
+  const conts = [[180, 170, 9, 70], [250, 330, 7, 55], [520, 160, 10, 75], [560, 320, 8, 60], [760, 190, 11, 80], [850, 360, 5, 45], [380, 250, 4, 35], [960, 140, 4, 40]];
+  conts.forEach(([cx, cy, n, r]) => { for (let k = 0; k < n * 3; k++) { const a = rnd() * 6.28, d = rnd() * r; const rr = r * (.35 + rnd() * .45); x.fillStyle = k % 3 ? '#4caf50' : '#66bb6a'; x.beginPath(); x.arc(cx + Math.cos(a) * d * 1.3, cy + Math.sin(a) * d * .8, rr, 0, 7); x.fill(); } });
+  conts.forEach(([cx, cy, n, r]) => { for (let k = 0; k < n; k++) { x.fillStyle = 'rgba(200,230,120,.5)'; x.beginPath(); x.arc(cx + (rnd() - .5) * r, cy + (rnd() - .5) * r * .6, r * .2, 0, 7); x.fill(); } });
+  x.fillStyle = '#f4fbff'; x.fillRect(0, 0, 1024, 26); x.fillRect(0, 488, 1024, 24);
+  const land = x.getImageData(0, 0, 1024, 512).data; const isLand = (u, v) => { const i = ((v * 512 | 0) * 1024 + (u * 1024 | 0)) * 4; return land[i + 1] > 150 && land[i] < 150 && land[i + 2] < 160; };
+  const tex = new T.CanvasTexture(tc);
+  const R0 = 1.4; const gm = new T.MeshStandardMaterial({ map: tex, roughness: .85, color: 0x8f969c });
+  const spin = new T.Group(); S.add(spin); spin.rotation.x = .25;
+  const globe = new T.Mesh(new T.SphereGeometry(R0, 64, 48), gm); spin.add(globe);
+  // clouds
+  const cc = document.createElement('canvas'); cc.width = 512; cc.height = 256; const cx2 = cc.getContext('2d'); for (let k = 0; k < 60; k++) { cx2.fillStyle = 'rgba(255,255,255,.75)'; cx2.beginPath(); cx2.ellipse(rnd() * 512, 30 + rnd() * 196, 14 + rnd() * 24, 6 + rnd() * 8, 0, 0, 7); cx2.fill(); }
+  const cloud = new T.Mesh(new T.SphereGeometry(R0 * 1.03, 48, 32), new T.MeshStandardMaterial({ map: new T.CanvasTexture(cc), transparent: true, depthWrite: false })); S.add(cloud);
+  const smog = new T.Mesh(new T.SphereGeometry(R0 * 1.09, 48, 32), new T.MeshBasicMaterial({ color: 0x7a7a6a, transparent: true, opacity: .32, depthWrite: false })); S.add(smog);
+  // face
+  const face = new T.Group(); S.add(face); const onS = (px, py, off = .02) => new T.Vector3(px, py, Math.sqrt(Math.max(0, (R0 + off) ** 2 - px * px - py * py)));
+  const eyeM = new T.MeshStandardMaterial({ color: 0x1b1b2a, roughness: .3 }), wM = new T.MeshBasicMaterial({ color: 0xffffff });
+  [-.42, .42].forEach(ex => { const e = new T.Mesh(new T.SphereGeometry(.13, 20, 16), eyeM); e.scale.z = .5; e.position.copy(onS(ex, .22)); face.add(e); const h = new T.Mesh(new T.SphereGeometry(.04, 10, 8), wM); h.position.copy(onS(ex + .04, .27, .09)); face.add(h);
+    const ch = new T.Mesh(new T.CircleGeometry(.12, 20), new T.MeshBasicMaterial({ color: 0xff8fb0, transparent: true, opacity: .7 })); ch.position.copy(onS(ex * 1.45, -.12, .03)); ch.lookAt(ch.position.clone().multiplyScalar(2)); face.add(ch); });
+  const mouth = new T.Mesh(new T.TorusGeometry(.26, .045, 10, 30, Math.PI), new T.MeshStandardMaterial({ color: 0x8a1f2a })); mouth.position.copy(onS(0, -.3, .03)); face.add(mouth);
+  const trees = new T.Group(); globe.add(trees); const trunkM = new T.MeshStandardMaterial({ color: 0x7a4a24 }), crownMs = [0x2e9e3f, 0x43b649, 0x1f7f37].map(c => new T.MeshStandardMaterial({ color: c, roughness: .7 }));
+  const flowersM = [0xff5fa2, 0xffd23f, 0xffffff].map(c => new T.MeshStandardMaterial({ color: c }));
+  const pending = [];
+  function addTree(kind) { let u, v, tries = 0; do { u = rnd(); v = .12 + rnd() * .76; tries++; } while (!isLand(u, v) && tries < 200);
+    const lon = u * Math.PI * 2, lat = v * Math.PI; const n = new T.Vector3(-Math.cos(lon) * Math.sin(lat), Math.cos(lat), Math.sin(lon) * Math.sin(lat));
+    const g = new T.Group(); g.position.copy(n.clone().multiplyScalar(R0)); g.quaternion.setFromUnitVectors(new T.Vector3(0, 1, 0), n);
+    if (kind === 'f') { const f = new T.Mesh(new T.SphereGeometry(.035, 8, 6), flowersM[(rnd() * 3) | 0]); f.position.y = .03; g.add(f); }
+    else { const tr = new T.Mesh(new T.CylinderGeometry(.012, .016, .08, 6), trunkM); tr.position.y = .04; g.add(tr); const cr = new T.Mesh(rnd() > .5 ? new T.ConeGeometry(.06, .16, 8) : new T.SphereGeometry(.065, 10, 8), crownMs[(rnd() * 3) | 0]); cr.position.y = .14; g.add(cr); }
+    g.scale.setScalar(.01); g.userData.t = 0; trees.add(g); pending.push(g); return g; }
+  const byPledge = {};
+  EARTH.api = { update(i) { if (EARTH.on.has(i)) { byPledge[i] = []; for (let k = 0; k < 9; k++) byPledge[i].push(addTree(k % 3 === 2 ? 'f' : 't')); spinV = .06; } else { (byPledge[i] || []).forEach(g => trees.remove(g)); byPledge[i] = []; } } };
+  let happy = 0, rotY = 0, spinV = .004, drag = null;
+  cv.addEventListener('pointerdown', e => { drag = { x: e.clientX, r: rotY }; cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener('pointermove', e => { if (drag) { rotY = drag.r + (e.clientX - drag.x) * .01; } });
+  cv.addEventListener('pointerup', () => drag = null);
+  function resize() { const w = box.clientWidth; R.setSize(w, w, false); cam.aspect = 1; cam.updateProjectionMatrix(); }
+  new ResizeObserver(resize).observe(box); resize();
+  let visible = true; new IntersectionObserver(es => visible = es[0].isIntersecting).observe(box);
+  let t0 = performance.now();
+  (function loop(now) { requestAnimationFrame(loop); if (!visible) return; const dt = Math.min(.05, (now - t0) / 1000); t0 = now; const t = now / 1000;
+    const target = EARTH.on.size / 5; happy += (target - happy) * Math.min(1, dt * 2);
+    if (!drag) { rotY += spinV; spinV += (.004 - spinV) * dt * 1.5; } globe.rotation.y = rotY; cloud.rotation.y = rotY * .7 + t * .02;
+    gm.color.setRGB(.56 + .44 * happy, .59 + .41 * happy, .61 + .39 * happy); smog.material.opacity = .32 * (1 - happy);
+    mouth.scale.set(1, 1 - 2 * happy, 1); mouth.position.copy(onS(0, -.3 - .05 * happy, .03));
+    face.position.y = Math.sin(t * 1.5) * .04 * (.3 + happy); face.rotation.z = Math.sin(t * 1.1) * .03; spin.position.y = face.position.y; cloud.position.y = smog.position.y = face.position.y;
+    pending.forEach(g => { g.userData.t = Math.min(1, g.userData.t + dt * 1.8); const k = g.userData.t; g.scale.setScalar(Math.max(.01, k < .7 ? k / .7 * 1.25 : 1.25 - (k - .7) / .3 * .25)); });
+    R.render(S, cam); })(t0);
+}
+
+/* =====================================================================
+   RULE CARDS (3D tilt + flip)
+===================================================================== */
+const RULES = [
+  { n: '18', t: 'Суды үнемдейік', c: ['#36a3f7', '#1d63c9'], tips: [['🚰', 'Қолды жуып болған соң шүмекті жап'], ['🪥', 'Тіс тазалағанда суды ағызба'], ['🌧️', 'Жаңбыр суымен гүлдерді суар']] },
+  { n: '20', t: 'Тазалықты сақтайық', c: ['#4cc46a', '#1f8a3b'], tips: [['🍬', 'Қоқысты жерге тастама'], ['🗑️', 'Қоқыс жәшігін пайдалан'], ['🧹', 'Ауланы бірге тазалайық']] },
+  { n: '23', t: 'Қалдықты сұрыптайық', c: ['#ffb300', '#e0700b'], tips: [['🧴', 'Пластик — сары жәшікке'], ['📄', 'Қағаз — көк жәшікке'], ['♻️', 'Сұрыптау — Жерге қамқорлық']] },
+  { n: '17', t: 'Табиғатта отпен ойнама!', c: ['#ff7a59', '#d63a2f'], tips: [['🔥', 'От — өте қауіпті!'], ['🌲', 'Орман өртенсе, аңдар үйсіз қалады'], ['🧑‍🚒', 'Отты тек үлкендер жағады']] },
+];
+function initRules() {
+  const box = $('#rules3d');
+  RULES.forEach(r => { const c = el('button', { class: 'rc' }, el('div', { class: 'rc-in' },
+      el('div', { class: 'rc-f' }, img(`img/g/${r.n}_t.webp`, r.t), el('div', { class: 'rt' }, r.t + ' 👆')),
+      el('div', { class: 'rc-b', style: `--c1:${r.c[0]};--c2:${r.c[1]}` }, el('h4', {}, r.t), ...r.tips.map(([e, t]) => el('div', { class: 'tip' }, el('span', {}, e), t)), el('div', { class: 'back' }, '↩ Қайта аудару үшін бас'))));
+    c.onclick = () => { c.classList.toggle('flip'); snd('flip'); }; tilt(c, c.firstChild); box.append(c); });
+}
+function tilt(host, inner, amt = 14) {
+  host.addEventListener('pointermove', e => { if (e.pointerType !== 'mouse') return; const r = host.getBoundingClientRect(); const px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5; inner.style.setProperty('--ry', (px * amt) + 'deg'); inner.style.setProperty('--rx', (-py * amt) + 'deg'); inner.style.transition = 'transform .12s'; });
+  host.addEventListener('pointerleave', () => { inner.style.setProperty('--ry', '0deg'); inner.style.setProperty('--rx', '0deg'); inner.style.transition = ''; });
+  host.addEventListener('click', () => { inner.style.transition = ''; });
+}
+
+/* =====================================================================
+   RIDDLE CARDS + RHYME BOOK
+===================================================================== */
+const RCOL = [['#ff6fa8', '#d63384'], ['#5ab0ff', '#1d63c9'], ['#8fd14f', '#2a9a3e'], ['#ffc53d', '#e07b00'], ['#b388ff', '#6a3fd0'], ['#4dd0c4', '#0f8a76'], ['#ff8a65', '#d84315'], ['#7986cb', '#3949ab']];
+function dealRiddles() {
+  const box = $('#rid3d'); box.innerHTML = ''; shuffle(D.riddles).slice(0, 8).forEach((R, i) => { const [c1, c2] = RCOL[i % RCOL.length];
+    const c = el('button', { class: 'rq', style: `--c1:${c1};--c2:${c2};animation-delay:${i * .07}s` }, el('div', { class: 'rq-in' },
+      el('div', { class: 'rq-f' }, el('div', { class: 'no' }, String(i + 1)), el('div', { class: 'tx' }, R.t), el('div', { class: 'tap' }, '👆 Аудар')),
+      el('div', { class: 'rq-b' }, img(R.img, R.a), el('div', { class: 'ans' }, R.a))));
+    c.onclick = () => { const was = c.classList.toggle('flip'); snd(was ? 'ok' : 'flip'); }; tilt(c, c.firstChild, 16); box.append(c); });
+}
+function initBook() {
+  const P = [{ cover: true }, { img: 'img/g/55.webp' }, { rh: 0 }, { img: 'img/g/62.webp' }, { rh: 1 }, { img: 'img/g/50.webp' }, { rh: 2 }, { img: 'img/g/57.webp' }, { rh: 3 }, { end: true }];
+  const book = $('#book'); let sp = 0, busy = false; const last = P.length / 2;
+  const fill = (host, i) => { host.innerHTML = ''; host.className = host.className.replace(/ ?cover/g, ''); if (i < 0 || i >= P.length) { host.classList.add('blank'); return; } host.classList.remove('blank'); const p = P[i];
+    if (p.cover) { host.classList.add('cover'); host.append(el('img', { src: 'img/g/60_t.webp', alt: '', style: 'width:70%;border-radius:16px;box-shadow:0 10px 20px rgba(0,0,0,.25)' }), el('h4', {}, 'Тақпақтар кітабы'), el('div', {}, '📖 Ашу үшін бас')); }
+    else if (p.end) { host.classList.add('cover'); host.append(el('div', { style: 'font-size:70px' }, '🌟'), el('h4', {}, 'Жарайсың!'), el('div', { style: 'padding:0 10%' }, 'Тақпақтарды жатта да, достарыңа айтып бер!')); }
+    else if (p.img) host.append(el('img', { class: 'poster', src: p.img, alt: '' }));
+    else { const r = RH[p.rh]; host.append(el('div', { class: 'ptxt' }, el('div', { class: 'pic' }, r.ic), el('h4', {}, r.h), el('div', { class: 'lines' }, r.t))); }
+    if (!p.cover && !p.end) host.append(el('div', { class: 'pno' }, String(i))); };
+  const L = el('div', { class: 'pg pL' }), Rr = el('div', { class: 'pg pR' }), F = el('div', { class: 'flipper' }), FF = el('div', { class: 'pg ff' }), FB = el('div', { class: 'pg fb' }); F.append(FF, FB);
+  book.append(L, Rr, F);
+  const state = () => { book.classList.toggle('closed', sp === 0); book.classList.toggle('closedEnd', sp === last); };
+  fill(L, -1); fill(Rr, 0); state();
+  function go(d) { if (busy) return; const n = sp + d; if (n < 0 || n > last) return; busy = true; snd('flip');
+    if (d > 0) { fill(FF, 2 * sp); fill(FB, 2 * sp + 1); fill(Rr, 2 * sp + 2); F.style.transition = 'none'; F.style.transform = 'perspective(2400px) rotateY(0deg)'; F.classList.remove('sb'); F.style.display = 'block'; }
+    else { fill(FF, 2 * sp - 2); fill(FB, 2 * sp - 1); fill(L, 2 * sp - 3); F.style.transition = 'none'; F.style.transform = 'perspective(2400px) rotateY(-180deg)'; F.classList.add('sb'); F.style.display = 'block'; }
+    void F.offsetWidth; sp = n; state();
+    F.style.transition = 'transform .9s cubic-bezier(.4,.1,.2,1)'; F.style.transform = `perspective(2400px) rotateY(${d > 0 ? -180 : 0}deg)`;
+    setTimeout(() => F.classList.toggle('sb', d > 0), 450);
+    setTimeout(() => { if (d > 0) fill(L, 2 * sp - 1); else fill(Rr, 2 * sp); F.style.display = 'none'; busy = false; }, 920); }
+  Rr.onclick = () => go(1); L.onclick = () => go(-1);
+  $('#bkPrev').onclick = () => go(-1); $('#bkNext').onclick = () => go(1);
+}
+
+/* =====================================================================
+   STUDIO — paint bucket + brush
+===================================================================== */
+const PAL = ['#e53935', '#ff7a1a', '#ffd23f', '#7cc242', '#1f9e4a', '#36c5f0', '#1d63c9', '#7b4fe0', '#ff6fa8', '#8d5a34', '#9e9e9e', '#222222'];
+const STU = { pic: 0, tool: 'fill', color: '#ff7a1a', size: 16 };
+function openStudio(mode, pic) { if (mode) STU.tool = mode; if (pic != null) STU.pic = pic; else { const i = D.paint.findIndex(p => p.tool === STU.tool); if (i >= 0) STU.pic = i; } openGame('studio'); }
+function initPicRow() { const r = $('#picRow'); D.paint.forEach((p, i) => r.append(el('button', { class: 'pic1', onclick: () => openStudio(p.tool, i) }, img(p.th, p.l), el('span', {}, p.l), el('em', {}, p.tool === 'fill' ? '🎨 Бояу' : '✏️ Сызу')))); }
+function gStudio() {
+  const b = body(); onSelect = null; const P = D.paint[STU.pic];
+  b.append(el('div', { class: 'msg' }, STU.tool === 'fill' ? '🪣 Түсті таңда да, суреттің ақ жерін бас!' : '🖌️ Үзік сызықтардың бойымен саусағыңмен жүргіз!'));
+  const pics = el('div', { class: 'stuPics' }); D.paint.forEach((p, i) => pics.append(el('button', { class: i === STU.pic ? 'on' : '', title: p.l, onclick: () => { STU.pic = i; STU.tool = p.tool; gStudio(); } }, img(p.th, p.l))));
+  const cv = el('canvas'); const holder = el('div', { class: 'stuCanvas' }, cv); const ctx = cv.getContext('2d', { willReadFrequently: true });
+  const tools = el('div', { class: 'stuTools' });
+  const tFill = el('button', { class: 'tb' }, '🪣 Құю'), tBrush = el('button', { class: 'tb' }, '🖌️ Қылқалам');
+  const setTool = t => { STU.tool = t; tFill.classList.toggle('on', t === 'fill'); tBrush.classList.toggle('on', t === 'brush'); }; tFill.onclick = () => setTool('fill'); tBrush.onclick = () => setTool('brush'); setTool(STU.tool);
+  const sw = el('div', { class: 'row' }); PAL.forEach(c => { const s = el('button', { class: 'sw' + (c === STU.color ? ' on' : ''), style: 'background:' + c }); s.onclick = () => { STU.color = c; sw.querySelectorAll('.sw').forEach(x => x.classList.toggle('on', x === s)); snd('flip'); }; sw.append(s); });
+  const szr = el('div', { class: 'row' }); [8, 16, 28].forEach(z => { const s = el('button', { class: 'sz' + (z === STU.size ? ' on' : '') }, el('i', { style: `width:${z * .6 + 4}px;height:${z * .6 + 4}px` })); s.onclick = () => { STU.size = z; szr.querySelectorAll('.sz').forEach(x => x.classList.toggle('on', x === s)); }; szr.append(s); });
+  const undoB = el('button', { class: 'tb' }, '↩ Артқа'), clrB = el('button', { class: 'tb' }, '🗑️ Тазалау'), doneB = el('button', { class: 'btn pri', style: 'justify-content:center' }, '✅ Дайын!');
+  tools.append(el('div', { class: 'row' }, tFill, tBrush), el('div', { class: 'small' }, 'Түстер:'), sw, el('div', { class: 'small' }, 'Қылқалам өлшемі:'), szr, el('div', { class: 'row' }, undoB, clrB), doneB);
+  b.append(el('div', { class: 'stu' }, pics, holder, tools));
+  const im = new Image(); let orig, wall, W, H, lum; const undo = [];
+  im.onload = () => { W = cv.width = im.naturalWidth; H = cv.height = im.naturalHeight; ctx.drawImage(im, 0, 0); orig = ctx.getImageData(0, 0, W, H); prep(); };
+  im.src = P.img;
+  function prep() { const d = orig.data, n = W * H; lum = new Float32Array(n); const core = new Uint8Array(n);
+    for (let i = 0; i < n; i++) { const r = d[i * 4], g = d[i * 4 + 1], bl = d[i * 4 + 2]; const L = .3 * r + .59 * g + .11 * bl; lum[i] = L; const mx = Math.max(r, g, bl), mn = Math.min(r, g, bl); core[i] = (L < 208 || (mx - mn > 60 && L < 238)) ? 1 : 0; }
+    wall = new Uint8Array(n); const rad = 4; for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { if (!core[y * W + x]) continue; for (let dy = -rad; dy <= rad; dy++) { const yy = y + dy; if (yy < 0 || yy >= H) continue; for (let dx = -rad; dx <= rad; dx++) { const xx = x + dx; if (xx >= 0 && xx < W) wall[yy * W + xx] = 1; } } } }
+  const push = () => { undo.push(ctx.getImageData(0, 0, W, H)); if (undo.length > 15) undo.shift(); };
+  const hex = c => [parseInt(c.slice(1, 3), 16), parseInt(c.slice(3, 5), 16), parseInt(c.slice(5, 7), 16)];
+  function fill(px, py) { const s = py * W + px; if (wall[s]) { msg('Ақ жерді бас 🙂'); return false; } push();
+    const img2 = ctx.getImageData(0, 0, W, H), d = img2.data, od = orig.data, [cr, cg, cb] = hex(STU.color); const sr = od[s * 4], sg = od[s * 4 + 1], sb = od[s * 4 + 2];
+    const seen = new Uint8Array(W * H), st = [s]; seen[s] = 1; const region = [];
+    while (st.length) { const p = st.pop(); region.push(p); const x = p % W, y = (p / W) | 0;
+      const nb = [x > 0 ? p - 1 : -1, x < W - 1 ? p + 1 : -1, y > 0 ? p - W : -1, y < H - 1 ? p + W : -1];
+      for (const q of nb) { if (q < 0 || seen[q] || wall[q]) continue; const dr = od[q * 4] - sr, dg = od[q * 4 + 1] - sg, db = od[q * 4 + 2] - sb; if (dr * dr + dg * dg + db * db > 3600) continue; seen[q] = 1; st.push(q); } }
+    if (region.length > W * H * .6) { undo.pop(); msg('Бұл жер тым үлкен — сурет ішіндегі ақ жерді бас 🙂'); return false; }
+    // expand into halo (wall but not dark)
+    let edge = region.slice(); for (let it = 0; it < 5; it++) { const nx = []; for (const p of edge) { const x = p % W; for (const q of [x > 0 ? p - 1 : -1, x < W - 1 ? p + 1 : -1, p - W, p + W]) { if (q < 0 || q >= W * H || seen[q]) continue; if (lum[q] < 150) continue; seen[q] = 1; nx.push(q); region.push(q); } } edge = nx; }
+    for (const p of region) { const k = Math.min(1, lum[p] / 235); d[p * 4] = cr * k; d[p * 4 + 1] = cg * k; d[p * 4 + 2] = cb * k; }
+    ctx.putImageData(img2, 0, 0); return true; }
+  const pos = e => { const r = cv.getBoundingClientRect(); return [Math.floor((e.clientX - r.left) / r.width * W), Math.floor((e.clientY - r.top) / r.height * H)]; };
+  let drawing = false, last = null, filled = 0;
+  cv.addEventListener('pointerdown', e => { if (!W) return; e.preventDefault(); cv.setPointerCapture(e.pointerId); const [x, y] = pos(e);
+    if (STU.tool === 'fill') { if (fill(x, y)) { snd('flip'); if (++filled === 5) msg('🌟 Керемет бояп жатырсың!', 'ok'); } }
+    else { push(); drawing = true; last = [x, y]; ctx.fillStyle = STU.color; ctx.beginPath(); ctx.arc(x, y, STU.size / 2, 0, 7); ctx.fill(); } });
+  cv.addEventListener('pointermove', e => { if (!drawing) return; const [x, y] = pos(e); ctx.strokeStyle = STU.color; ctx.lineWidth = STU.size; ctx.lineCap = ctx.lineJoin = 'round'; ctx.beginPath(); ctx.moveTo(last[0], last[1]); ctx.lineTo(x, y); ctx.stroke(); last = [x, y]; });
+  const stop = () => { drawing = false; }; cv.addEventListener('pointerup', stop); cv.addEventListener('pointercancel', stop);
+  undoB.onclick = () => { if (undo.length) { ctx.putImageData(undo.pop(), 0, 0); snd('flip'); } };
+  clrB.onclick = () => { push(); ctx.putImageData(orig, 0, 0); snd('flip'); };
+  doneB.onclick = () => { addScore(); win('Керемет жұмыс! Нағыз суретші екенсің! 🎨', STU.pic + 1 < D.paint.length ? () => { STU.pic++; STU.tool = D.paint[STU.pic].tool; gStudio(); } : null); };
+}
+
+/* ---------- REGISTRY ---------- */
+const GAMES = [
+  { id: 'place', t: 'Қиып жапсыр: көлеңкесін тап', d: '10 деңгей: көкөністер, жәндіктер, орман, теңіз, тасбақа, құстар, тілімдер, себет, хайуанаттар, тропик', th: 'img/forest_scene.webp', run: () => gPlace(placeLevel) },
+  { id: 'riddle', t: 'Жұмбақ шешейік', d: 'Жұмбақты тыңдап, дұрыс суретті таңда', th: 'img/rid_bee.webp', run: () => gPick(riddleRounds(), 'Барлық жұмбақты шештің! 🧠') },
+  { id: 'waste', t: 'Қалдықты сұрыпта', d: 'Қағаз, пластик, шыны және басқа қалдықтар', th: 'img/g/23_t.webp', contain: true, run: () => gSort(WASTE) },
+  { id: 'seasons', t: 'Жыл мезгілдері', d: 'Суретті өз мезгіліне апар: қыс, көктем, жаз, күз', th: 'img/season_au.webp', run: () => gSort({ intro: 'Бұл қай мезгілге тән? Дұрыс ағашқа апар 🍂❄️🌷☀️', done: 'Жыл мезгілдерін жақсы білесің!', cats: D.seasons.cats, items: D.seasons.items }) },
+  { id: 'habitat', t: 'Кім қайда мекендейді?', d: 'Жануарларды ферма, орман, теңіз және мұзды өлкеге орналастыр', th: 'img/hab_c_sea.webp', run: () => gSort({ intro: 'Жануар қайда өмір сүреді? Дұрыс суретке апар 🐄🦊🐬🐧', done: 'Жануарлардың мекенін жақсы білесің!', cats: D.habitats.cats, items: D.habitats.items }) },
+  { id: 'homes', t: 'Кім қайда тұрады?', d: 'Қоян, балық, құс, ара, көртышқанның үйін тап', th: 'img/home_hive.webp', run: () => gPick(homeRounds().map(r => ({ ...r, after: homeAfter[r.q.split(' ')[0]] || r.after })), 'Барлығының үйін таптың! 🏡') },
+  { id: 'babies', t: 'Кімнің төлі?', d: 'Сиыр, жылқы, қой, ешкі және олардың төлдері', th: 'img/baby_horse.webp', run: () => gPick(babyRounds(), 'Төлдердің атын білесің! 🐮🐴🐑🐐') },
+  { id: 'growth', t: 'Қызанақ қалай өседі?', d: 'Өсу кезеңдерін ретімен орналастыр', th: 'img/grow_8.webp', run: gSeq },
+  { id: 'memory', t: 'Маскалар: жұбын тап', d: 'Есте сақтау ойыны: бірдей маскаларды тап', th: 'img/mask_earth.webp', contain: true, run: gMemory },
+  { id: 'studio', t: 'Шеберхана: боя да сыз', d: 'Суретті бояу шелегімен боя, сызық бойымен жүргіз', th: 'img/paint_turtle_t.webp', contain: true, run: gStudio },
+  { id: 'eco', t: 'Экобатыр', d: 'Дұрыс па, дұрыс емес пе? Табиғатқа қамқор бол!', emo: '🦸', run: gEco },
+];
+GAMES.forEach((g, i) => $('#gameGrid').append(el('button', { class: 'gcard', onclick: () => openGame(g.id) },
+  el('div', { class: 'th' + (g.contain ? ' contain' : '') }, g.emo ? el('span', { class: 'emo' }, g.emo) : el('img', { src: g.th, alt: '', loading: 'lazy' }), el('span', { class: 'num' }, (i + 1) + '-ойын')),
+  el('div', { class: 'bd' }, el('h3', {}, g.t), el('p', {}, g.d), el('span', { class: 'play' }, '▶ Ойнау')))));
+function openGame(id) { curGame = GAMES.find(g => g.id === id); $('#gTitle').textContent = curGame.t; setScore(0); $('#gm').classList.add('show'); document.body.style.overflow = 'hidden'; curGame.run(); if (location.hash !== '#' + id) history.replaceState(null, '', '#' + id); }
+function closeGame() { $('#gm').classList.remove('show'); document.body.style.overflow = ''; history.replaceState(null, '', '#games'); }
+function restartGame() { setScore(0); curGame && curGame.run(); }
+addEventListener('keydown', e => { if (e.key === 'Escape' && $('#gm').classList.contains('show') && !$('#lb').classList.contains('show')) closeGame(); });
+initGarden(); initEarth(); initRules(); dealRiddles(); $('#ridMore').onclick = dealRiddles; initBook(); initPicRow();
+const h0 = location.hash.slice(1); if (GAMES.some(g => g.id === h0)) openGame(h0);
+</script>
+</body>
+</html>

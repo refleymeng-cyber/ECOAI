@@ -84,7 +84,9 @@ h1,h2,h3{font-family:var(--f-head);text-wrap:balance;margin:0}
 .hero .bgart{position:absolute;inset:0;width:100%;height:100%}
 .hero .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero .txt{position:relative;z-index:2;padding:34px 40px 30px;max-width:620px}
-.hero h1{font-size:clamp(26px,3.2vw,40px);font-weight:800;color:var(--ink);line-height:1.1}
+.hero h1{font-size:clamp(19px,1.75vw,25px);font-weight:800;color:var(--ink);line-height:1.25;margin:4px 0 16px;max-width:560px}
+.hero .eyebrow{font-family:var(--f-hand);font-size:clamp(22px,2.2vw,30px);color:#2e8a2f;font-weight:700;text-shadow:0 1px 0 rgba(255,255,255,.7)}
+.hero .author{margin-top:14px;display:block;width:fit-content;background:rgba(255,255,255,.88);border-radius:12px;padding:6px 12px;font-size:14px;font-weight:700;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.08)}
 .hero h1 em{color:#2e8a2f;font-style:italic}
 .hero p{font-size:clamp(16px,1.6vw,21px);font-weight:600;margin:12px 0 18px;color:var(--ink);max-width:420px;text-shadow:0 1px 0 rgba(255,255,255,.6)}
 .btn{display:inline-flex;align-items:center;gap:10px;border:0;border-radius:16px;padding:12px 26px;font-weight:800;font-size:17px;color:#fff;background:linear-gradient(180deg,#3aa047,#1f7031);box-shadow:0 6px 16px rgba(31,112,49,.35),inset 0 1px 0 rgba(255,255,255,.35)}
@@ -170,11 +172,12 @@ kbd{font-family:ui-monospace,monospace;background:#eef3f2;border-radius:6px;padd
 
 /* ===== Lab workspace ===== */
 .lab{display:grid;grid-template-columns:76px minmax(0,1fr) 330px;grid-template-rows:auto minmax(0,1fr);gap:10px;height:clamp(600px,calc(100dvh - 120px),1100px)}
-.labbar{grid-column:1/-1;display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#fff;border-radius:18px;box-shadow:var(--sh);padding:8px 10px}
+.labbar{grid-column:1/-1;display:flex;align-items:center;gap:10px;flex-wrap:nowrap;background:#fff;border-radius:18px;box-shadow:var(--sh);padding:8px 10px}
 .labbar .crumb{display:flex;align-items:center;gap:8px;font-weight:800;font-family:var(--f-head);font-size:15px;min-width:0}
 .labbar .crumb .dot{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:#fff;flex:none}
 .labbar .crumb .dot svg{width:17px;height:17px}
-.tabs{display:flex;gap:4px;flex-wrap:wrap;margin-left:6px}
+.tabs{display:flex;gap:4px;flex-wrap:nowrap;margin-left:6px;overflow-x:auto;flex:1 1 0;min-width:0;scrollbar-width:thin}
+.tabs button{flex:none;white-space:nowrap}
 .tabs button{border:0;background:#eef4f2;border-radius:11px;padding:7px 12px;font-weight:700;font-size:13.5px;display:flex;align-items:center;gap:6px}
 .tabs button.on{background:var(--ink);color:#fff}
 .tabs button .s{color:#e2a414;font-size:11px}
@@ -310,6 +313,7 @@ kbd{font-family:ui-monospace,monospace;background:#eef3f2;border-radius:6px;padd
   .lab{grid-template-columns:70px minmax(0,1fr) 290px}
 }
 @media (max-width:980px){
+  .labbar{flex-wrap:wrap} .tabs{order:5;flex:1 1 100%;margin-left:0}
   .shell{grid-template-columns:1fr}
   .side{position:static;padding:8px}
   .side nav{flex-direction:row;overflow-x:auto;padding:0}
@@ -400,9 +404,10 @@ kbd{font-family:ui-monospace,monospace;background:#eef3f2;border-radius:6px;padd
           <path d="M0 230 Q300 205 600 225 T1000 220 V260 H0Z" fill="#a9d68c"/>
         </svg>
         <div class="txt">
-          <h1>Қош келдің, <em>жас зерттеуші!</em></h1>
-          <p>КартаLab – географияны оқудың жаңа мүмкіндігі! Картаны құрастыр, сыз, белгіле және безендір.</p>
+          <div class="eyebrow">Қош келдің, жас зерттеуші!</div>
+          <h1><em>«КартаLab»</em> – география пәнінде оқушылардың практикалық картографиялық дағдылары мен кеңістіктік ойлау қабілетін дамытуға арналған интерактивті цифрлық платформасы</h1>
           <button class="btn big" id="startBtn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg>Бастау</button>
+          <div class="author">Автор: <b>Кулбекова Сауле Еркінқызы</b></div>
         </div>
         <div class="globe" id="heroGlobe" title="Глобусты тышқанмен айналдыр"></div>
         <svg class="stand" viewBox="0 0 100 46" aria-hidden="true"><path d="M50 0 V26" stroke="#2a2a2a" stroke-width="6"/><ellipse cx="50" cy="36" rx="40" ry="9" fill="#2a2a2a"/><ellipse cx="50" cy="33" rx="34" ry="6" fill="#4a4a4a"/></svg>
@@ -426,8 +431,7 @@ kbd{font-family:ui-monospace,monospace;background:#eef3f2;border-radius:6px;padd
           <button class="iconbtn" id="backBtn" title="Каталогқа оралу" aria-label="Каталогқа оралу"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 4 7.5 12l8 8 1.5-1.5L10.5 12 17 5.5z"/></svg></button>
           <div class="crumb"><span class="dot" id="crumbDot"></span><span id="crumbTxt"></span></div>
           <div class="tabs" id="tabs"></div>
-          <div class="sp"></div>
-          <div class="seg" role="group" aria-label="Көрініс"><button data-vw="flat" class="on">3D карта</button><button data-vw="globe">Глобус</button></div>
+                    <div class="seg" role="group" aria-label="Көрініс"><button data-vw="flat" class="on">3D карта</button><button data-vw="globe">Глобус</button></div>
           <button class="iconbtn" id="layersBtn" title="Қабаттар" aria-label="Қабаттар"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 2 8.5l10 5.5 10-5.5zM4.2 12 2 13.2l10 5.5 10-5.5L19.8 12 12 16.3z"/></svg></button>
           <button class="iconbtn" id="undoBtn" title="Болдырмау" aria-label="Болдырмау"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.5 8c-2.7 0-5.1 1-7 2.6L2 7v9h9l-3.6-3.6c1.4-1.2 3.2-1.9 5.1-1.9 3.5 0 6.5 2.3 7.6 5.5l2.4-.8C21.1 11.1 17.2 8 12.5 8z"/></svg></button>
           <button class="iconbtn" id="shotBtn" title="Жұмыстарыма сақтау" aria-label="Жұмыстарыма сақтау"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7zm-5 16a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm3-10H5V5h10z"/></svg></button>
@@ -493,7 +497,7 @@ const COUNTRIES = RAW.C.map((c, i) => {
 const BYNAME = {}; COUNTRIES.forEach(c => BYNAME[c.name] = c);
 const KZ = BYNAME['Қазақстан'];
 // better label anchors for a few large/odd shapes
-const ANCH = { 'Ресей': [96, 62], 'АҚШ': [-99, 39], 'Канада': [-104, 58], 'Қазақстан': [67.5, 48.3], 'Қытай': [100, 35], 'Моңғолия': [103, 46.8], 'Норвегия': [9, 61.5], 'Чили': [-71, -34], 'Индонезия': [114, -1], 'Үндістан': [79, 22], 'Франция': [2.5, 46.6], 'Бразилия': [-52, -10], 'Аргентина': [-65, -36], 'Өзбекстан': [64, 41.6], 'Түрікменстан': [59, 39.3], 'Қырғызстан': [74.6, 41.5], 'Тәжікстан': [71, 38.7], 'Ауғанстан': [66, 34], 'Иран': [54, 32.5], 'Пәкістан': [69.5, 29.5], 'Жапония': [138.5, 36.5], 'Гренландия': [-41, 74] };
+const ANCH = { 'Ресей': [96, 62], 'АҚШ': [-99, 39], 'Канада': [-104, 58], 'Қазақстан': [67.5, 48.3], 'Қытай': [100, 35], 'Моңғолия': [103, 46.8], 'Норвегия': [9, 61.5], 'Чили': [-71, -34], 'Индонезия': [114, -1], 'Үндістан': [79, 22], 'Франция': [2.5, 46.6], 'Бразилия': [-52, -10], 'Аргентина': [-65, -36], 'Өзбекстан': [64, 41.6], 'Түрікменстан': [59, 39.3], 'Қырғызстан': [74.6, 41.5], 'Тәжікстан': [71, 38.7], 'Ауғанстан': [66, 34], 'Иран': [54, 32.5], 'Пәкістан': [69.5, 29.5], 'Жапония': [138.5, 36.5], 'Гренландия': [-41, 74], 'Вьетнам': [105.8, 21.2], 'Лаос': [102.6, 19.6], 'Малайзия': [102, 4.2], 'Камбоджа': [104.9, 12.7], 'Тайланд': [101, 15.5], 'Филиппин': [121.5, 16.2], 'Мьянма': [96, 20.5], 'Әзербайжан': [47.7, 40.3], 'Түркия': [34.5, 39] };
 COUNTRIES.forEach(c => { if (ANCH[c.name]) c.anchor = ANCH[c.name]; });
 // reported areas (km²) for the interactive card where precision matters
 const AREA = { 'Ресей': 17098246, 'Канада': 9984670, 'АҚШ': 9833517, 'Қытай': 9596961, 'Бразилия': 8515767, 'Австралия': 7741220, 'Үндістан': 3287263, 'Аргентина': 2780400, 'Қазақстан': 2724900, 'Алжир': 2381741, 'Моңғолия': 1564116, 'Өзбекстан': 448978, 'Түрікменстан': 491210, 'Қырғызстан': 199951, 'Тәжікстан': 143100 };
@@ -661,7 +665,7 @@ function hyps(e) { for (let k = 1; k < HYPSRGB.length; k++) { if (e <= HYPSRGB[k
 const CLIMRGB = CLIMATE.map(c => hexRGB(c[1])), ZONERGB = ZONES.map(z => hexRGB(z[1])), RELRGB = RELIEFCL.map(r => hexRGB(r[1]));
 /* ================= BASE TEXTURES ================= */
 const BASES = {
-  physical: 'Физикалық', satellite: 'Ғарыштық түсірілім (спутник)', relief: 'Жер бедері', climate: 'Климаттық белдеулер', zones: 'Табиғат зоналары', political: 'Саяси', topo: 'Топографиялық (горизонтальдар)', contour: 'Контур карта', light: 'Жеңіл фон'
+  physical: 'Физикалық', satellite: 'Ғарыштық түсірілім (спутник)', relief: 'Жер бедері', climate: 'Климаттық белдеулер', zones: 'Табиғат зоналары', political: 'Саяси', topo: 'Топографиялық (горизонтальдар)', contour: 'Контур карта', desert: 'Шөлейттену аймақтары', lang: 'Тілдер (тілдік отбасылар)', relig: 'Діндер', regions: 'Дүниежүзі аймақтары', light: 'Жеңіл фон'
 };
 const baseCache = new Map();
 function seaRGB(i, pale) {
@@ -700,6 +704,8 @@ function buildBase(mode) {
         if (land) { r = 252; g = 251; b = 246; } else { r = 196; g = 226; b = 243; }
       } else if (mode === 'political') {
         if (land) { r = 240; g = 240; b = 235; } else[r, g, b] = seaRGB(i, true);
+      } else if (mode === 'desert') {
+        if (land) { const k = desertAt(lon, lat, e), c = DESRGB[k < 0 ? 4 : k]; const s = 1 + (sh - 1) * .45; r = c[0] * s; g = c[1] * s; b = c[2] * s; } else[r, g, b] = seaRGB(i, true);
       } else { // light
         if (land) { const c = hyps(e); r = 235 + (c[0] - 235) * .35; g = 238 + (c[1] - 238) * .35; b = 228 + (c[2] - 228) * .35; const s = 1 + (sh - 1) * .5; r *= s; g *= s; b *= s; } else[r, g, b] = seaRGB(i, true);
       }
@@ -869,7 +875,8 @@ function ribbon(pts, w, color, opt = {}) {
 /* ---- texture composition ---- */
 function composeTexture() {
   const W = 4096, H = 2048, c = texCtx;
-  c.imageSmoothingEnabled = true; if (S.base === 'satellite' && SATIMG) c.drawImage(SATIMG, 0, 0, W, H); else c.drawImage(buildBase(S.base === 'satellite' ? 'physical' : S.base), 0, 0, W, H); TOPO_U.uTopo.value = S.base === 'topo' ? 1 : 0;
+  c.imageSmoothingEnabled = true; if (S.base === 'satellite' && SATIMG) c.drawImage(SATIMG, 0, 0, W, H); else c.drawImage(buildBase(S.base === 'satellite' ? 'physical' : THEMES[S.base] ? 'light' : S.base), 0, 0, W, H); TOPO_U.uTopo.value = S.base === 'topo' ? 1 : 0;
+  if (THEMES[S.base]) { const T = THEMES[S.base]; c.globalAlpha = .86; COUNTRIES.forEach(k => { const v = T.of(k); if (v < 0) return; c.beginPath(); pathCountry(c, k, W, H); c.fillStyle = T.classes[v][1]; c.fill('evenodd'); }); c.globalAlpha = 1; }
   if (S.base === 'political') { COUNTRIES.forEach(k => { c.beginPath(); pathCountry(c, k, W, H); c.fillStyle = POLCOL[k.i]; c.fill('evenodd'); }); }
   if (S.ov.water) {
     c.beginPath(); pathLakes(c, W, H);
@@ -1095,6 +1102,74 @@ function loop(now) {
   renderer.render(scene, camera); placeLabels();
   if (now - hudT > 120) { hudT = now; updateHud(); }
 }
+/* ================= THEMATIC COUNTRY LAYERS ================= */
+const _L = s => s.split('|');
+const LATAM = c => c.anchor[0] < -30 && c.anchor[1] < 32 && c.anchor[0] > -120;
+const OCEAN = c => (c.anchor[0] > 110 && c.anchor[1] < -9) || (c.anchor[0] > 140 && c.anchor[1] < 25) || (c.anchor[0] < -140 && c.anchor[1] < 25);
+function mkTheme(classes, lists, fallback) {
+  const map = {}; lists.forEach((l, k) => _L(l).forEach(n => map[n] = k));
+  return { classes, of: c => (map[c.en] !== undefined ? map[c.en] : fallback ? fallback(c) : -1) };
+}
+const THEMES = {
+  lang: mkTheme([
+    ['Үнді-еуропалық', '#7fa7e0'], ['Алтай (түркі, моңғол)', '#4fb3a9'], ['Қытай-тибет', '#e8806e'], ['Афразиялық (семит-хамит)', '#f2c45a'], ['Нигер-конго', '#9cc96b'],
+    ['Нил-сахара', '#c9a26b'], ['Аустронезиялық', '#c792d6'], ['Аустроазиялық және тай-кадай', '#f0a3c0'], ['Жапон және корей', '#d9655b'], ['Орал (фин-угор)', '#8fd0e8'], ['Кавказ (картвель)', '#b98ee0'], ['Эскимос-алеут', '#cfd8dc']],
+    ['United Kingdom|Ireland|France|Germany|Netherlands|Belgium|Luxembourg|Switzerland|Austria|Liechtenstein|Monaco|Italy|Spain|Portugal|Andorra|San Marino|Vatican|Greece|Cyprus|Albania|Kosovo|Macedonia|Serbia|Montenegro|Bosnia and Herz.|Croatia|Slovenia|Bulgaria|Romania|Moldova|Ukraine|Belarus|Russia|Poland|Czechia|Slovakia|Lithuania|Latvia|Denmark|Norway|Sweden|Iceland|Faeroe Is.|Åland|Isle of Man|Jersey|Guernsey|Armenia|Iran|Afghanistan|Tajikistan|Pakistan|India|Bangladesh|Nepal|Sri Lanka|Maldives|United States of America|Canada|Mexico|Australia|New Zealand|Bermuda|Falkland Is.|Siachen Glacier',
+      'Kazakhstan|Uzbekistan|Turkmenistan|Kyrgyzstan|Azerbaijan|Turkey|N. Cyprus|Mongolia',
+      'China|Taiwan|Myanmar|Bhutan|Hong Kong|Macao',
+      'Morocco|Algeria|Tunisia|Libya|Egypt|Sudan|Mauritania|W. Sahara|Western Sahara|Saudi Arabia|Yemen|Oman|United Arab Emirates|Qatar|Bahrain|Kuwait|Iraq|Syria|Jordan|Lebanon|Israel|Palestine|Ethiopia|Eritrea|Somalia|Somaliland|Djibouti|Chad|Malta|Niger',
+      'Senegal|Gambia|Guinea-Bissau|Guinea|Sierra Leone|Liberia|Côte d\'Ivoire|Mali|Burkina Faso|Ghana|Togo|Benin|Nigeria|Cameroon|Central African Rep.|Eq. Guinea|Gabon|Congo|Dem. Rep. Congo|Angola|Zambia|Malawi|Mozambique|Tanzania|Kenya|Uganda|Rwanda|Burundi|Zimbabwe|Botswana|Namibia|South Africa|Lesotho|eSwatini|Comoros|São Tomé and Principe|Cabo Verde',
+      'S. Sudan',
+      'Indonesia|Malaysia|Philippines|Brunei|Timor-Leste|Madagascar|Papua New Guinea|Fiji|Solomon Is.|Vanuatu|Samoa|Tonga|New Caledonia|Fr. Polynesia|Kiribati|Micronesia|Marshall Is.|Palau|Guam',
+      'Vietnam|Cambodia|Thailand|Laos', 'Japan|South Korea|North Korea', 'Finland|Estonia|Hungary', 'Georgia', 'Greenland'],
+    c => LATAM(c) ? 0 : OCEAN(c) ? 6 : -1),
+  relig: mkTheme([
+    ['Христиандық (католиктік)', '#e9b949'], ['Христиандық (протестанттық)', '#8fb6e6'], ['Христиандық (православиелік)', '#5b84c4'], ['Ислам (сүнниттік)', '#5fb07a'], ['Ислам (шииттік)', '#2f7d55'],
+    ['Буддизм және ұлттық діндер', '#f08a5d'], ['Индуизм', '#e45d8c'], ['Иудаизм', '#9b7fd1'], ['Аралас және жергілікті діндер', '#cdbfa6']],
+    ['Spain|Portugal|France|Italy|Belgium|Luxembourg|Ireland|Poland|Austria|Lithuania|Croatia|Slovenia|Slovakia|Czechia|Hungary|Malta|Andorra|Monaco|Liechtenstein|San Marino|Vatican|Philippines|Timor-Leste|Dem. Rep. Congo|Congo|Angola|Rwanda|Burundi|Eq. Guinea|Gabon|Seychelles|New Caledonia|Fr. Polynesia|Mexico|Falkland Is.',
+      'United States of America|Canada|United Kingdom|Germany|Netherlands|Denmark|Norway|Sweden|Finland|Iceland|Estonia|Latvia|Switzerland|Australia|New Zealand|South Africa|Namibia|Botswana|Zimbabwe|Zambia|Malawi|Kenya|Ghana|Liberia|Papua New Guinea|Fiji|Solomon Is.|Vanuatu|Samoa|Tonga|Greenland|Lesotho|eSwatini|S. Sudan|Bermuda|Faeroe Is.|Åland|Isle of Man|Jersey|Guernsey|Uganda',
+      'Russia|Ukraine|Belarus|Moldova|Romania|Bulgaria|Serbia|Montenegro|Macedonia|Greece|Cyprus|Georgia|Armenia|Ethiopia',
+      'Kazakhstan|Uzbekistan|Turkmenistan|Kyrgyzstan|Tajikistan|Afghanistan|Pakistan|Bangladesh|Indonesia|Malaysia|Brunei|Maldives|Turkey|N. Cyprus|Syria|Jordan|Palestine|Saudi Arabia|Yemen|Oman|United Arab Emirates|Qatar|Kuwait|Egypt|Libya|Tunisia|Algeria|Morocco|W. Sahara|Western Sahara|Mauritania|Mali|Niger|Chad|Sudan|Senegal|Gambia|Guinea|Sierra Leone|Somalia|Somaliland|Djibouti|Comoros|Burkina Faso|Albania|Kosovo',
+      'Iran|Iraq|Azerbaijan|Bahrain',
+      'Mongolia|China|Japan|Thailand|Myanmar|Laos|Cambodia|Sri Lanka|Bhutan|Vietnam|Taiwan|South Korea|North Korea|Hong Kong|Macao|Singapore',
+      'India|Nepal', 'Israel',
+      'Nigeria|Côte d\'Ivoire|Togo|Benin|Cameroon|Central African Rep.|Tanzania|Mozambique|Guinea-Bissau|Eritrea|Madagascar|Lebanon|Bosnia and Herz.|Cabo Verde|São Tomé and Principe|Mauritius'],
+    c => LATAM(c) ? 0 : OCEAN(c) ? 1 : -1),
+  regions: mkTheme([
+    ['Солтүстік Еуропа', '#9cc3ea'], ['Батыс Еуропа', '#5c93d6'], ['Оңтүстік Еуропа', '#7fd1d8'], ['Шығыс Еуропа', '#3f6fb5'],
+    ['Орталық Азия', '#f2b84b'], ['Оңтүстік-Батыс Азия', '#e8875e'], ['Оңтүстік Азия', '#d95f6f'], ['Шығыс Азия', '#f4d470'], ['Оңтүстік-Шығыс Азия', '#e9a3c4'],
+    ['Солтүстік Африка', '#c6dc8a'], ['Батыс Африка', '#8cc677'], ['Орталық Африка', '#4fa36a'], ['Шығыс Африка', '#a7d9a0'], ['Оңтүстік Африка', '#2e8a62'],
+    ['Солтүстік Америка', '#b39ddb'], ['Латын Америкасы', '#8e6cc4'], ['Австралия және Мұхит аралдары', '#5fc1b0']],
+    ['Norway|Sweden|Finland|Denmark|Iceland|Estonia|Latvia|Lithuania|United Kingdom|Ireland|Faeroe Is.|Åland|Isle of Man|Jersey|Guernsey',
+      'France|Germany|Netherlands|Belgium|Luxembourg|Switzerland|Austria|Liechtenstein|Monaco',
+      'Spain|Portugal|Italy|Greece|Malta|Slovenia|Croatia|Bosnia and Herz.|Serbia|Montenegro|Albania|Macedonia|Kosovo|Andorra|San Marino|Vatican',
+      'Poland|Czechia|Slovakia|Hungary|Romania|Bulgaria|Moldova|Ukraine|Belarus|Russia',
+      'Kazakhstan|Uzbekistan|Kyrgyzstan|Tajikistan|Turkmenistan',
+      'Turkey|N. Cyprus|Cyprus|Georgia|Armenia|Azerbaijan|Iran|Afghanistan|Iraq|Syria|Lebanon|Israel|Palestine|Jordan|Saudi Arabia|Yemen|Oman|United Arab Emirates|Qatar|Bahrain|Kuwait',
+      'India|Pakistan|Bangladesh|Nepal|Bhutan|Sri Lanka|Maldives|Siachen Glacier',
+      'China|Mongolia|Japan|North Korea|South Korea|Taiwan|Hong Kong|Macao',
+      'Vietnam|Laos|Cambodia|Thailand|Myanmar|Malaysia|Singapore|Indonesia|Philippines|Brunei|Timor-Leste',
+      'Egypt|Libya|Tunisia|Algeria|Morocco|W. Sahara|Western Sahara|Sudan',
+      'Mauritania|Mali|Niger|Senegal|Gambia|Guinea-Bissau|Guinea|Sierra Leone|Liberia|Côte d\'Ivoire|Burkina Faso|Ghana|Togo|Benin|Nigeria|Cabo Verde',
+      'Chad|Cameroon|Central African Rep.|Eq. Guinea|Gabon|Congo|Dem. Rep. Congo|São Tomé and Principe|Angola',
+      'Ethiopia|Eritrea|Djibouti|Somalia|Somaliland|Kenya|Uganda|Tanzania|Rwanda|Burundi|S. Sudan|Madagascar|Mozambique|Malawi|Zambia|Zimbabwe|Comoros|Mauritius|Seychelles',
+      'South Africa|Namibia|Botswana|Lesotho|eSwatini',
+      'United States of America|Canada|Greenland|Bermuda', '',
+      'Australia|New Zealand|Papua New Guinea|Fiji|Solomon Is.|Vanuatu|New Caledonia|Samoa|Tonga|Fr. Polynesia|Kiribati|Micronesia|Marshall Is.|Palau|Guam'],
+    c => LATAM(c) ? 15 : OCEAN(c) ? 16 : -1)
+};
+const DESERT = [['Шөлдер (құрғақ аймақтар)', '#ead9b6'], ['Шөлейттену қаупі өте жоғары', '#c0392b'], ['Шөлейттену қаупі жоғары', '#e67e22'], ['Шөлейттену қаупі орташа', '#f4d35e'], ['Қауіп аз немесе жоқ', '#dfe8d6']];
+const DESRGB = DESERT.map(d => hexRGB(d[1]));
+function desertAt(lon, lat, e) {
+  if (!landAt(lon, lat)) return -1;
+  const z = zoneAt(lon, lat, e);
+  if (z === 6) return 0;
+  if (z === 5) return 1;
+  if (z === 8 && lat > 11 && lat < 18 && lon > -18 && lon < 40) return 1; // Сахель
+  if (z === 4 || z === 8) return 2;
+  if (z === 7 || (z === 10 && Math.abs(lat) < 45 && Math.abs(lat) > 20)) return 3;
+  return 4;
+}
 /* ================= CATALOGUE & MISSIONS ================= */
 const ICONS = {
   leaf: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 3C10 3 4 8 4 15c0 1.6.4 3 1 4.2C7 14 11 11 15 9.5 11.5 12 8.5 15 7 20c1.4.7 3 1 4.5 1C18 21 21 14 20 3z"/></svg>',
@@ -1151,6 +1226,11 @@ const M = [
     { k: 'border', name: 'Қазақстан', prompt: '«Шекара» құралымен Қазақстанның мемлекеттік шекарасын ерекшеле' },
     { k: 'label', prompt: '«Атау» құралымен көрші елдердің атауын жаз', targets: ['Ресей', 'Қытай', 'Өзбекстан'] },
     { k: 'colorize', prompt: 'Сапалық фон: Орталық Азияның 5 елін әр түрлі түспен боя. Көрші елдер бір түсті болмауы керек.', targets: ['Қазақстан', 'Өзбекстан', 'Қырғызстан', 'Тәжікстан', 'Түрікменстан'] }] },
+  { id: 'audandastyru', cat: 'zhalpy', t: 'Дүниежүзі елдерін аудандастыру', base: 'regions', ov: { labels: false, water: false }, focus: { lon: 45, lat: 28, dist: 30, tilt: 30 }, intro: 'Дүниежүзі елдері географиялық орнының, табиғатының, тарихы мен шаруашылығының ортақтығына қарай ірі аймақтарға (аудандарға) бөлінеді. Түстер – аймақтар, ел атаулары өшірулі.', steps: [
+    { k: 'countries', prompt: 'Оңтүстік-Шығыс Азия аймағының елдерін тауып белгіле', targets: ['Вьетнам', 'Тайланд', 'Индонезия', 'Филиппин', 'Малайзия', 'Мьянма'] },
+    { k: 'choro', cats: true, base: 'contour', prompt: 'Енді контур картада: әр елді өз аймағының түсімен боя', classes: [['Орталық Азия', '#f2b84b'], ['Оңтүстік-Батыс Азия', '#e8875e'], ['Оңтүстік Азия', '#d95f6f'], ['Шығыс Азия', '#f4d470']], data: [['Қазақстан', 0], ['Өзбекстан', 0], ['Қырғызстан', 0], ['Тәжікстан', 0], ['Түрікменстан', 0], ['Иран', 1], ['Түркия', 1], ['Сауд Арабиясы', 1], ['Ирак', 1], ['Үндістан', 2], ['Пәкістан', 2], ['Бангладеш', 2], ['Қытай', 3], ['Моңғолия', 3], ['Жапония', 3]] },
+    { k: 'quiz', q: 'Қазақстан дүниежүзінің қай аймағына (ауданына) жатады?', o: ['Орталық Азия', 'Оңтүстік Азия', 'Шығыс Еуропа', 'Оңтүстік-Батыс Азия'], a: 0 },
+    { k: 'quiz', q: 'Елдерді аудандастыруда негізге алынатын белгі:', o: ['Географиялық орнының, табиғатының, тарихы мен шаруашылығының ортақтығы', 'Тек халық саны', 'Тек аумағының көлемі', 'Тек астанасының орны'], a: 0 }] },
   // ---- Әлеуметтік-экономикалық
   { id: 'halyk', cat: 'aleumet', t: 'Халық картасы', base: 'contour', ov: { water: true, labels: true }, focus: { lon: 75, lat: 44, dist: 13, tilt: 35 }, intro: 'Халық тығыздығы картасы картограмма тәсілімен жасалады: әр ел тығыздық класына сәйкес түспен боялады. Түс неғұрлым қою болса, халық соғұрлым тығыз.', steps: [
     { k: 'choro', prompt: 'Кестедегі деректер бойынша әр елді өз класының түсімен боя', classes: [['10 адамнан аз', '#fff3b0'], ['10–49 адам', '#fbbf6a'], ['50–149 адам', '#ef7d3c'], ['150 және одан көп', '#b8331e']], data: [['Қазақстан', 7], ['Ресей', 9], ['Моңғолия', 2], ['Түрікменстан', 14], ['Қырғызстан', 36], ['Иран', 55], ['Ауғанстан', 64], ['Тәжікстан', 72], ['Өзбекстан', 84], ['Қытай', 150], ['Пәкістан', 300], ['Үндістан', 480]], cut: [10, 50, 150] },
@@ -1162,6 +1242,12 @@ const M = [
     { k: 'quiz', q: 'Қазақстанның Каспий теңізіндегі ірі теңіз порты:', o: ['Ақтау', 'Павлодар', 'Семей', 'Балқаш'], a: 0 }] },
   { id: 'turizm', cat: 'aleumet', t: 'Туристік карта', base: 'physical', ov: { water: true, labels: true, cities: false }, focus: KZF, intro: 'Туристік картада табиғи және тарихи көрікті жерлер белгіленеді. Әр нысанды өз орнына қой.', steps: [
     { k: 'place', prompt: 'Қазақстанның көрікті жерлерін картаға түсір', items: [{ sym: 'tourist', label: 'Бурабай', at: [[70.3, 53.08]] }, { sym: 'tourist', label: 'Шарын шатқалы', at: [[79.08, 43.35]] }, { sym: 'tourist', label: 'Көлсай көлдері', at: [[78.32, 42.98]] }, { sym: 'tourist', label: 'Қожа Ахмет Ясауи кесенесі', at: ['Түркістан'] }, { sym: 'space', label: 'Байқоңыр ғарыш айлағы', at: ['Байқоңыр'] }, { sym: 'tourist', label: 'Тамғалы петроглифтері', at: [[75.53, 43.8]] }], tol: 1.0 }] },
+  { id: 'tilder', cat: 'aleumet', t: 'Тілдер мен діндердің таралуы', base: 'lang', ov: { labels: false, water: false }, focus: { lon: 45, lat: 28, dist: 30, tilt: 30 }, intro: 'Дүниежүзі халқы 6–7 мыңдай тілде сөйлейді, тілдер туыстығына қарай тілдік отбасыларға бірігеді. Картада әр елде басым тілдік отбасы мен дін көрсетілген (жалпылама карта).', steps: [
+    { k: 'countries', prompt: 'Түркі тілдері (алтай отбасы) басым елдерді белгіле', targets: ['Қазақстан', 'Өзбекстан', 'Түрікменстан', 'Қырғызстан', 'Әзербайжан', 'Түркия'] },
+    { k: 'quiz', q: 'Сөйлеушілер саны бойынша дүниежүзіндегі ең ірі тілдік отбасы:', o: ['Үнді-еуропалық', 'Қытай-тибет', 'Афразиялық', 'Нигер-конго'], a: 0 },
+    { k: 'countries', base: 'relig', prompt: 'Діндер картасы: буддизм басым таралған елдерді белгіле', targets: ['Моңғолия', 'Тайланд', 'Мьянма', 'Шри-Ланка', 'Камбоджа'] },
+    { k: 'quiz', q: 'Индуизм басым таралған ел:', o: ['Үндістан', 'Пәкістан', 'Индонезия', 'Иран'], a: 0 },
+    { k: 'quiz', q: 'Әлемдік діндерге жататыны:', o: ['Буддизм, христиандық, ислам', 'Индуизм, иудаизм, синтоизм', 'Конфуцийшілдік, даосизм, синтоизм', 'Тек христиандық'], a: 0 }] },
   // ---- Экологиялық
   { id: 'ekojagdai', cat: 'eko', t: 'Экологиялық жағдай', base: 'light', ov: { water: true, labels: true, cities: false }, focus: KZF, intro: 'Экологиялық картада табиғатқа зиян келген аймақтар ескерту белгілерімен көрсетіледі.', steps: [
     { k: 'place', prompt: 'Қазақстанның ірі экологиялық проблемаларын белгіле', items: [{ sym: 'warn', label: 'Арал теңізінің тартылуы', at: [[60.5, 45.6]] }, { sym: 'warn', label: 'Семей ядролық полигоны', at: [[78.0, 50.2]] }, { sym: 'warn', label: 'Каспийдің мұнаймен ластануы', at: [[51.5, 45.8]] }, { sym: 'warn', label: 'Балқаш көлінің таязуы', at: [[75.5, 46.6]] }], tol: 1.8 },
@@ -1174,6 +1260,15 @@ const M = [
     { k: 'quiz', q: 'Орталық Азиядағы ең алғашқы қорық (1926 ж.):', o: ['Ақсу-Жабағылы', 'Наурызым', 'Қорғалжын', 'Марқакөл'], a: 0 }] },
   { id: 'apat', cat: 'eko', t: 'Табиғи апаттар', base: 'relief', ov: { water: true, labels: true, cities: true }, focus: KZF, intro: 'Табиғи апаттар картасы қауіпті аймақтарды алдын ала білуге көмектеседі. Әр апат түрін тән аймағына қой.', steps: [
     { k: 'place', prompt: 'Табиғи апаттар қаупі жоғары аймақтарды белгіле', items: [{ sym: 'quake', label: 'Жер сілкінісі (Алматы өңірі)', at: ['Алматы'] }, { sym: 'flood', label: 'Су тасқыны (Жайық бойы)', at: [[51.4, 50.6], 'Орал', 'Атырау'] }, { sym: 'dust', label: 'Тұзды-шаңды дауыл (Арал маңы)', at: [[61.5, 45.5]] }, { sym: 'fire', label: 'Орман өрті (Ертіс бойы, Семей орманы)', at: [[79.8, 50.6]] }], tol: 1.8 }] },
+  { id: 'sholeittenu', cat: 'eko', t: 'Шөлейттену аймақтары', base: 'desert', ov: { labels: true, water: true }, focus: { lon: 40, lat: 25, dist: 28, tilt: 30 }, intro: 'Шөлейттену – құрғақ аймақтардағы жердің климат өзгерісі мен адам әрекетінен тозып, өнімділігін жоғалтуы. Картада шөлейттену қаупінің дәрежесі көрсетілген (схемалық карта).', steps: [
+    { k: 'zone', fn: 'desert', want: 1, name: 'шөлейттену қаупі өте жоғары аймақ', hint: 'Сахараның оңтүстік шеті – Сахель белдеуі, сондай-ақ Орталық Азияның шөлейттері.' },
+    { k: 'place', prompt: 'Шөлейттенудің ірі ошақтарын «шаңды дауыл» белгісімен көрсет', items: [{ sym: 'dust', label: 'Сахель (Африка)', at: [[3, 14.5]] }, { sym: 'dust', label: 'Арал маңы', at: [[61, 45.5]] }, { sym: 'dust', label: 'Гоби және Ішкі Моңғолия', at: [[108, 42.5]] }, { sym: 'dust', label: 'Тар шөлінің шеті (Үндістан)', at: [[71.5, 27]] }], tol: 5 },
+    { k: 'quiz', q: 'Шөлейттенудің негізгі антропогендік себебі:', o: ['Малды шамадан тыс жаю, орман кесу және дұрыс суармау', 'Жанартау атқылауы', 'Мұздықтардың еруі', 'Жер сілкінісі'], a: 0 },
+    { k: 'quiz', q: 'БҰҰ-ның Шөлейттенуге қарсы күрес конвенциясы қабылданған жыл:', o: ['1994', '1972', '2015', '1945'], a: 0 }] },
+  { id: 'geoeko', cat: 'eko', t: 'Геоэкологиялық проблемалық аймақтар', base: 'light', ov: { labels: true, water: true }, focus: { lon: 40, lat: 30, dist: 32, tilt: 25 }, intro: 'Геоэкологиялық проблемалық аймақтар – табиғи ортаның адам әрекетінен қатты бұзылған жерлері. Әр апат ошағын картадағы орнына қой.', steps: [
+    { k: 'place', prompt: 'Дүниежүзінің геоэкологиялық проблемалық аймақтарын белгіле', items: [{ sym: 'warn', label: 'Арал теңізі апаты', at: [[60.5, 45.5]] }, { sym: 'fire', label: 'Амазонка ормандарының жойылуы', at: [[-60, -6]] }, { sym: 'dust', label: 'Сахельдегі шөлейттену', at: [[3, 14.5]] }, { sym: 'warn', label: 'Чернобыль АЭС апаты (1986)', at: [[30.1, 51.39]] }, { sym: 'warn', label: 'Фукусима АЭС апаты (2011)', at: [[141.03, 37.42]] }, { sym: 'warn', label: 'Семей ядролық полигоны', at: [[78.0, 50.2]] }, { sym: 'flood', label: 'Тынық мұхиттағы «қоқыс дағы»', at: [[-145, 32]] }], tol: 4 },
+    { k: 'quiz', q: 'Озон қабатын бұзатын заттар:', o: ['Фреондар (хлорфторкөміртектер)', 'Оттегі', 'Азот', 'Су буы'], a: 0 },
+    { k: 'quiz', q: '«Қышқыл жаңбырдың» негізгі себебі:', o: ['Ауаға күкірт пен азот оксидтерінің шығарылуы', 'Мұхит суының булануы', 'Ормандардың көбеюі', 'Күн белсенділігі'], a: 0 }] },
   // ---- Цифрлық
   { id: 'gis', cat: 'cifr', t: 'ГАЖ картасы', base: 'contour', ov: { water: false, labels: false, borders: true, cities: false }, focus: KZF, intro: 'Геоақпараттық жүйе (ГАЖ) картаны қабаттарға бөледі. «Қабаттар» батырмасын ашып, қабаттарды қос немесе өшір.', steps: [
     { k: 'layers', prompt: 'Қабаттарды мына күйге келтір', need: { base: 'physical', water: true, cities: true, borders: false } },
@@ -1228,7 +1323,7 @@ const BADGES = [
   { id: 'prak', n: 'Практик-картограф', d: 'Картографиялық практикумды аяқта' },
   { id: 'perfect', n: 'Мінсіз орындау', d: 'Тапсырманы бірде-бір қатесіз орында' },
   { id: 'saved', n: 'Менің алғашқы картам', d: 'Картаңды «Менің жұмыстарым» бөліміне сақта' },
-  { id: 'all', n: 'КартаLab шебері', d: 'Барлық 24 тапсырманы орында' }
+  { id: 'all', n: 'КартаLab шебері', d: 'Барлық тапсырманы орында' }
 ];
 function giveBadge(id) { if (P.badges.includes(id)) return; P.badges.push(id); saveP(); const b = BADGES.find(x => x.id === id); setTimeout(() => toast('Жаңа марапат: «' + b.n + '»!', 'ok', 3200), 1400); }
 function renderLevel() {
@@ -1342,7 +1437,8 @@ function stepHTML(st) {
     case 'border': return `<div class="task"><div class="q">${h(st.prompt)}</div><p style="margin:8px 0 0;font-size:13px">Оң жақтағы «Шекара сызығы» режимін таңда да, елдің ішін бас.</p></div>`;
     case 'label': { const got = stepState.got || []; return `<div class="task"><div class="q">${h(st.prompt)}</div><div class="chips">${st.targets.map(t => `<span class="chip ${got.includes(t) ? 'done' : ''}">${got.includes(t) ? '<span class="ok">✓</span>' + h(t) : '?'}</span>`).join('')}</div><p style="margin:8px 0 0;font-size:13px">Елдің ішін бас, атауын жаз. Барлығы ${st.targets.length} ел.</p></div>`; }
     case 'colorize': return `<div class="task"><div class="q">${h(st.prompt)}</div><div class="chips">${st.targets.map(t => `<span class="chip">${S.map.fills[BYNAME[t].i] ? `<i style="width:14px;height:14px;border-radius:4px;background:${S.map.fills[BYNAME[t].i]}"></i>` : ''}${h(t)}</span>`).join('')}</div><div class="row2" style="margin-top:10px"><button class="btn sm" id="chkB">Тексеру</button></div></div>`;
-    case 'choro': return `<div class="task"><div class="q">${h(st.prompt)}</div><p style="margin:6px 0;font-size:13px"><b>Халық тығыздығы</b>, 1 км²-ге шаққанда адам (шамамен, 2024)</p><table class="dtable"><tr><th>Ел</th><th>адам/км²</th></tr>${st.data.map(d => `<tr><td>${S.map.fills[BYNAME[d[0]].i] ? `<i style="display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;background:${S.map.fills[BYNAME[d[0]].i]}"></i>` : ''}${h(d[0])}</td><td>${d[1]}</td></tr>`).join('')}</table><div class="row2" style="margin-top:10px"><button class="btn sm" id="chkB">Тексеру</button></div></div>`;
+    case 'choro': if (st.cats) return `<div class="task"><div class="q">${h(st.prompt)}</div><div class="chips">${st.data.map(d => `<span class="chip">${S.map.fills[BYNAME[d[0]].i] ? `<i style="width:14px;height:14px;border-radius:4px;background:${S.map.fills[BYNAME[d[0]].i]}"></i>` : ''}${h(d[0])}</span>`).join('')}</div><p style="margin:8px 0 0;font-size:13px">Төмендегі палитрадан аймақтың түсін таңдап, елді бас.</p><div class="row2" style="margin-top:10px"><button class="btn sm" id="chkB">Тексеру</button></div></div>`;
+      return `<div class="task"><div class="q">${h(st.prompt)}</div><p style="margin:6px 0;font-size:13px"><b>Халық тығыздығы</b>, 1 км²-ге шаққанда адам (шамамен, 2024)</p><table class="dtable"><tr><th>Ел</th><th>адам/км²</th></tr>${st.data.map(d => `<tr><td>${S.map.fills[BYNAME[d[0]].i] ? `<i style="display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;background:${S.map.fills[BYNAME[d[0]].i]}"></i>` : ''}${h(d[0])}</td><td>${d[1]}</td></tr>`).join('')}</table><div class="row2" style="margin-top:10px"><button class="btn sm" id="chkB">Тексеру</button></div></div>`;
     case 'place': { const got = stepState.got || []; const sel = stepState.sel ?? st.items.findIndex((_, k) => !got.includes(k)); stepState.sel = sel; return `<div class="task"><div class="q">${h(st.prompt)}</div><p style="margin:6px 0 0;font-size:13px">Белгіні таңда, сосын картадағы орнын бас.</p><div class="chips">${st.items.map((it, k) => `<button class="chip ${got.includes(k) ? 'done' : k === sel ? 'on' : ''}" data-it="${k}" ${got.includes(k) ? 'disabled' : ''}><img src="${iconSrc(it.sym)}" alt="">${got.includes(k) ? '<span class="ok">✓</span>' : ''}${h(it.label)}</button>`).join('')}</div></div>`; }
     case 'route': { const r = stepState.names || []; return `<div class="task"><div class="q">${h(st.prompt)}</div><div class="chips">${st.seq.map((n, k) => `<span class="chip ${k < r.length ? 'done' : ''}">${k + 1}. ${h(n)}</span>`).join('')}</div><p style="margin:8px 0 0;font-size:13px">«Маршрут» құралымен қалаларды ретімен бас. Қала атаулары картада көрсетілген.</p><div class="row2" style="margin-top:8px"><button class="btn sm ghost" id="routeClr">Маршрутты тазалау</button></div></div>`; }
     case 'layers': { const n = st.need, ok = layerOk(n); return `<div class="task"><div class="q">${h(st.prompt)}</div><ul class="check" style="margin-top:8px"><li class="${S.base === n.base ? 'ok' : ''}"><i>✓</i>Негізгі фон: ${BASES[n.base]}</li><li class="${S.ov.water === n.water ? 'ok' : ''}"><i>✓</i>Өзендер мен көлдер – ${n.water ? 'қосулы' : 'өшірулі'}</li><li class="${S.ov.cities === n.cities ? 'ok' : ''}"><i>✓</i>Қалалар – ${n.cities ? 'қосулы' : 'өшірулі'}</li><li class="${S.ov.borders === n.borders ? 'ok' : ''}"><i>✓</i>Мемлекет шекаралары – ${n.borders ? 'қосулы' : 'өшірулі'}</li></ul><div class="row2" style="margin-top:10px"><button class="btn sm" id="openLay">Қабаттарды ашу</button></div></div>`; }
@@ -1408,6 +1504,7 @@ function good(msg) { beep(true); toast(msg || 'Дұрыс!', 'ok'); }
 function bad(msg) { beep(false); S.mistakes++; toast(msg || 'Қате, тағы байқап көр', 'bad', 3200); }
 function nextStep() {
   S.step++; stepState = {};
+  const ns = curStep(); if (ns && ns.base && ns.base !== S.base) { S.base = ns.base; dirtyTex = true; renderHudStatic(); if (!document.getElementById('layersPop').hidden) renderLayers(); }
   if (S.step >= mission.steps.length) finishMission(); else setTool(toolForStep(curStep()));
   renderPanel();
 }
@@ -1437,9 +1534,10 @@ function checkStep() {
     good('Керемет! Сапалық фон дұрыс берілді.'); return nextStep();
   }
   if (st.k === 'choro') {
-    const wrong = st.data.filter(([n, v]) => { const cls = v < st.cut[0] ? 0 : v < st.cut[1] ? 1 : v < st.cut[2] ? 2 : 3; return S.map.fills[BYNAME[n].i] !== st.classes[cls][1]; });
+    const clsOf = v => st.cats ? v : v < st.cut[0] ? 0 : v < st.cut[1] ? 1 : v < st.cut[2] ? 2 : 3;
+    const wrong = st.data.filter(([n, v]) => { const cls = clsOf(v); return S.map.fills[BYNAME[n].i] !== st.classes[cls][1]; });
     if (wrong.length) return bad(`${wrong.length} ел дұрыс боялмаған: ${wrong.slice(0, 4).map(w => w[0]).join(', ')}${wrong.length > 4 ? '…' : ''}`);
-    st.classes.forEach(c => S.map.legend[c[1]] = c[0] + ' адам/км²'); renderLegend(); good('Картограмма дайын!'); return nextStep();
+    st.classes.forEach(c => S.map.legend[c[1]] = c[0] + (st.cats ? '' : ' адам/км²')); renderLegend(); good(st.cats ? 'Керемет! Елдер аймақтарға дұрыс бөлінді.' : 'Картограмма дайын!'); return nextStep();
   }
   if (st.k === 'num') {
     const v = parseFloat((document.getElementById('numIn').value || '').replace(/\s/g, '').replace(',', '.')); if (isNaN(v)) return toast('Санды жаз', 'info');
@@ -1470,6 +1568,7 @@ function showAnswer() {
   else if (st.k === 'place') { const it = st.items[stepState.sel || 0], l = locOf(it.at[0]); focusTo({ lon: l[0], lat: l[1], dist: 4, tilt: 40 }); toast(it.label + ': ' + fmtDeg(l[1], 'lat') + ', ' + fmtDeg(l[0], 'lon'), 'info', 4000); }
   else if (st.k === 'quiz') { document.querySelectorAll('.opts button').forEach(b => { if (+b.dataset.o === st.a) b.classList.add('ok'); }); }
   else if (st.k === 'countries' || st.k === 'label' || st.k === 'colorize') toast(st.targets.join(', '), 'info', 4500);
+  else if (st.k === 'choro' && st.cats) toast(st.data.map(d => d[0] + ' – ' + st.classes[d[1]][0]).join('; '), 'info', 8000);
   else if (st.k === 'choro') toast(st.data.map(d => d[0] + ' – ' + (d[1] < st.cut[0] ? 1 : d[1] < st.cut[1] ? 2 : d[1] < st.cut[2] ? 3 : 4) + '-класс').join('; '), 'info', 7000);
   else if (st.k === 'route') toast(st.seq.join(' → '), 'info', 4000);
   else if (st.k === 'zone') toast(st.hint, 'info', 4000);
@@ -1489,8 +1588,8 @@ function onMapClick(ll, ev) {
       if (d <= st.tol * 111) { pushHist(); S.map.syms.push({ type: 'ok', lon: st.coord ? st.lon : ll[0], lat: st.coord ? st.lat : ll[1], label: st.name, okc: true }); dirtyObjs = true; good('Дұрыс! ' + st.name); nextStep(); }
       else bad(`Жоқ. Ізделген нысан бұл жерден шамамен ${fmtKm(d)} ${dirTxt(ll, tgt)}.`);
     } else if (st.k === 'zone') {
-      const v = st.fn === 'climate' ? climateAt(ll[0], ll[1]) : zoneAt(ll[0], ll[1]); const nm = st.fn === 'climate' ? CLIMATE[v][0] : ZONES[v][0];
-      if (st.fn === 'zone' && !landAt(ll[0], ll[1])) return bad('Бұл – су беті. Құрлықты бас.');
+      const v = st.fn === 'climate' ? climateAt(ll[0], ll[1]) : st.fn === 'desert' ? desertAt(ll[0], ll[1]) : zoneAt(ll[0], ll[1]); const nm = st.fn === 'climate' ? CLIMATE[v][0] : st.fn === 'desert' ? (DESERT[v] || ['Су беті'])[0] : ZONES[v][0];
+      if (st.fn !== 'climate' && !landAt(ll[0], ll[1])) return bad('Бұл – су беті. Құрлықты бас.');
       if (st.inKZ && c !== KZ) return bad('Бұл нүкте Қазақстаннан тыс. Қазақстанның ішін бас.');
       if (v === st.want) { pushHist(); S.map.syms.push({ type: 'ok', lon: ll[0], lat: ll[1], label: nm, okc: true }); dirtyObjs = true; good('Дұрыс! Бұл – ' + nm.toLowerCase()); nextStep(); }
       else bad('Бұл – ' + nm.toLowerCase() + '. Шартты белгілерді қарап, тағы ізде.');
@@ -1656,6 +1755,8 @@ function renderLegend() {
   else if (S.base === 'climate') rows += CLIMATE.map(r => sw(r[1], r[0])).join('');
   else if (S.base === 'zones') rows += ZONES.map(r => sw(r[1], r[0])).join('');
   else if (S.base === 'topo') rows += `<div class="row"><i class="ln" style="background:#be8452"></i>Горизонтальдар, 250 м сайын</div><div class="row"><i class="ln" style="background:#8c5628;height:5px"></i>Қалың горизонталь, 1000 м</div>`;
+  else if (THEMES[S.base]) rows += THEMES[S.base].classes.map(r => sw(r[1], r[0])).join('');
+  else if (S.base === 'desert') rows += DESERT.map(r => sw(r[1], r[0])).join('');
   else if (S.base === 'political') rows += `<div class="row"><i class="sw" style="background:linear-gradient(90deg,#f6d58e 33%,#a9d7a0 33% 66%,#b6cdef 66%)"></i>Мемлекеттер</div>`;
   const cols = [...new Set(Object.values(S.map.fills))];
   cols.forEach(c => rows += sw(c, S.map.legend[c] || (c === '#7fd18b' ? 'Белгіленген елдер' : 'Түстің мағынасын жаз')));
@@ -1745,7 +1846,7 @@ function renderRes() {
 }
 function renderHelp() {
   document.getElementById('pg-anyktama').innerHTML = `<h1>Анықтама</h1><p class="lead">КартаLab – география сабағына арналған интерактивті цифрлық зертхана. Сабақтың тақырыбына сәйкес бағытты таңда, тапсырманы орында, өз картаңды жаса.</p>
-  <div class="helpgrid"><div class="tile"><b>1. Бағытты таңда</b><p>Басты беттегі 6 бөлімнің бірін ашып, ішіндегі картаны таңда. Әр бөлімде 4 тапсырма бар.</p></div><div class="tile"><b>2. 3D картамен жұмыс</b><p>Сол жақ батырманы басып тартсаң – айналады, оң жақ батырма – жылжиды, дөңгелек – жақындатады. Сенсорлық экранда: бір саусақ – айналдыру, екі саусақ – масштаб.</p></div><div class="tile"><b>3. Құралдар</b><p><b>Табу</b> – нысанды тауып басу. <b>Бояу</b> – сапалық фон. <b>Нысан</b> – шартты белгі қою. <b>Атау</b> – жазу. <b>Шекара</b> – шекара мен шекаралық аймақты ерекшелеу. <b>Сызу</b> – өзен, жол, теміржол. <b>Маршрут</b>, <b>Өлшеу</b>, <b>Безендіру</b>, <b>Өшіргіш</b>.</p></div><div class="tile"><b>4. Қабаттар</b><p>Жоғарыдағы қабаттар батырмасы негізгі фонды (физикалық, саяси, климат...) және қабаттарды (өзендер, қалалар, градус торы) ауыстырады.</p></div><div class="tile"><b>5. Глобус</b><p>«Глобус» режимі Жерді шар күйінде көрсетеді – мұхиттар мен құрлықтардың шын пропорциясын көру үшін.</p></div><div class="tile"><b>6. Жетістіктер</b><p>Әр тапсырма үшін XP мен жұлдыз беріледі. Жұмысты «Сақтау» батырмасымен «Менің жұмыстарым» бөліміне қос.</p></div><div class="tile"><b>Мұғалімге</b><p>Жоғарғы оң жақтағы «Оқушы» мәзірінен «Мұғалім режимін» таңдасаң, әр тапсырмада «Жауапты көрсету» батырмасы шығады. Интерактивті тақтада толық экранда қолдануға ыңғайлы.</p></div><div class="tile"><b>Пернетақта</b><p><kbd>Ctrl</kbd>+<kbd>Z</kbd> – болдырмау, <kbd>Esc</kbd> – терезелерді жабу.</p></div></div>`;
+  <div class="helpgrid"><div class="tile"><b>1. Бағытты таңда</b><p>Басты беттегі 6 бөлімнің бірін ашып, ішіндегі картаны таңда. Әр бөлімде 4–6 тапсырма бар.</p></div><div class="tile"><b>2. 3D картамен жұмыс</b><p>Сол жақ батырманы басып тартсаң – айналады, оң жақ батырма – жылжиды, дөңгелек – жақындатады. Сенсорлық экранда: бір саусақ – айналдыру, екі саусақ – масштаб.</p></div><div class="tile"><b>3. Құралдар</b><p><b>Табу</b> – нысанды тауып басу. <b>Бояу</b> – сапалық фон. <b>Нысан</b> – шартты белгі қою. <b>Атау</b> – жазу. <b>Шекара</b> – шекара мен шекаралық аймақты ерекшелеу. <b>Сызу</b> – өзен, жол, теміржол. <b>Маршрут</b>, <b>Өлшеу</b>, <b>Безендіру</b>, <b>Өшіргіш</b>.</p></div><div class="tile"><b>4. Қабаттар</b><p>Жоғарыдағы қабаттар батырмасы негізгі фонды (физикалық, саяси, климат...) және қабаттарды (өзендер, қалалар, градус торы) ауыстырады.</p></div><div class="tile"><b>5. Глобус</b><p>«Глобус» режимі Жерді шар күйінде көрсетеді – мұхиттар мен құрлықтардың шын пропорциясын көру үшін.</p></div><div class="tile"><b>6. Жетістіктер</b><p>Әр тапсырма үшін XP мен жұлдыз беріледі. Жұмысты «Сақтау» батырмасымен «Менің жұмыстарым» бөліміне қос.</p></div><div class="tile"><b>Мұғалімге</b><p>Жоғарғы оң жақтағы «Оқушы» мәзірінен «Мұғалім режимін» таңдасаң, әр тапсырмада «Жауапты көрсету» батырмасы шығады. Интерактивті тақтада толық экранда қолдануға ыңғайлы.</p></div><div class="tile"><b>Пернетақта</b><p><kbd>Ctrl</kbd>+<kbd>Z</kbd> – болдырмау, <kbd>Esc</kbd> – терезелерді жабу.</p></div></div>`;
 }
 function renderSet() {
   document.getElementById('pg-baptaular').innerHTML = `<h1>Баптаулар</h1><p class="lead">Зертхананы өзіңе ыңғайлы етіп бапта. Баптаулар осы браузерде сақталады.</p>
